@@ -1,4 +1,3 @@
-
 const CACHE_NAME = 'recepten-checklist-v2';
 const ASSETS = [
   './',
@@ -35,7 +34,7 @@ self.addEventListener('install', (e) => {
 
 self.addEventListener('activate', (e) => {
   e.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(k=>k.startsWith('sticky-checklist-v') && k!==CACHE_NAME).map(k=>caches.delete(k))))
+    caches.keys().then(keys => Promise.all(keys.filter(k=>k.startsWith('recepten-checklist-v') && k!==CACHE_NAME).map(k=>caches.delete(k))))
   );
   self.clients.claim();
 });
