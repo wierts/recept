@@ -22,7 +22,9 @@ const ASSETS = [
   './mongolian_beef_boodschappenlijst.html',
   './mongolian_beef_kookinstructies.html',
   './indiase_chicken_biriyani_boodschappenlijst.html',
-  './indiase_chicken_biriyani_kookinstructies.html'
+  './indiase_chicken_biriyani_kookinstructies.html',
+  './maple_bourbon_bbq_saus_boodschappenlijst.html',
+  './maple_bourbon_bbq_saus_kookinstructies.html'
 ];
 
 self.addEventListener('install', (e) => {
