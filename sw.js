@@ -1,4 +1,4 @@
-const CACHE_NAME = 'recepten-checklist-v2';
+const CACHE_NAME = 'recepten-checklist-v5';
 const ASSETS = [
   './',
   './index.html',
@@ -19,6 +19,12 @@ const ASSETS = [
   './tikka_korma_kookinstructies.html',
   './thaise_groene_curry_boodschappenlijst.html',
   './thaise_kookinstructies.html',
+  './thaise_rode_curry_boodschappenlijst.html',
+  './thaise_rode_curry_kookinstructies.html',
+  './padthai_boodschappenlijst.html',
+  './padthai_kookinstructies.html',
+  './butter_chicken_boodschappenlijst.html',
+  './butter_chicken_kookinstructies.html',
   './mongolian_beef_boodschappenlijst.html',
   './mongolian_beef_kookinstructies.html',
   './indiase_chicken_biriyani_boodschappenlijst.html',
