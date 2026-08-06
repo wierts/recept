@@ -155,6 +155,16 @@
     header h1 { font-size: 1.6rem; }
     .grid { grid-template-columns: 1fr; }
   }
+
+  @media (min-width: 768px) {
+    .wrap { max-width: 1000px; padding: 56px 32px 80px; }
+    header h1 { font-size: 2.3rem; }
+    .subtitle { font-size: 1.05rem; }
+    .grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .card { padding: 24px; }
+    .card h2 { font-size: 1.25rem; }
+    .btn { font-size: 1rem; padding: 14px 18px; }
+  }
 </style>
 </head>
 <body>
@@ -163,7 +173,7 @@
     <header>
       <h1>Recepten Selectie</h1>
       <p class="subtitle">Selecteer een recept om te bekijken</p>
-      <p class="subtitle" style="margin-top:4px;font-size:0.82rem;opacity:0.75;">Laatst bijgewerkt: 4 augustus 2026</p>
+      <p class="subtitle" style="margin-top:4px;font-size:0.82rem;opacity:0.75;">Laatst bijgewerkt: 6 augustus 2026</p>
     </header>
     <section class="grid">
       <div class="card">
@@ -172,7 +182,7 @@
           <span class="badge">⏱ 30 min</span>
           <span class="badge easy">Makkelijk</span>
         </div>
-        <a href="nasi.html" class="btn">Bekijk Boodschappenlijst</a>
+        <a href="nasi_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
         <a href="nasi_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
       </div>
       <div class="card">
@@ -181,7 +191,7 @@
           <span class="badge">⏱ 45 min</span>
           <span class="badge medium">Gemiddeld</span>
         </div>
-        <a href="stickychicken.html" class="btn">Bekijk Boodschappenlijst</a>
+        <a href="sticky_chicken_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
         <a href="sticky_chicken_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
       </div>
       <div class="card">
@@ -191,7 +201,7 @@
           <span class="badge medium">Gemiddeld</span>
         </div>
         <a href="korma_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="korma.html" class="btn">Bekijk Kookinstructies</a>
+        <a href="korma_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
       </div>
       <div class="card">
         <h2>Indische Saté Ajam</h2>
@@ -209,7 +219,7 @@
           <span class="badge hard">Uitdagend</span>
         </div>
         <a href="tikka_masala_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="tikka_korma_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
+        <a href="tikka_masala_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
       </div>
       <div class="card">
         <h2>Thaise Groene Curry</h2>
@@ -218,7 +228,7 @@
           <span class="badge medium">Gemiddeld</span>
         </div>
         <a href="thaise_groene_curry_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="thaise_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
+        <a href="thaise_groene_curry_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
       </div>
       <div class="card">
         <h2>Thaise Rode Curry</h2>
