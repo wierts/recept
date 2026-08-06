@@ -10,40 +10,29 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Kookinstructies Mongolian Beef">
-<style>
-  :root{--bg:#0b1220;--card:#111827;--ink:#e5e7eb;--muted:#9ca3af;--accent:#22c55e;--border:#1f2937}
-  html,body{height:100%}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#111827);color:var(--ink)}
-  .wrap{max-width:860px;margin:0 auto;padding:20px 16px 88px}
-  header{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
-  h1{font-size:1.4rem;margin:10px 0}
-  h2{margin:15px 0; color:var(--ink)}
-  .back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:.9rem;margin-bottom:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.03);transition:all .2s ease}
-  .back-btn:hover{color:var(--ink);border-color:#374151;background:rgba(255,255,255,.06)}
-  .actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 8px}
-  .video-btn{display:inline-flex;align-items:center;gap:8px;color:#04140a;text-decoration:none;font-size:.95rem;font-weight:600;padding:10px 18px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);transition:all .2s ease}
-  .video-btn:hover{background:#16a34a;border-color:#16a34a}
-  li{margin-bottom:8px}
-  @media (min-width: 768px){
-    .wrap{max-width:760px;padding:32px 32px 100px}
-    h1{font-size:1.75rem}
-    h2{font-size:1.3rem;margin:24px 0 12px}
-    body{font-size:1.08rem;line-height:1.65}
-    li{margin-bottom:10px}
-    .back-btn,.video-btn{font-size:1.02rem;padding:12px 22px}
-  }
-</style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
-    <a href="index.html" class="back-btn">&#8592; Terug naar recepten</a>
+    <div class="page-controls">
+      <a href="index.html" class="back-btn">&#8592; Terug naar recepten</a>
+      <div class="control-buttons">
+        <button id="themeToggle" class="icon-btn" title="Licht/donker thema" type="button">☀️</button>
+        <button id="wakeLockBtn" class="wake-btn" type="button">🔆 Voorkom dat scherm slaapt</button>
+      </div>
+    </div>
     <header>
       <h1>Kookinstructies voor Mongolian Beef</h1>
     </header>
     <div class="actions">
-      <a href="https://www.youtube.com/watch?v=fN-LtdxjdE0" target="_blank" rel="noopener" class="video-btn">&#9654; Bekijk video</a>
+      <a href="mongolian_beef_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
+    <a href="https://www.youtube.com/watch?v=fN-LtdxjdE0" target="_blank" rel="noopener" class="video-card">
+      <img src="https://img.youtube.com/vi/fN-LtdxjdE0/hqdefault.jpg" alt="Video thumbnail Mongolian Beef">
+      <span class="video-card-play">▶</span>
+      <span class="video-card-label">Bekijk video</span>
+    </a>
     <main>
       <h2>Ingrediënten</h2>
       <ul>
@@ -64,16 +53,17 @@
         <li>1 eetlepel maizena</li>
       </ul>
       <h2>Kookinstructies</h2>
-      <ol>
-        <li>Snijd de bavette haaks op de vezels in dunne plakjes.</li>
-        <li>Marineer het vlees in een marinade van water, 1 eetlepel light soy sauce, 1 eetlepel Shaohsingwijn, ½ theelepel bakingsoda, 1 eetlepel maizena en ½ theelepel witte peper gedurende ongeveer een uur.</li>
-        <li>Verhit olie in een wok en bak het vlees snel in porties.</li>
-        <li>Bak het stukje gember, 3 tenen knoflook, 2 gedroogde rode pepers en de witte delen van de 3 bosuitjes in dezelfde pan.</li>
-        <li>Voeg water, 60 ml light soy sauce, 50 gram basterdsuiker en 1 eetlepel oestersaus toe en laat sudderen.</li>
-        <li>Bind de saus met 1 eetlepel maizena en meng het vlees erdoor.</li>
-        <li>Serveer met witte rijst.</li>
+      <ol class="steps">
+        <li><input type="checkbox" id="step-1"><label for="step-1">Snijd de bavette haaks op de vezels in dunne plakjes.</label></li>
+        <li><input type="checkbox" id="step-2"><label for="step-2">Marineer het vlees in een marinade van water, 1 eetlepel light soy sauce, 1 eetlepel Shaohsingwijn, ½ theelepel bakingsoda, 1 eetlepel maizena en ½ theelepel witte peper gedurende ongeveer een uur.</label></li>
+        <li><input type="checkbox" id="step-3"><label for="step-3">Verhit olie in een wok en bak het vlees snel in porties.</label></li>
+        <li><input type="checkbox" id="step-4"><label for="step-4">Bak het stukje gember, 3 tenen knoflook, 2 gedroogde rode pepers en de witte delen van de 3 bosuitjes in dezelfde pan.</label></li>
+        <li><input type="checkbox" id="step-5"><label for="step-5">Voeg water, 60 ml light soy sauce, 50 gram basterdsuiker en 1 eetlepel oestersaus toe en laat sudderen.</label></li>
+        <li><input type="checkbox" id="step-6"><label for="step-6">Bind de saus met 1 eetlepel maizena en meng het vlees erdoor.</label></li>
+        <li><input type="checkbox" id="step-7"><label for="step-7">Serveer met witte rijst.</label></li>
       </ol>
     </main>
   </div>
+<script src="theme.js" defer></script>
 </body>
 </html>

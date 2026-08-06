@@ -1,9 +1,11 @@
-const CACHE_NAME = 'recepten-checklist-v7';
+const CACHE_NAME = 'recepten-checklist-v8';
 const ASSETS = [
   './',
   './index.html',
   './manifest.webmanifest',
   './sw.js',
+  './theme.css',
+  './theme.js',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',

@@ -10,36 +10,33 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Boodschappenlijst Tikka Masala">
+<link rel="stylesheet" href="theme.css">
 <style>
-  :root{--bg:#0b1220;--card:#111827;--ink:#e5e7eb;--muted:#9ca3af;--accent:#22c55e;--border:#1f2937}
-  html,body{height:100%} 
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#111827);color:var(--ink)}
-  .wrap{max-width:860px;margin:0 auto;padding:20px 16px 88px}
-  header{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
-  h1{font-size:1.4rem;margin:10px 0}
-  .subtitle{color:var(--muted);font-size:.95rem;margin-top:-6px}
   .controls{display:flex;gap:8px;flex-wrap:wrap}
-  button, .btn{background:#1f2937;border:1px solid var(--border);color:var(--ink);padding:10px 12px;border-radius:10px;cursor:pointer}
-  button:hover{border-color:#374151}
+  button, .btn{background:var(--card);border:1px solid var(--border);color:var(--ink);padding:10px 12px;border-radius:10px;cursor:pointer}
+  button:hover{border-color:var(--accent)}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
-  .card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:14px}
+  .card{background:rgba(127,127,127,.06);border:1px solid var(--border);border-radius:14px;padding:14px}
   .card h2{font-size:1.05rem;margin:0 0 8px 0}
   ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
   li{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;border:1px dashed transparent}
   li.done{opacity:.6;text-decoration:line-through}
   input[type=checkbox]{width:20px;height:20px}
-  footer{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(17,24,39,.0),rgba(17,24,39,.92));padding:10px 16px}
+  footer{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(0deg,var(--bg) 40%,transparent);padding:10px 16px}
   .status{max-width:860px;margin:0 auto;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:10px}
   .tip{font-size:.9rem}
   .sr{position:absolute;left:-9999px}
-  .back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:.9rem;margin-bottom:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.03);transition:all .2s ease}
-  .back-btn:hover{color:var(--ink);border-color:#374151;background:rgba(255,255,255,.06)}
 </style>
 </head>
 <body>
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
-    <a href="index.html" class="back-btn">&#8592; Terug naar recepten</a>
+    <div class="page-controls">
+      <a href="index.html" class="back-btn">&#8592; Terug naar recepten</a>
+      <div class="control-buttons">
+        <button id="themeToggle" class="icon-btn" title="Licht/donker thema" type="button">☀️</button>
+      </div>
+    </div>
     <header>
       <div>
         <h1>Checklist – Boodschappenlijst Kip Tikka Masala</h1>
@@ -52,6 +49,9 @@
         <button id="share">Deel/Exporteer</button>
       </div>
     </header>
+    <div class="actions">
+      <a href="tikka_masala_kookinstructies.html" class="nav-btn">🍳 Bekijk kookinstructies</a>
+    </div>
 
     <section class="grid" id="list"></section>
   </div>
@@ -63,14 +63,8 @@
     </div>
   </footer>
 
+<script src="theme.js" defer></script>
 <script>
-// Register Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js');
-  });
-}
-
 const DATA = [
   { title:"Kip Tikka Masala", items:[
     {id:"kipfilet", label:"1 kilo kipfilet"},
@@ -174,21 +168,20 @@ function setAll(val){
   save();
 }
 
-// Controls
- document.getElementById('checkAll').addEventListener('click', ()=>setAll(true));
- document.getElementById('uncheckAll').addEventListener('click', ()=>setAll(false));
- document.getElementById('reset').addEventListener('click', ()=>{ if(confirm('Alles resetten?')){ state={}; save(); render(); }});
- document.getElementById('share').addEventListener('click', async ()=>{
-    const all = DATA.flatMap(s=>s.items.map(i=>({id:i.id,label:i.label,done:!!state[i.id]})));
-    const lines = all.map(x=> `${x.done?'[x]':'[ ]'} ${x.label}`).join('\n');
-    const text = `Kip Tikka Masala – Checklist\n\n${lines}`;
-    try{
-      await navigator.clipboard.writeText(text);
-      alert('Checklist gekopieerd naar je klembord!');
-    }catch(e){
-      prompt('Kopieer de checklist:', text);
-    }
- });
+document.getElementById('checkAll').addEventListener('click', ()=>setAll(true));
+document.getElementById('uncheckAll').addEventListener('click', ()=>setAll(false));
+document.getElementById('reset').addEventListener('click', ()=>{ if(confirm('Alles resetten?')){ state={}; save(); render(); }});
+document.getElementById('share').addEventListener('click', async ()=>{
+   const all = DATA.flatMap(s=>s.items.map(i=>({id:i.id,label:i.label,done:!!state[i.id]})));
+   const lines = all.map(x=> `${x.done?'[x]':'[ ]'} ${x.label}`).join('\n');
+   const text = `Kip Tikka Masala – Checklist\n\n${lines}`;
+   try{
+     await navigator.clipboard.writeText(text);
+     alert('Checklist gekopieerd naar je klembord!');
+   }catch(e){
+     prompt('Kopieer de checklist:', text);
+   }
+});
 
 render();
 </script>

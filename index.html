@@ -10,6 +10,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Recepten">
+<link rel="stylesheet" href="theme.css">
 <style>
   :root {
     --bg: #0b1220;
@@ -170,6 +171,11 @@
 <body>
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
+    <div class="page-controls" style="justify-content:flex-end;margin-bottom:-6px">
+      <div class="control-buttons">
+        <button id="themeToggle" class="icon-btn" title="Licht/donker thema" type="button">☀️</button>
+      </div>
+    </div>
     <header>
       <h1>Recepten Selectie</h1>
       <p class="subtitle">Selecteer een recept om te bekijken</p>
@@ -286,5 +292,6 @@
       </div>
     </section>
   </div>
+<script src="theme.js" defer></script>
 </body>
 </html>

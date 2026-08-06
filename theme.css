@@ -1,0 +1,58 @@
+:root{
+  --bg:#0b1220;--card:#111827;--ink:#e5e7eb;--muted:#9ca3af;--accent:#22c55e;--accent-ink:#04140a;--border:#1f2937;--accent-hover:#16a34a;
+}
+:root[data-theme="light"]{
+  --bg:#f4f5f7;--card:#ffffff;--ink:#111827;--muted:#6b7280;--accent:#16a34a;--accent-ink:#ffffff;--border:#e2e4e9;--accent-hover:#15803d;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),var(--card));color:var(--ink);transition:background .2s ease,color .2s ease}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 88px}
+header{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
+h1{font-size:1.4rem;margin:10px 0}
+h2{margin:15px 0;color:var(--ink)}
+.subtitle{color:var(--muted);font-size:.95rem;margin-top:-6px}
+li{margin-bottom:8px}
+
+.page-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.control-buttons{display:flex;gap:8px}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid var(--border);background:rgba(127,127,127,.08);color:var(--ink);font-size:1.1rem;cursor:pointer;transition:all .2s ease}
+.icon-btn:hover{border-color:var(--accent)}
+.icon-btn.active{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:.9rem;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:rgba(127,127,127,.08);transition:all .2s ease}
+.back-btn:hover{color:var(--ink);border-color:var(--accent)}
+
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 8px}
+.nav-btn,.video-btn,.wake-btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:.95rem;font-weight:600;padding:10px 18px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--ink);cursor:pointer;transition:all .2s ease}
+.nav-btn:hover{border-color:var(--accent);color:var(--ink)}
+.video-btn{color:var(--accent-ink);border-color:var(--accent);background:var(--accent)}
+.video-btn:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.wake-btn.active{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+
+.video-card{position:relative;display:block;max-width:420px;border-radius:14px;overflow:hidden;border:1px solid var(--border);text-decoration:none;margin:16px 0;background:#000}
+.video-card img{display:block;width:100%;height:auto;opacity:.85;transition:opacity .2s ease}
+.video-card:hover img{opacity:1}
+.video-card-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.video-card-label{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;background:linear-gradient(0deg,rgba(0,0,0,.75),rgba(0,0,0,0));color:#fff;font-weight:600;font-size:.95rem}
+
+ol.steps{list-style:none;counter-reset:step;padding-left:0;margin:0}
+ol.steps li{counter-increment:step;position:relative;padding:0 0 0 44px;margin-bottom:14px;min-height:30px}
+ol.steps li::before{content:counter(step);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+ol.steps li input[type=checkbox]{position:absolute;opacity:0;width:0;height:0}
+ol.steps li label{cursor:pointer;display:block}
+ol.steps li.done label{opacity:.55;text-decoration:line-through}
+ol.steps li.done::before{content:"✓"}
+
+.note{background:rgba(127,127,127,.08);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--muted);margin-top:16px}
+
+@media (min-width: 768px){
+  .wrap{max-width:760px;padding:32px 32px 100px}
+  h1{font-size:1.75rem}
+  h2{font-size:1.3rem;margin:24px 0 12px}
+  body{font-size:1.08rem;line-height:1.65}
+  li{margin-bottom:10px}
+  .back-btn,.nav-btn,.video-btn,.wake-btn{font-size:1.02rem;padding:12px 22px}
+  .icon-btn{width:46px;height:46px;font-size:1.25rem}
+  .video-card{max-width:520px}
+}

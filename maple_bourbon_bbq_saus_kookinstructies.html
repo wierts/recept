@@ -10,39 +10,27 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Kookinstructies BBQ-saus">
-<style>
-  :root{--bg:#0b1220;--card:#111827;--ink:#e5e7eb;--muted:#9ca3af;--accent:#22c55e;--border:#1f2937}
-  html,body{height:100%}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#111827);color:var(--ink)}
-  .wrap{max-width:860px;margin:0 auto;padding:20px 16px 88px}
-  header{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
-  h1{font-size:1.4rem;margin:10px 0}
-  h2{margin:15px 0; color:var(--ink)}
-  .subtitle{color:var(--muted);font-size:.95rem;margin-top:-6px}
-  .note{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--muted);margin-top:16px}
-  .back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:.9rem;margin-bottom:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.03);transition:all .2s ease}
-  .back-btn:hover{color:var(--ink);border-color:#374151;background:rgba(255,255,255,.06)}
-  li{margin-bottom:8px}
-  @media (min-width: 768px){
-    .wrap{max-width:760px;padding:32px 32px 100px}
-    h1{font-size:1.75rem}
-    h2{font-size:1.3rem;margin:24px 0 12px}
-    body{font-size:1.08rem;line-height:1.65}
-    li{margin-bottom:10px}
-    .back-btn{font-size:1.02rem;padding:12px 22px}
-  }
-</style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
-    <a href="index.html" class="back-btn">&#8592; Terug naar recepten</a>
+    <div class="page-controls">
+      <a href="index.html" class="back-btn">&#8592; Terug naar recepten</a>
+      <div class="control-buttons">
+        <button id="themeToggle" class="icon-btn" title="Licht/donker thema" type="button">☀️</button>
+        <button id="wakeLockBtn" class="wake-btn" type="button">🔆 Voorkom dat scherm slaapt</button>
+      </div>
+    </div>
     <header>
       <div>
         <h1>Kookinstructies voor Maple Bourbon BBQ-saus</h1>
         <div class="subtitle">Metrieke versie van het originele Amerikaanse maat-recept.</div>
       </div>
     </header>
+    <div class="actions">
+      <a href="maple_bourbon_bbq_saus_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
+    </div>
     <main>
       <h2>Ingrediënten</h2>
       <ul>
@@ -59,16 +47,17 @@
         <li>2,5 ml vanille-extract (± ½ theelepel)</li>
       </ul>
       <h2>Kookinstructies</h2>
-      <ol>
-        <li>Combineer alle ingrediënten (bruine basterdsuiker, gemberpoeder, cayennepeper, witte wijnazijn, bourbon, zout, ahornazijn, witte suiker, ahornsiroop, ketchup en vanille-extract) in een sauspan.</li>
-        <li>Breng het geheel op laag-middelhoog vuur aan de kook en laat daarna zachtjes sudderen.</li>
-        <li>Roer regelmatig en laat de saus ca. 15 minuten inkoken tot deze is ingedikt.</li>
-        <li>Laat de saus iets afkoelen en giet hem eventueel door een zeef voor een gladde structuur. Bewaar afgekoeld in een afgesloten pot in de koelkast.</li>
+      <ol class="steps">
+        <li><input type="checkbox" id="step-1"><label for="step-1">Combineer alle ingrediënten (bruine basterdsuiker, gemberpoeder, cayennepeper, witte wijnazijn, bourbon, zout, ahornazijn, witte suiker, ahornsiroop, ketchup en vanille-extract) in een sauspan.</label></li>
+        <li><input type="checkbox" id="step-2"><label for="step-2">Breng het geheel op laag-middelhoog vuur aan de kook en laat daarna zachtjes sudderen.</label></li>
+        <li><input type="checkbox" id="step-3"><label for="step-3">Roer regelmatig en laat de saus ca. 15 minuten inkoken tot deze is ingedikt.</label></li>
+        <li><input type="checkbox" id="step-4"><label for="step-4">Laat de saus iets afkoelen en giet hem eventueel door een zeef voor een gladde structuur. Bewaar afgekoeld in een afgesloten pot in de koelkast.</label></li>
       </ol>
       <div class="note">
         <strong>Notitie:</strong> Geen ahornazijn? Vervang de 120 ml door 60 ml witte wijnazijn gemengd met 60 ml ahornsiroop.
       </div>
     </main>
   </div>
+<script src="theme.js" defer></script>
 </body>
 </html>

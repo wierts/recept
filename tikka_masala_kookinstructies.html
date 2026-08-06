@@ -10,40 +10,29 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Kookinstructies Tikka Masala">
-<style>
-  :root{--bg:#0b1220;--card:#111827;--ink:#e5e7eb;--muted:#9ca3af;--accent:#22c55e;--border:#1f2937}
-  html,body{height:100%}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#111827);color:var(--ink)}
-  .wrap{max-width:860px;margin:0 auto;padding:20px 16px 88px}
-  header{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
-  h1{font-size:1.4rem;margin:10px 0}
-  h2{margin:15px 0; color:var(--ink)}
-  .back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:.9rem;margin-bottom:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.03);transition:all .2s ease}
-  .back-btn:hover{color:var(--ink);border-color:#374151;background:rgba(255,255,255,.06)}
-  .actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 8px}
-  .video-btn{display:inline-flex;align-items:center;gap:8px;color:#04140a;text-decoration:none;font-size:.95rem;font-weight:600;padding:10px 18px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);transition:all .2s ease}
-  .video-btn:hover{background:#16a34a;border-color:#16a34a}
-  li{margin-bottom:8px}
-  @media (min-width: 768px){
-    .wrap{max-width:760px;padding:32px 32px 100px}
-    h1{font-size:1.75rem}
-    h2{font-size:1.3rem;margin:24px 0 12px}
-    body{font-size:1.08rem;line-height:1.65}
-    li{margin-bottom:10px}
-    .back-btn,.video-btn{font-size:1.02rem;padding:12px 22px}
-  }
-</style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
-    <a href="index.html" class="back-btn">&#8592; Terug naar recepten</a>
+    <div class="page-controls">
+      <a href="index.html" class="back-btn">&#8592; Terug naar recepten</a>
+      <div class="control-buttons">
+        <button id="themeToggle" class="icon-btn" title="Licht/donker thema" type="button">☀️</button>
+        <button id="wakeLockBtn" class="wake-btn" type="button">🔆 Voorkom dat scherm slaapt</button>
+      </div>
+    </div>
     <header>
       <h1>Kookinstructies voor Kip Tikka Masala</h1>
     </header>
     <div class="actions">
-      <a href="https://www.youtube.com/watch?v=l8PWYBn4cGA" target="_blank" rel="noopener" class="video-btn">&#9654; Bekijk video</a>
+      <a href="tikka_masala_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
+    <a href="https://www.youtube.com/watch?v=l8PWYBn4cGA" target="_blank" rel="noopener" class="video-card">
+      <img src="https://img.youtube.com/vi/l8PWYBn4cGA/hqdefault.jpg" alt="Video thumbnail Kip Tikka Masala">
+      <span class="video-card-play">▶</span>
+      <span class="video-card-label">Bekijk video</span>
+    </a>
     <main>
       <h2>Ingrediënten</h2>
       <ul>
@@ -69,18 +58,19 @@
         <li>verse koriander</li>
       </ul>
       <h2>Kookinstructies</h2>
-      <ol>
-        <li>Snijd 1 kilo kipfilet in stukken en maak inkervingen in de kip.</li>
-        <li>Maak een marinade van ¼ liter yoghurt, het sap van ½ citroen, 2 tenen knoflook, 1 stuk gember (ca. 5 cm), 2 theelepels komijn, 2 theelepels koriander, ¼ theelepel kurkuma, ¼ theelepel cayennepeper, ½ theelepel zwarte peper, 2 theelepels zout en 2 theelepels suiker.</li>
-        <li>Voeg de kip toe aan de marinade en laat dit minimaal 12 uur in de koelkast marineren.</li>
-        <li>Verhit een oven met boven grill en bak de kip tot deze lichtbruin is.</li>
-        <li>Fruit 2 uien, 2 tenen knoflook en 1 stuk gember (ca. 5 cm) in 2 eetlepels zonnebloemolie of ghee.</li>
-        <li>Voeg 1 theelepel paprikapoeder, 1 theelepel garam masala en 1 theelepel cayennepeper toe en laat dit een minuut meebakken.</li>
-        <li>Voeg 500 gram tomaten, 1 theelepel zout en 2 theelepels suiker toe en laat het in 20 minuten indikken.</li>
-        <li>Voeg ¼ liter slagroom en 1 eetlepel amandelmeel toe en laat het nog 10 minuten koken.</li>
-        <li>Voeg de kip toe en laat dit nog eens 10 minuten sudderen.</li>
+      <ol class="steps">
+        <li><input type="checkbox" id="step-1"><label for="step-1">Snijd 1 kilo kipfilet in stukken en maak inkervingen in de kip.</label></li>
+        <li><input type="checkbox" id="step-2"><label for="step-2">Maak een marinade van ¼ liter yoghurt, het sap van ½ citroen, 2 tenen knoflook, 1 stuk gember (ca. 5 cm), 2 theelepels komijn, 2 theelepels koriander, ¼ theelepel kurkuma, ¼ theelepel cayennepeper, ½ theelepel zwarte peper, 2 theelepels zout en 2 theelepels suiker.</label></li>
+        <li><input type="checkbox" id="step-3"><label for="step-3">Voeg de kip toe aan de marinade en laat dit minimaal 12 uur in de koelkast marineren.</label></li>
+        <li><input type="checkbox" id="step-4"><label for="step-4">Verhit een oven met boven grill en bak de kip tot deze lichtbruin is.</label></li>
+        <li><input type="checkbox" id="step-5"><label for="step-5">Fruit 2 uien, 2 tenen knoflook en 1 stuk gember (ca. 5 cm) in 2 eetlepels zonnebloemolie of ghee.</label></li>
+        <li><input type="checkbox" id="step-6"><label for="step-6">Voeg 1 theelepel paprikapoeder, 1 theelepel garam masala en 1 theelepel cayennepeper toe en laat dit een minuut meebakken.</label></li>
+        <li><input type="checkbox" id="step-7"><label for="step-7">Voeg 500 gram tomaten, 1 theelepel zout en 2 theelepels suiker toe en laat het in 20 minuten indikken.</label></li>
+        <li><input type="checkbox" id="step-8"><label for="step-8">Voeg ¼ liter slagroom en 1 eetlepel amandelmeel toe en laat het nog 10 minuten koken.</label></li>
+        <li><input type="checkbox" id="step-9"><label for="step-9">Voeg de kip toe en laat dit nog eens 10 minuten sudderen.</label></li>
       </ol>
     </main>
   </div>
+<script src="theme.js" defer></script>
 </body>
 </html>
