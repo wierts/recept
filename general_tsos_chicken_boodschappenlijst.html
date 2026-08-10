@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boodschappenlijst – General Tso's Chicken</title>
+<meta name="theme-color" content="#0b1220">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Boodschappenlijst General Tso's Chicken">
+<link rel="stylesheet" href="theme.css">
+<style>
+  .controls{display:flex;gap:8px;flex-wrap:wrap}
+  button, .btn{background:var(--card);border:1px solid var(--border);color:var(--ink);padding:10px 12px;border-radius:10px;cursor:pointer}
+  button:hover{border-color:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+  .card{background:rgba(127,127,127,.06);border:1px solid var(--border);border-radius:14px;padding:14px}
+  .card h2{font-size:1.05rem;margin:0 0 8px 0}
+  ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+  li{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;border:1px dashed transparent}
+  li.done{opacity:.6;text-decoration:line-through}
+  input[type=checkbox]{width:20px;height:20px}
+  footer{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(0deg,var(--bg) 40%,transparent);padding:10px 16px}
+  .status{max-width:860px;margin:0 auto;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .tip{font-size:.9rem}
+  .sr{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
+  <div class="wrap">
+    <div class="page-controls">
+      <a href="index.html" class="back-btn">&#8592; Terug naar recepten</a>
+      <div class="control-buttons">
+        <button id="themeToggle" class="icon-btn" title="Licht/donker thema" type="button">☀️</button>
+      </div>
+    </div>
+    <header>
+      <div>
+        <h1>Checklist – Boodschappenlijst General Tso's Chicken</h1>
+        <div class="subtitle">Werkt als app op je iPhone. Offline, met lokale opslag.</div>
+      </div>
+      <div class="controls">
+        <button id="checkAll">Alles aanvinken</button>
+        <button id="uncheckAll">Alles uitvinken</button>
+        <button id="reset">Reset</button>
+        <button id="share">Deel/Exporteer</button>
+      </div>
+    </header>
+    <div class="actions">
+      <a href="general_tsos_chicken_kookinstructies.html" class="nav-btn">🍳 Bekijk kookinstructies</a>
+    </div>
+
+    <section class="grid" id="list"></section>
+  </div>
+
+  <footer>
+    <div class="status">
+      <div id="progress">0/0 afgevinkt</div>
+      <div class="tip">Tip: voeg eigen items toe via “+ Item”. Toevoegen aan beginscherm via Deel‑icoon → Zet op beginscherm.</div>
+    </div>
+  </footer>
+
+<script src="theme.js" defer></script>
+<script>
+const DATA = [
+  { title:"General Tso's Chicken", items:[
+    {id:"kipfilet", label:"280 gram kipfilet"},
+    {id:"gember", label:"Klein stukje gember (ca. 2 cm)"},
+    {id:"knoflook", label:"2 tenen knoflook"},
+    {id:"gedroogde-pepers", label:"4 gedroogde rode pepers"},
+    {id:"rode-paprika", label:"30 gram rode paprika"},
+    {id:"maisolie", label:"Maïsolie (om te frituren)"},
+    {id:"zout", label:"½ theelepel zout (marinade)"},
+    {id:"ei", label:"1 ei (gesplitst: marinade + beslag)"},
+    {id:"maizena-marinade", label:"1 eetlepel maizena (marinade)"},
+    {id:"water-marinade", label:"½ eetlepel water (marinade)"},
+    {id:"bloem", label:"3 eetlepels bloem (beslag)"},
+    {id:"maizena-beslag", label:"1 eetlepel maizena (beslag)"},
+    {id:"bakpoeder", label:"1 theelepel bakpoeder (beslag)"},
+    {id:"water-beslag", label:"5 eetlepels water (beslag)"},
+    {id:"olijfolie", label:"1 eetlepel olijfolie (beslag)"},
+    {id:"light-soy-sauce", label:"2 eetlepels light soy sauce (saus)"},
+    {id:"dark-soy-sauce", label:"1 theelepel dark soy sauce (saus)"},
+    {id:"suiker", label:"2 eetlepels suiker (saus)"},
+    {id:"azijn", label:"1 eetlepel azijn (saus)"},
+    {id:"ketchup", label:"1 eetlepel ketchup (saus)"},
+    {id:"witte-peper", label:"½ theelepel witte peper (saus)"},
+    {id:"maizena-saus", label:"1 theelepel maizena (saus, binden)"},
+    {id:"water-saus", label:"2 eetlepels water (saus, binden)"},
+    {id:"sesamolie", label:"1 theelepel sesamolie (saus)"},
+    {id:"broccoli", label:"Broccoli (optioneel, voor erbij)"},
+    {id:"tomaat", label:"Tomaat (optioneel, garnering)"}
+  ]}
+];
+
+const STORAGE_KEY = 'general-tsos-chicken-checklist-v1';
+let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {};
+
+function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); updateProgress(); }
+
+function render(){
+  const root = document.getElementById('list');
+  root.innerHTML = '';
+  DATA.forEach(section => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const h2 = document.createElement('h2');
+    h2.textContent = section.title;
+
+    const addBtn = document.createElement('button');
+    addBtn.className = 'btn';
+    addBtn.style.float = 'right';
+    addBtn.title = 'Eigen item toevoegen';
+    addBtn.textContent = '+ Item';
+    addBtn.addEventListener('click', () => {
+      const label = prompt('Nieuw item voor "' + section.title + '"');
+      if(!label) return;
+      const id = (section.title + '-' + label).toLowerCase().replace(/[^a-z0-9]+/g,'-');
+      section.items.push({id, label});
+      render();
+    });
+
+    const ul = document.createElement('ul');
+
+    section.items.forEach(it => {
+      const li = document.createElement('li');
+      const cb = document.createElement('input');
+      cb.type='checkbox';
+      cb.id = it.id;
+      cb.checked = !!state[it.id];
+      cb.addEventListener('change', () => { state[it.id] = cb.checked; li.classList.toggle('done', cb.checked); save(); });
+
+      const lab = document.createElement('label');
+      lab.setAttribute('for', it.id);
+      lab.textContent = it.label;
+
+      li.classList.toggle('done', cb.checked);
+      li.appendChild(cb); li.appendChild(lab);
+      ul.appendChild(li);
+    });
+
+    card.appendChild(addBtn);
+    card.appendChild(h2);
+    card.appendChild(ul);
+    root.appendChild(card);
+  });
+  updateProgress();
+}
+
+function updateProgress(){
+  const allIds = DATA.flatMap(s=>s.items.map(i=>i.id));
+  const done = allIds.filter(id => state[id]).length;
+  const el = document.getElementById('progress');
+  el.textContent = `${done}/${allIds.length} afgevinkt`;
+}
+
+function setAll(val){
+  DATA.forEach(s=>s.items.forEach(i=> state[i.id]=val));
+  document.querySelectorAll('input[type=checkbox]').forEach(cb=>{ cb.checked=val; cb.dispatchEvent(new Event('change')); });
+  save();
+}
+
+document.getElementById('checkAll').addEventListener('click', ()=>setAll(true));
+document.getElementById('uncheckAll').addEventListener('click', ()=>setAll(false));
+document.getElementById('reset').addEventListener('click', ()=>{ if(confirm('Alles resetten?')){ state={}; save(); render(); }});
+document.getElementById('share').addEventListener('click', async ()=>{
+   const all = DATA.flatMap(s=>s.items.map(i=>({id:i.id,label:i.label,done:!!state[i.id]})));
+   const lines = all.map(x=> `${x.done?'[x]':'[ ]'} ${x.label}`).join('\n');
+   const text = `General Tso's Chicken – Checklist\n\n${lines}`;
+   try{
+     await navigator.clipboard.writeText(text);
+     alert('Checklist gekopieerd naar je klembord!');
+   }catch(e){
+     prompt('Kopieer de checklist:', text);
+   }
+});
+
+render();
+</script>
+</body>
+</html>
