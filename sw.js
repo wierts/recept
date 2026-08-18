@@ -44,7 +44,17 @@ const ASSETS = [
   "./thaise_rode_curry_boodschappenlijst.html",
   "./thaise_rode_curry_kookinstructies.html",
   "./tikka_masala_boodschappenlijst.html",
-  "./tikka_masala_kookinstructies.html"
+  "./tikka_masala_kookinstructies.html",
+  "./ravioli_spinazie_citroen_boodschappenlijst.html",
+  "./ravioli_spinazie_citroen_kookinstructies.html",
+  "./kip_piccata_boodschappenlijst.html",
+  "./kip_piccata_kookinstructies.html",
+  "./avgolemono_boodschappenlijst.html",
+  "./avgolemono_kookinstructies.html",
+  "./spaghetti_al_limone_boodschappenlijst.html",
+  "./spaghetti_al_limone_kookinstructies.html",
+  "./spaghetti_al_limone_romig_boodschappenlijst.html",
+  "./spaghetti_al_limone_romig_kookinstructies.html"
 ];
 
 self.addEventListener('install', (e) => {

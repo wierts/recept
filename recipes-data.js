@@ -17,7 +17,12 @@ window.RECIPES = {
     "sticky_chicken",
     "thaise_groene_curry",
     "thaise_rode_curry",
-    "tikka_masala"
+    "tikka_masala",
+    "ravioli_spinazie_citroen",
+    "kip_piccata",
+    "avgolemono",
+    "spaghetti_al_limone",
+    "spaghetti_al_limone_romig"
   ],
   "recipes": {
     "butter_chicken": {
@@ -2367,6 +2372,433 @@ window.RECIPES = {
         "Voeg 500 gram tomaten, 1 theelepel zout en 2 theelepels suiker toe en laat het in 20 minuten indikken.",
         "Voeg ¼ liter slagroom en 1 eetlepel amandelmeel toe en laat het nog 10 minuten koken.",
         "Voeg de kip toe en laat dit nog eens 10 minuten sudderen."
+      ],
+      "note": null
+    },
+    "ravioli_spinazie_citroen": {
+      "title": "Ravioli met Spinazie, Roomkaas en Citroenbotersaus",
+      "herkomst": "Somebody Feed Seb",
+      "videoId": null,
+      "time": "1,5 uur",
+      "difficulty": "hard",
+      "difficultyLabel": "Uitdagend",
+      "servings": 4,
+      "ingredients": [
+        {
+          "id": "ing-0",
+          "qty": 200.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "bloem type 00"
+        },
+        {
+          "id": "ing-1",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "middelgrote",
+          "rest": "eieren"
+        },
+        {
+          "id": "ing-2",
+          "qty": 150.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "verse spinazie"
+        },
+        {
+          "id": "ing-3",
+          "qty": 150.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "roomkaas"
+        },
+        {
+          "id": "ing-4",
+          "qty": 30.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "parmezaan, geraspt"
+        },
+        {
+          "id": "ing-5",
+          "qty": 0.5,
+          "qtyMax": null,
+          "unit": "citroen",
+          "rest": ", alleen de schil (voor de vulling)"
+        },
+        {
+          "id": "ing-6",
+          "qty": 0.5,
+          "qtyMax": null,
+          "unit": "teen",
+          "rest": "knoflook, fijngehakt"
+        },
+        {
+          "id": "ing-7",
+          "qty": 30.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "boter"
+        },
+        {
+          "id": "ing-8",
+          "qty": 0.5,
+          "qtyMax": null,
+          "unit": "citroen",
+          "rest": ", schil en 1 eetlepel sap (voor de saus)"
+        },
+        {
+          "id": "ing-9",
+          "qty": 60.0,
+          "qtyMax": null,
+          "unit": "ml",
+          "rest": "slagroom"
+        },
+        {
+          "id": "ing-10",
+          "qty": 10.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "parmezaan, geraspt (voor de saus)"
+        },
+        {
+          "id": "ing-11",
+          "text": "Zout en peper naar smaak"
+        }
+      ],
+      "steps": [
+        "Maak een bergje van de bloem op het werkblad met een kuiltje in het midden. Breek de eieren erin en meng geleidelijk met je handen tot een samenhangend deeg.",
+        "Kneed ca. 10 minuten tot een zacht, elastisch deeg. Te droog? Voeg een scheutje water toe. Te nat? Werk er wat extra bloem doorheen.",
+        "Wikkel het deeg in plasticfolie en laat 30-60 minuten rusten op kamertemperatuur.",
+        "Verdeel het geruste deeg in vieren. Rol één stuk per keer uit tot een dunne baan van ca. 1 mm dik (houd de rest afgedekt). Snijd elke baan doormidden.",
+        "Giet kokend water over de verse spinazie in een vergiet om te laten slinken. Laat iets afkoelen en knijp zoveel mogelijk vocht eruit. Hak de spinazie fijn.",
+        "Meng de spinazie met de roomkaas, citroenschil, knoflook, zout en peper (of pureer alles glad in een keukenmachine).",
+        "Schep of spuit theelepeltjes vulling op regelmatige afstand (4-5 cm) op één deegbaan.",
+        "Leg de tweede deegbaan er voorzichtig overheen en druk tussen de vulling door de lucht eruit en het deeg dicht.",
+        "Snijd met een mes, stempel of kartelwieltje de ravioli in vierkantjes. Leg ze op een met bloem/griesmeel bestoven plank.",
+        "Kook de ravioli 3-4 minuten in ruim kokend gezouten water tot ze boven komen drijven.",
+        "Smelt voor de saus de boter op laag vuur. Voeg citroenschil en -sap toe en laat 30 seconden trekken.",
+        "Schenk de slagroom erbij en warm door. Voeg 1-2 eetlepels kookvocht van de pasta toe.",
+        "Haal van het vuur en roer de parmezaan erdoor. Breng op smaak met zout en peper en meng met de ravioli."
+      ],
+      "note": "UK-recept van Somebody Feed Seb (4,88/5 bij 8 stemmen) — zelfgemaakte pasta, maar met kant-en-klare verse ravioli-vellen gaat het ook sneller."
+    },
+    "kip_piccata": {
+      "title": "Kip Piccata met Citroensaus",
+      "herkomst": "RecipeTin Eats (Nagi Maehashi)",
+      "videoId": null,
+      "time": "35 min",
+      "difficulty": "medium",
+      "difficultyLabel": "Gemiddeld",
+      "servings": 4,
+      "ingredients": [
+        {
+          "id": "ing-0",
+          "qty": 450.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "kipfilet (2 grote stukken)"
+        },
+        {
+          "id": "ing-1",
+          "qty": 4.0,
+          "qtyMax": null,
+          "unit": "eetlepels",
+          "rest": "bloem"
+        },
+        {
+          "id": "ing-2",
+          "qty": 2.5,
+          "qtyMax": null,
+          "unit": "eetlepels",
+          "rest": "parmezaan, fijngeraspt"
+        },
+        {
+          "id": "ing-3",
+          "qty": 0.5,
+          "qtyMax": null,
+          "unit": "theelepel",
+          "rest": "zout"
+        },
+        {
+          "id": "ing-4",
+          "qty": 0.25,
+          "qtyMax": null,
+          "unit": "theelepel",
+          "rest": "peper"
+        },
+        {
+          "id": "ing-5",
+          "qty": 2.5,
+          "qtyMax": null,
+          "unit": "eetlepels",
+          "rest": "olijfolie"
+        },
+        {
+          "id": "ing-6",
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "eetlepel",
+          "rest": "(15 gram) ongezouten boter"
+        },
+        {
+          "id": "ing-7",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "eetlepels",
+          "rest": "(30 gram) ongezouten boter, in blokjes (voor de saus)"
+        },
+        {
+          "id": "ing-8",
+          "qty": 150.0,
+          "qtyMax": null,
+          "unit": "ml",
+          "rest": "droge witte wijn"
+        },
+        {
+          "id": "ing-9",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "eetlepels",
+          "rest": "vers citroensap"
+        },
+        {
+          "id": "ing-10",
+          "qty": 3.0,
+          "qtyMax": null,
+          "unit": "eetlepels",
+          "rest": "kappertjes, uitgelekt"
+        },
+        {
+          "id": "ing-11",
+          "qty": 1.5,
+          "qtyMax": null,
+          "unit": "theelepel",
+          "rest": "peterselie, fijngehakt"
+        }
+      ],
+      "steps": [
+        "Snijd elke kipfilet in 3 stukken en plet ze tussen vershoudfolie tot ca. 0,5 cm dik.",
+        "Besprenkel de kip met een halve eetlepel olie en haal door het mengsel van bloem en parmezaan. Druk goed aan en schud overtollige bloem eraf.",
+        "Verhit de rest van de olie in een koekenpan op middelhoog-hoog vuur, voeg de boter toe en bak de kip 3-4 minuten per zijde goudbruin (andere kant 1 minuut). Leg apart op een bord; herhaal met de rest.",
+        "Giet overtollig vet uit de pan en veeg schoon met keukenpapier.",
+        "Voeg de witte wijn toe en laat stevig doorkoken tot deze halveert (ca. 3 minuten).",
+        "Voeg het citroensap toe en laat nog 1 minuut sudderen.",
+        "Zet het vuur laag, voeg de koude boterblokjes toe en zwenk de pan tot een glanzende saus ontstaat.",
+        "Roer de kappertjes en peterselie erdoor en serveer de saus over de kip."
+      ],
+      "note": null
+    },
+    "avgolemono": {
+      "title": "Avgolemono – Griekse Citroen-Eiersoep met Kip",
+      "herkomst": "Grieksegids.nl",
+      "videoId": null,
+      "time": "1 uur",
+      "difficulty": "medium",
+      "difficultyLabel": "Gemiddeld",
+      "servings": 4,
+      "ingredients": [
+        {
+          "id": "ing-0",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "liter",
+          "rest": "water"
+        },
+        {
+          "id": "ing-1",
+          "qty": 4.0,
+          "qtyMax": null,
+          "unit": "kippenpoten",
+          "rest": ""
+        },
+        {
+          "id": "ing-2",
+          "qty": 10.0,
+          "qtyMax": null,
+          "unit": "eetlepels",
+          "rest": "rijst"
+        },
+        {
+          "id": "ing-3",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "eieren",
+          "rest": ""
+        },
+        {
+          "id": "ing-4",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "citroenen",
+          "rest": ""
+        },
+        {
+          "id": "ing-5",
+          "qty": 3.0,
+          "qtyMax": null,
+          "unit": "theelepels",
+          "rest": "zout"
+        }
+      ],
+      "steps": [
+        "Breng het water aan de kook in een grote pan en voeg de kippenpoten en het zout toe. Kook ca. 45 minuten tot de kip helemaal gaar is, schep zo nodig schuim van het oppervlak.",
+        "Pers ondertussen de citroenen uit en zet het sap apart.",
+        "Haal de kippenpoten uit de pan en leg op een bord. Zeef de bouillon en giet terug in de pan.",
+        "Voeg de rijst toe aan de bouillon en kook tot deze gaar is.",
+        "Snijd het kippenvlees in kleine stukjes en voeg terug aan de pan; laat nog even meegaren.",
+        "Klop de eieren los in een kom en voeg beetje bij beetje het citroensap toe onder voortdurend kloppen.",
+        "Voeg al kloppend 5-6 grote soeplepels warme bouillon geleidelijk toe aan het ei-citroenmengsel, zodat het langzaam op temperatuur komt.",
+        "Giet het ei-citroenmengsel terug in de iets afgekoelde soep en serveer direct. Kali oreksi – eet smakelijk!"
+      ],
+      "note": "Laat de soep na stap 4 iets afkoelen voordat je het ei-citroenmengsel toevoegt, anders schift het ei."
+    },
+    "spaghetti_al_limone": {
+      "title": "Spaghetti al Limone",
+      "herkomst": "Vincenzo's Plate",
+      "videoId": null,
+      "time": "20 min",
+      "difficulty": "easy",
+      "difficultyLabel": "Makkelijk",
+      "servings": 4,
+      "ingredients": [
+        {
+          "id": "ing-0",
+          "qty": 400.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "linguine (of spaghetti)"
+        },
+        {
+          "id": "ing-1",
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "handje",
+          "rest": "verse muntblaadjes"
+        },
+        {
+          "id": "ing-2",
+          "qty": 4.0,
+          "qtyMax": null,
+          "unit": "citroenen",
+          "rest": "(1 per persoon)"
+        },
+        {
+          "id": "ing-3",
+          "text": "Extra vierge olijfolie"
+        },
+        {
+          "id": "ing-4",
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "kom",
+          "rest": "Pecorino Romano, geraspt"
+        },
+        {
+          "id": "ing-5",
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "eetlepel",
+          "rest": "zout"
+        },
+        {
+          "id": "ing-6",
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "theelepel",
+          "rest": "peper"
+        }
+      ],
+      "steps": [
+        "Breng een grote pan water aan de kook met 1 eetlepel grof zout.",
+        "Kook de pasta 2 minuten korter dan de aanwijzingen op de verpakking.",
+        "Rasp ondertussen de schil van één citroen op een bord.",
+        "Pers het sap van twee citroenen uit in een glas.",
+        "Verhit 4 eetlepels olijfolie in een grote pan op middelhoog-hoog vuur.",
+        "Voeg de citroenrasp, de helft van het citroensap, de muntblaadjes en de uitgeperste citroenhelften (snijvlak naar beneden) toe aan de pan.",
+        "Giet de pasta af en voeg toe aan het citroenmengsel in de pan.",
+        "Voeg een beker kookvocht toe en zet het vuur hoog. Roer 1 minuut continu terwijl het water verdampt.",
+        "Verwijder de citroenhelften; laat de pasta nog 1,5 minuut verder garen.",
+        "Voeg de rest van de citroenrasp en munt toe met nog 1 minuut te gaan.",
+        "Voeg het resterende citroensap toe met 45 seconden te gaan; roer tot het vocht is verdampt.",
+        "Haal van het vuur en meng met de Pecorino Romano.",
+        "Serveer gegarneerd met extra citroenrasp en verse munt."
+      ],
+      "note": "5 sterren bij 15 stemmen — gekozen boven de vergelijkbare versie van Recipes from Italy (5 sterren bij slechts 2 stemmen)."
+    },
+    "spaghetti_al_limone_romig": {
+      "title": "Romige Spaghetti al Limone",
+      "herkomst": "Buonissimo.it",
+      "videoId": null,
+      "time": "20 min",
+      "difficulty": "easy",
+      "difficultyLabel": "Makkelijk",
+      "servings": 4,
+      "ingredients": [
+        {
+          "id": "ing-0",
+          "qty": 400.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "spaghetti"
+        },
+        {
+          "id": "ing-1",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "citroenen",
+          "rest": ", onbehandeld"
+        },
+        {
+          "id": "ing-2",
+          "qty": 100.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "boter"
+        },
+        {
+          "id": "ing-3",
+          "qty": 100.0,
+          "qtyMax": null,
+          "unit": "ml",
+          "rest": "slagroom"
+        },
+        {
+          "id": "ing-4",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "tenen",
+          "rest": "knoflook"
+        },
+        {
+          "id": "ing-5",
+          "text": "Scheutje olijfolie"
+        },
+        {
+          "id": "ing-6",
+          "text": "Zout naar smaak"
+        },
+        {
+          "id": "ing-7",
+          "text": "Zwarte peper naar smaak"
+        },
+        {
+          "id": "ing-8",
+          "text": "Parmigiano Reggiano DOP, naar smaak"
+        },
+        {
+          "id": "ing-9",
+          "text": "Verse peterselie, naar smaak"
+        }
+      ],
+      "steps": [
+        "Smelt de boter met een scheutje olijfolie in een brede pan. Voeg de geplette teentjes knoflook toe en laat op laag vuur goudbruin worden.",
+        "Verwijder de knoflook uit de pan zodat de smaak niet te overheersend wordt.",
+        "Voeg de citroenrasp toe aan dezelfde pan, samen met nog een scheutje olijfolie.",
+        "Schenk de slagroom erbij en laat een paar minuten op middelhoog vuur sudderen, af en toe roerend om de smaken te mengen.",
+        "Kook de spaghetti in gezouten water en giet af 2-3 minuten voor het einde van de kooktijd op de verpakking, zodat de pasta al dente blijft. Bewaar wat kookvocht.",
+        "Doe de afgegoten spaghetti in de pan met de saus. Meng goed door en voeg zo nodig kookvocht toe voor een romige consistentie.",
+        "Bestrooi met geraspte Parmigiano en gehakte peterselie voor het serveren in diepe borden, eventueel afgewerkt met extra citroenrasp."
       ],
       "note": null
     }
