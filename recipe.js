@@ -38,6 +38,25 @@
     return parts.join(' ').trim();
   }
 
+  // Herschaalt hoeveelheden die letterlijk in de kooktekst genoemd worden (bv. "voeg 250 ml bouillon toe"),
+  // zodat de stappen kloppen met de portie-aanpasser. Beperkt bewust tot ingrediënt-eenheden (gram, ml,
+  // eetlepel(s), theelepel(s), tenen, kopjes, ...) zodat kooktijden ("10 minuten"), temperaturen ("180 graden")
+  // en afmetingen ("5 cm") NOOIT worden aangepast.
+  const SCALE_UNIT_RE = /(\d+(?:[.,]\d+)?)(?:\s*-\s*(\d+(?:[.,]\d+)?))?(\s*(?:gram|kilo|kg|ml|liter|l|eetlepels?|el\b|theelepels?|tl\b|tenen|teentjes?|kopjes?))/gi;
+
+  function scaleStepText(text, factor) {
+    if (!text || factor === 1) return text;
+    return text.replace(SCALE_UNIT_RE, (match, n1, n2, unitPart) => {
+      const v1 = parseFloat(n1.replace(',', '.')) * factor;
+      let out = formatQty(v1);
+      if (n2) {
+        const v2 = parseFloat(n2.replace(',', '.')) * factor;
+        out += '-' + formatQty(v2);
+      }
+      return out + unitPart;
+    });
+  }
+
   function servingsKey(slug) { return 'porties-' + slug; }
 
   function getServings(slug) {
@@ -110,12 +129,7 @@
       });
     }
 
-    if (recipe.ingredients.some(i => i.qty != null)) {
-      renderServingsControl(servingsControl, slug, renderIngredients);
-    } else {
-      if (servingsControl) servingsControl.hidden = true;
-      renderIngredients(1);
-    }
+    const stepLabelEls = [];
 
     if (stepsList) {
       stepsList.innerHTML = '';
@@ -140,16 +154,37 @@
           li.classList.toggle('done', cb.checked);
         });
         stepsList.appendChild(li);
+        stepLabelEls.push({ el: label, original: text });
       });
     }
 
-    if (noteEl) {
+    function renderSteps(factor) {
+      stepLabelEls.forEach(({ el, original }) => {
+        el.textContent = scaleStepText(original, factor);
+      });
+    }
+
+    function renderNote(factor) {
+      if (!noteEl) return;
       if (recipe.note) {
         noteEl.hidden = false;
-        noteEl.innerHTML = `<strong>Notitie:</strong> ${recipe.note}`;
+        noteEl.innerHTML = `<strong>Notitie:</strong> ${scaleStepText(recipe.note, factor)}`;
       } else {
         noteEl.hidden = true;
       }
+    }
+
+    if (recipe.ingredients.some(i => i.qty != null)) {
+      renderServingsControl(servingsControl, slug, (factor) => {
+        renderIngredients(factor);
+        renderSteps(factor);
+        renderNote(factor);
+      });
+    } else {
+      if (servingsControl) servingsControl.hidden = true;
+      renderIngredients(1);
+      renderSteps(1);
+      renderNote(1);
     }
   }
 
