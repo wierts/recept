@@ -9,10 +9,10 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Kookinstructies Sticky Chicken">
+<meta name="apple-mobile-web-app-title" content="Kookinstructies Sticky Honey Chicken">
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body data-recipe="sticky_chicken" data-page="kook">
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
     <div class="page-controls">
@@ -23,54 +23,30 @@
       </div>
     </div>
     <header>
-      <h1>Kookinstructies voor Sticky Honey Chicken</h1>
-      <p class="subtitle">Herkomst: Jop van der Bijl (YouTube)</p>
+      <div>
+        <h1 id="recipeTitle">Kookinstructies voor Sticky Honey Chicken</h1>
+        <p class="subtitle" id="recipeHerkomst"></p>
+      </div>
     </header>
     <div class="actions">
       <a href="sticky_chicken_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
-    <a href="https://www.youtube.com/watch?v=bEg0_jybXjw" target="_blank" rel="noopener" class="video-card">
-      <img src="https://img.youtube.com/vi/bEg0_jybXjw/hqdefault.jpg" alt="Video thumbnail Sticky Honey Chicken">
+    <a id="videoCard" href="#" target="_blank" rel="noopener" class="video-card" hidden>
+      <img id="videoThumb" src="" alt="">
       <span class="video-card-play">▶</span>
       <span class="video-card-label">Bekijk video</span>
     </a>
     <main>
+      <div class="servings-control" id="servingsControl"></div>
       <h2>Ingrediënten</h2>
-      <ul>
-        <li>500 gram kipfilet</li>
-        <li>2 eetlepels light soy sauce</li>
-        <li>1 eetlepel Shaohsing rijstwijn</li>
-        <li>Zwarte peper</li>
-        <li>1 eiwit</li>
-        <li>stukje gember van ca. 5 cm</li>
-        <li>2 tenen knoflook</li>
-        <li>scheutje olie</li>
-        <li>3 eetlepels tomatenketchup</li>
-        <li>2 eetlepels honing</li>
-        <li>2 eetlepels light soy sauce</li>
-        <li>1 eetlepel Shaohsing rijstwijn</li>
-        <li>1 eetlepel rijstazijn</li>
-        <li>2 eetlepels water</li>
-        <li>1 eetlepel sesamolie</li>
-        <li>2 eetlepels lichtbruine basterdsuiker</li>
-        <li>sriracha naar smaak</li>
-        <li>maïzena</li>
-        <li>olie om te frituren</li>
-        <li>sesamzaad</li>
-        <li>bosui</li>
-      </ul>
+      <ul id="ingredientsList"></ul>
       <h2>Kookinstructies</h2>
-      <ol class="steps">
-        <li><input type="checkbox" id="step-1"><label for="step-1">Snijd 500 gram kipfilet in stukken van ca. 3 cm en doe in een kom.</label></li>
-        <li><input type="checkbox" id="step-2"><label for="step-2">Voeg 2 eetlepels light soy sauce, 1 eetlepel Shaohsing rijstwijn, zwarte peper en een eiwit toe. Meng goed en laat 15-30 minuten marineren.</label></li>
-        <li><input type="checkbox" id="step-3"><label for="step-3">Rasp een stukje gember en pers 2 teentjes knoflook. Fruit deze in een pan met olie.</label></li>
-        <li><input type="checkbox" id="step-4"><label for="step-4">Voeg 3 eetlepels tomatenketchup, 2 eetlepels honing, 2 eetlepels light soy sauce, 1 eetlepel Shaohsing rijstwijn, 1 eetlepel rijstazijn, 2 eetlepels water, 1 eetlepel sesamolie, 2 eetlepels lichtbruine basterdsuiker en sriracha naar smaak toe. Laat het geheel aan de kook komen.</label></li>
-        <li><input type="checkbox" id="step-5"><label for="step-5">Voeg 3 eetlepels maïzena toe aan de kip en meng goed door elkaar.</label></li>
-        <li><input type="checkbox" id="step-6"><label for="step-6">Frituur de kipstukjes in hete olie tot ze goudbruin zijn.</label></li>
-        <li><input type="checkbox" id="step-7"><label for="step-7">Voeg de gefrituurde kip toe aan de saus en verwarm al roerend tot alles goed bedekt is met de saus. Bestrooi met sesamzaad en bosui voor het serveren.</label></li>
-      </ol>
+      <ol class="steps" id="stepsList"></ol>
+      <div class="note" id="recipeNote" hidden></div>
     </main>
   </div>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
 <script src="theme.js" defer></script>
 </body>
 </html>

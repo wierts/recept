@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-title" content="Kookinstructies Mongolian Beef">
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body data-recipe="mongolian_beef" data-page="kook">
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
     <div class="page-controls">
@@ -23,48 +23,30 @@
       </div>
     </div>
     <header>
-      <h1>Kookinstructies voor Mongolian Beef</h1>
-      <p class="subtitle">Herkomst: Jop van der Bijl (YouTube)</p>
+      <div>
+        <h1 id="recipeTitle">Kookinstructies voor Mongolian Beef</h1>
+        <p class="subtitle" id="recipeHerkomst"></p>
+      </div>
     </header>
     <div class="actions">
       <a href="mongolian_beef_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
-    <a href="https://www.youtube.com/watch?v=fN-LtdxjdE0" target="_blank" rel="noopener" class="video-card">
-      <img src="https://img.youtube.com/vi/fN-LtdxjdE0/hqdefault.jpg" alt="Video thumbnail Mongolian Beef">
+    <a id="videoCard" href="#" target="_blank" rel="noopener" class="video-card" hidden>
+      <img id="videoThumb" src="" alt="">
       <span class="video-card-play">▶</span>
       <span class="video-card-label">Bekijk video</span>
     </a>
     <main>
+      <div class="servings-control" id="servingsControl"></div>
       <h2>Ingrediënten</h2>
-      <ul>
-        <li>500 gram bavette</li>
-        <li>1 eetlepel light soy sauce</li>
-        <li>1 eetlepel Shaohsingwijn</li>
-        <li>½ theelepel bakingsoda</li>
-        <li>1 eetlepel maizena</li>
-        <li>½ theelepel witte peper</li>
-        <li>flinke scheut olie</li>
-        <li>stukje gember van ca. 5 cm</li>
-        <li>3 tenen knoflook</li>
-        <li>3 bosuitjes</li>
-        <li>2 gedroogde rode pepers</li>
-        <li>60 ml light soy sauce</li>
-        <li>50 gram lichtbruine basterdsuiker</li>
-        <li>1 eetlepel oestersaus</li>
-        <li>1 eetlepel maizena</li>
-      </ul>
+      <ul id="ingredientsList"></ul>
       <h2>Kookinstructies</h2>
-      <ol class="steps">
-        <li><input type="checkbox" id="step-1"><label for="step-1">Snijd de bavette haaks op de vezels in dunne plakjes.</label></li>
-        <li><input type="checkbox" id="step-2"><label for="step-2">Marineer het vlees in een marinade van water, 1 eetlepel light soy sauce, 1 eetlepel Shaohsingwijn, ½ theelepel bakingsoda, 1 eetlepel maizena en ½ theelepel witte peper gedurende ongeveer een uur.</label></li>
-        <li><input type="checkbox" id="step-3"><label for="step-3">Verhit olie in een wok en bak het vlees snel in porties.</label></li>
-        <li><input type="checkbox" id="step-4"><label for="step-4">Bak het stukje gember, 3 tenen knoflook, 2 gedroogde rode pepers en de witte delen van de 3 bosuitjes in dezelfde pan.</label></li>
-        <li><input type="checkbox" id="step-5"><label for="step-5">Voeg water, 60 ml light soy sauce, 50 gram basterdsuiker en 1 eetlepel oestersaus toe en laat sudderen.</label></li>
-        <li><input type="checkbox" id="step-6"><label for="step-6">Bind de saus met 1 eetlepel maizena en meng het vlees erdoor.</label></li>
-        <li><input type="checkbox" id="step-7"><label for="step-7">Serveer met witte rijst.</label></li>
-      </ol>
+      <ol class="steps" id="stepsList"></ol>
+      <div class="note" id="recipeNote" hidden></div>
     </main>
   </div>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
 <script src="theme.js" defer></script>
 </body>
 </html>

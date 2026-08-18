@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kookinstructies – Massaman Curry</title>
+<title>Kookinstructies – Beef Massaman Curry</title>
 <meta name="theme-color" content="#0b1220">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Kookinstructies Massaman">
+<meta name="apple-mobile-web-app-title" content="Kookinstructies Beef Massaman Curry">
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body data-recipe="massaman_curry" data-page="kook">
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
     <div class="page-controls">
@@ -23,49 +23,30 @@
       </div>
     </div>
     <header>
-      <h1>Kookinstructies voor Beef Massaman Curry</h1>
-      <p class="subtitle">Herkomst: Hot Thai Kitchen (hot-thai-kitchen.com)</p>
+      <div>
+        <h1 id="recipeTitle">Kookinstructies voor Beef Massaman Curry</h1>
+        <p class="subtitle" id="recipeHerkomst"></p>
+      </div>
     </header>
     <div class="actions">
       <a href="massaman_curry_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
-    <a href="https://www.youtube.com/watch?v=Z5v8F_zhwF8" target="_blank" rel="noopener" class="video-card">
-      <img src="https://img.youtube.com/vi/Z5v8F_zhwF8/hqdefault.jpg" alt="Video thumbnail Beef Massaman Curry">
+    <a id="videoCard" href="#" target="_blank" rel="noopener" class="video-card" hidden>
+      <img id="videoThumb" src="" alt="">
       <span class="video-card-play">▶</span>
       <span class="video-card-label">Bekijk video</span>
     </a>
     <main>
+      <div class="servings-control" id="servingsControl"></div>
       <h2>Ingrediënten</h2>
-      <ul>
-        <li>900 gram runder short ribs (met bot)</li>
-        <li>600 ml kokosmelk (volvet), verdeeld</li>
-        <li>5-6 eetlepels massaman currypasta (bij voorkeur Aroy-D of Maeploy)</li>
-        <li>Water, naar behoefte</li>
-        <li>2-3 eetlepels vissaus, verdeeld</li>
-        <li>3 eetlepels palmsuiker, fijngehakt</li>
-        <li>2 eetlepels tamarindepasta/-sap</li>
-        <li>1 grote witvlezige zoete aardappel, in stukken</li>
-        <li>½ grote ui, in reepjes van ca. 1 cm</li>
-        <li>60 gram geroosterde pinda's</li>
-        <li>Jasmijnrijst, om te serveren</li>
-      </ul>
+      <ul id="ingredientsList"></ul>
       <h2>Kookinstructies</h2>
-      <ol class="steps">
-        <li><input type="checkbox" id="step-1"><label for="step-1">Haal het vlees van het bot (bewaar het bot) en snijd het rundvlees eventueel in grote blokken.</label></li>
-        <li><input type="checkbox" id="step-2"><label for="step-2">Verhit olie in een zware pan op middelhoog-hoog vuur. Schroei het rundvlees in porties dicht tot het rondom bruin is. Doe al het vlees terug in de pan, samen met de botten.</label></li>
-        <li><input type="checkbox" id="step-3"><label for="step-3">Voeg 125 ml kokosmelk, 1 eetlepel currypasta, 1 eetlepel vissaus en genoeg water toe om het vlees net onder te zetten. Laat 2 tot 2,5 uur sudderen tot het vlees vork-mals is.</label></li>
-        <li><input type="checkbox" id="step-4"><label for="step-4">Breng in een aparte pan de rest van de kokosmelk (ca. 190 ml) aan de kook en laat inkoken tot de helft, tot het is ingedikt.</label></li>
-        <li><input type="checkbox" id="step-5"><label for="step-5">Voeg de rest van de currypasta toe aan de ingedikte kokosmelk. Roer constant op middellaag vuur tot de kokosolie zich afscheidt en het gaat sissen langs de randen. Voeg een scheutje kokosmelk toe als het aankoekt.</label></li>
-        <li><input type="checkbox" id="step-6"><label for="step-6">Giet de rest van de kokosmelk erbij en roer tot de pasta is opgelost. Voeg 1 eetlepel vissaus, de palmsuiker en de tamarinde toe.</label></li>
-        <li><input type="checkbox" id="step-7"><label for="step-7">Haal het gebraiseerde rundvlees met een tang uit de kookvloeistof en voeg toe aan de currypan (gooi de botten weg). Bewaar de kookvloeistof.</label></li>
-        <li><input type="checkbox" id="step-8"><label for="step-8">Voeg de ui, zoete aardappel en pinda's toe aan de curry.</label></li>
-        <li><input type="checkbox" id="step-9"><label for="step-9">Schep vet/schuim van de bewaarde kookvloeistof en voeg net genoeg toe aan de curry om alles onder te zetten.</label></li>
-        <li><input type="checkbox" id="step-10"><label for="step-10">Laat 10-15 minuten sudderen tot de zoete aardappel vork-mals is.</label></li>
-        <li><input type="checkbox" id="step-11"><label for="step-11">Proef en breng op smaak met extra vissaus, suiker of tamarinde naar wens.</label></li>
-        <li><input type="checkbox" id="step-12"><label for="step-12">Serveer met jasmijnrijst.</label></li>
-      </ol>
+      <ol class="steps" id="stepsList"></ol>
+      <div class="note" id="recipeNote" hidden></div>
     </main>
   </div>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
 <script src="theme.js" defer></script>
 </body>
 </html>

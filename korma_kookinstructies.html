@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kip Korma – Kookinstructies</title>
+<title>Kookinstructies – Kip Korma</title>
 <meta name="theme-color" content="#0b1220">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Kip Korma">
+<meta name="apple-mobile-web-app-title" content="Kookinstructies Kip Korma">
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body data-recipe="korma" data-page="kook">
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
     <div class="page-controls">
@@ -24,55 +24,29 @@
     </div>
     <header>
       <div>
-        <h1>Kip Korma – Kookinstructies</h1>
-        <div class="subtitle">Stap-voor-stap handleiding.</div>
-        <div class="subtitle">Herkomst: Jop van der Bijl (YouTube)</div>
+        <h1 id="recipeTitle">Kookinstructies voor Kip Korma</h1>
+        <p class="subtitle" id="recipeHerkomst"></p>
       </div>
     </header>
     <div class="actions">
       <a href="korma_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
-    <a href="https://www.youtube.com/watch?v=AAhFJampDt0" target="_blank" rel="noopener" class="video-card">
-      <img src="https://img.youtube.com/vi/AAhFJampDt0/hqdefault.jpg" alt="Video thumbnail Kip Korma">
+    <a id="videoCard" href="#" target="_blank" rel="noopener" class="video-card" hidden>
+      <img id="videoThumb" src="" alt="">
       <span class="video-card-play">▶</span>
       <span class="video-card-label">Bekijk video</span>
     </a>
     <main>
+      <div class="servings-control" id="servingsControl"></div>
       <h2>Ingrediënten</h2>
-      <ul>
-        <li>1 kilo kipdijfilet</li>
-        <li>stukje verse gember van ca. 5 cm</li>
-        <li>3 tenen knoflook</li>
-        <li>1 klein blikje tomatenpuree (70 gram)</li>
-        <li>1 eetlepel garam masala</li>
-        <li>½ theelepel cayennepeper</li>
-        <li>1 theelepel paprikapoeder</li>
-        <li>10 groene kardemompeulen</li>
-        <li>1½ theelepel zout</li>
-        <li>1 eetlepel suiker</li>
-        <li>1 theelepel kurkuma</li>
-        <li>200 ml Griekse yoghurt</li>
-        <li>100 gram blanke amandelen (of amandelmeel)</li>
-        <li>50 gram boter</li>
-        <li>scheutje olie</li>
-        <li>2 uien</li>
-        <li>250 ml slagroom</li>
-        <li>verse koriander</li>
-        <li>geschaafde amandelen</li>
-      </ul>
-      <h2>Instructies</h2>
-      <ol class="steps">
-        <li><input type="checkbox" id="step-1"><label for="step-1">Snijd 1 kilo kipdijfilet in stukjes van ca. 5 cm.</label></li>
-        <li><input type="checkbox" id="step-2"><label for="step-2">Maak in de blender of keukenmachine een puree van het stukje gember, 3 tenen knoflook, 1 klein blikje tomatenpuree (70 gram), 1 eetlepel garam masala, ½ theelepel cayennepeper, 1 theelepel paprikapoeder, 1½ theelepel zout, 1 eetlepel suiker, 1 theelepel kurkuma, 200 ml yoghurt en 100 gram amandelen.</label></li>
-        <li><input type="checkbox" id="step-3"><label for="step-3">Meng de puree met de kip in een kom en zet afgedekt 1-2 uur in de koelkast.</label></li>
-        <li><input type="checkbox" id="step-4"><label for="step-4">Verhit in een grote pan 50 gram boter en een scheutje olie, en bak 2 gesnipperde uien tot ze karamelliseren.</label></li>
-        <li><input type="checkbox" id="step-5"><label for="step-5">Voeg de 10 groene kardemompeulen toe en bak even mee.</label></li>
-        <li><input type="checkbox" id="step-6"><label for="step-6">Voeg nu de kip met de marinade toe in de pan, met een beetje water, en breng aan de kook. Laat het 15-20 minuten sudderen.</label></li>
-        <li><input type="checkbox" id="step-7"><label for="step-7">Voeg 250 ml slagroom toe en kook het geheel nog 5-10 minuten.</label></li>
-        <li><input type="checkbox" id="step-8"><label for="step-8">Strooi bij het serveren wat geschaafde amandelen en fijngehakt korianderblad over het gerecht.</label></li>
-      </ol>
+      <ul id="ingredientsList"></ul>
+      <h2>Kookinstructies</h2>
+      <ol class="steps" id="stepsList"></ol>
+      <div class="note" id="recipeNote" hidden></div>
     </main>
   </div>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
 <script src="theme.js" defer></script>
 </body>
 </html>

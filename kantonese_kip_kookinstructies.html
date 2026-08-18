@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-title" content="Kookinstructies Kantonese Kip">
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body data-recipe="kantonese_kip" data-page="kook">
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
     <div class="page-controls">
@@ -23,47 +23,30 @@
       </div>
     </div>
     <header>
-      <h1>Kookinstructies voor Kantonese Kip</h1>
-      <p class="subtitle">Herkomst: Kookse.tv, oorspronkelijk gebaseerd op "Chicken Broccoli Stir Fry (extra saucy!)" van Nagi Maehashi (RecipeTin Eats).</p>
+      <div>
+        <h1 id="recipeTitle">Kookinstructies voor Kantonese Kip</h1>
+        <p class="subtitle" id="recipeHerkomst"></p>
+      </div>
     </header>
     <div class="actions">
       <a href="kantonese_kip_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
-    <a href="https://www.youtube.com/watch?v=R18Ccm0FvoY" target="_blank" rel="noopener" class="video-card">
-      <img src="https://img.youtube.com/vi/R18Ccm0FvoY/hqdefault.jpg" alt="Video thumbnail Kantonese Kip">
+    <a id="videoCard" href="#" target="_blank" rel="noopener" class="video-card" hidden>
+      <img id="videoThumb" src="" alt="">
       <span class="video-card-play">▶</span>
       <span class="video-card-label">Bekijk video</span>
     </a>
     <main>
+      <div class="servings-control" id="servingsControl"></div>
       <h2>Ingrediënten</h2>
-      <ul>
-        <li>500 gram kipfilet, in dunne plakjes gesneden</li>
-        <li>1½ theelepel baking soda (voor het malser maken van de kip, optioneel)</li>
-        <li>2 eetlepels maizena (saus)</li>
-        <li>3 eetlepels lichte sojasaus (saus)</li>
-        <li>1½ eetlepel Chinese kookwijn (Shaoxing) of mirin (saus)</li>
-        <li>3 eetlepels oestersaus (saus)</li>
-        <li>2 theelepels sesamolie (saus)</li>
-        <li>snufje witte peper (saus)</li>
-        <li>2 eetlepels olie (pinda-, zonnebloem- of arachideolie)</li>
-        <li>½ ui, in plakjes</li>
-        <li>2 tenen knoflook, fijngehakt</li>
-        <li>400 gram broccoliroosjes, in hapklare stukjes</li>
-        <li>300 ml water</li>
-        <li>witte rijst, om te serveren</li>
-      </ul>
+      <ul id="ingredientsList"></ul>
       <h2>Kookinstructies</h2>
-      <ol class="steps">
-        <li><input type="checkbox" id="step-1"><label for="step-1">Snijd de kipfilet in dunne plakjes. Meng (optioneel) met baking soda en laat 20 minuten staan, spoel daarna af en dep droog. Dit maakt de kip extra mals, zoals bij een Chinees restaurant.</label></li>
-        <li><input type="checkbox" id="step-2"><label for="step-2">Stoom of kook de broccoliroosjes ca. 3 minuten tot beetgaar en giet goed af, zodat de saus straks niet te waterig wordt.</label></li>
-        <li><input type="checkbox" id="step-3"><label for="step-3">Meng voor de saus eerst de maizena met de sojasaus tot een glad mengsel. Roer daarna de kookwijn, oestersaus, sesamolie en witte peper erdoor.</label></li>
-        <li><input type="checkbox" id="step-4"><label for="step-4">Verhit de olie op hoog vuur in een grote wok of koekenpan. Bak de knoflook en ui ca. 10 seconden tot geurig.</label></li>
-        <li><input type="checkbox" id="step-5"><label for="step-5">Voeg de kip toe en bak ca. 2 minuten tot volledig gaar.</label></li>
-        <li><input type="checkbox" id="step-6"><label for="step-6">Voeg de broccoli, het water en de saus toe. Roer goed door en laat 1-2 minuten sudderen tot de saus glanzend en ingedikt is.</label></li>
-        <li><input type="checkbox" id="step-7"><label for="step-7">Serveer direct over witte rijst.</label></li>
-      </ol>
+      <ol class="steps" id="stepsList"></ol>
+      <div class="note" id="recipeNote" hidden></div>
     </main>
   </div>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
 <script src="theme.js" defer></script>
 </body>
 </html>

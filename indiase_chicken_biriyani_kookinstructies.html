@@ -9,10 +9,10 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Kookinstructies Chicken Biriyani">
+<meta name="apple-mobile-web-app-title" content="Kookinstructies Indiase Chicken Biriyani">
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body data-recipe="indiase_chicken_biriyani" data-page="kook">
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
     <div class="page-controls">
@@ -23,66 +23,30 @@
       </div>
     </div>
     <header>
-      <h1>Kookinstructies voor Indiase Chicken Biriyani</h1>
-      <p class="subtitle">Herkomst: Jop van der Bijl (YouTube)</p>
+      <div>
+        <h1 id="recipeTitle">Kookinstructies voor Indiase Chicken Biriyani</h1>
+        <p class="subtitle" id="recipeHerkomst"></p>
+      </div>
     </header>
     <div class="actions">
       <a href="indiase_chicken_biriyani_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
-    <a href="https://www.youtube.com/watch?v=e50f_fbfmx0" target="_blank" rel="noopener" class="video-card">
-      <img src="https://img.youtube.com/vi/e50f_fbfmx0/hqdefault.jpg" alt="Video thumbnail Indiase Chicken Biriyani">
+    <a id="videoCard" href="#" target="_blank" rel="noopener" class="video-card" hidden>
+      <img id="videoThumb" src="" alt="">
       <span class="video-card-play">▶</span>
       <span class="video-card-label">Bekijk video</span>
     </a>
     <main>
+      <div class="servings-control" id="servingsControl"></div>
       <h2>Ingrediënten</h2>
-      <ul>
-        <li>3 eetlepels olie</li>
-        <li>4 eetlepels volle yoghurt</li>
-        <li>1 theelepel zout</li>
-        <li>1 theelepel kurkuma</li>
-        <li>2 theelepels korianderpoeder</li>
-        <li>1 theelepel gemalen komijnzaad</li>
-        <li>1 theelepel chilipoeder</li>
-        <li>½ theelepel garam masala</li>
-        <li>¼ theelepel nootmuskaat</li>
-        <li>1 kilo kipdijfilet</li>
-        <li>2 eetlepels melk</li>
-        <li>theelepeltje saffraan</li>
-        <li>700 gram sella basmatirijst</li>
-        <li>4 uien</li>
-        <li>3 volle eetlepels ghee</li>
-        <li>stukje gember ca. 5 cm</li>
-        <li>4 tenen knoflook</li>
-        <li>2 groene pepers</li>
-        <li>scheutje olie</li>
-        <li>stukje pijpkaneel</li>
-        <li>2 zwarte kardemoms</li>
-        <li>6 groene kardemoms</li>
-        <li>2 blaadjes laurier</li>
-        <li>6 kruidnagels</li>
-        <li>1 steranijs</li>
-        <li>1 theelepel komijnzaad</li>
-        <li>2 theelepels zout</li>
-        <li>handje vers korianderblad</li>
-        <li>handje verse munt</li>
-      </ul>
+      <ul id="ingredientsList"></ul>
       <h2>Kookinstructies</h2>
-      <ol class="steps">
-        <li><input type="checkbox" id="step-1"><label for="step-1">Maak een marinade van 3 eetlepels olie, 4 eetlepels yoghurt, 1 theelepel zout, 1 theelepel kurkuma, 2 theelepels korianderpoeder, 1 theelepel gemalen komijnzaad, 1 theelepel chilipoeder, ½ theelepel garam masala en ¼ theelepel nootmuskaat. Voeg 1 kilo kipdijfilet toe en laat marineren.</label></li>
-        <li><input type="checkbox" id="step-2"><label for="step-2">Verwarm 2 eetlepels melk en laat het theelepeltje saffraan hierin weken.</label></li>
-        <li><input type="checkbox" id="step-3"><label for="step-3">Was de 700 gram sella basmatirijst en laat weken.</label></li>
-        <li><input type="checkbox" id="step-4"><label for="step-4">Snijd en karameliseer 4 uien in 3 eetlepels ghee.</label></li>
-        <li><input type="checkbox" id="step-5"><label for="step-5">Voeg het stukje gember (ca. 5 cm), 4 tenen knoflook en 2 groene pepers toe en bak mee.</label></li>
-        <li><input type="checkbox" id="step-6"><label for="step-6">Voeg de gemarineerde kip toe en laat garen.</label></li>
-        <li><input type="checkbox" id="step-7"><label for="step-7">Bak het stukje pijpkaneel, 2 zwarte kardemoms, 6 groene kardemoms, 2 blaadjes laurier, 6 kruidnagels, 1 steranijs en 1 theelepel komijnzaad in een scheutje olie en voeg water toe, breng aan de kook.</label></li>
-        <li><input type="checkbox" id="step-8"><label for="step-8">Kook de rijst in het kokende water met 2 theelepels zout.</label></li>
-        <li><input type="checkbox" id="step-9"><label for="step-9">Maak laagjes met rijst en kip in een pan, voeg de saffraanmelk, een handje korianderblad en een handje munt toe.</label></li>
-        <li><input type="checkbox" id="step-10"><label for="step-10">Laat het geheel 30 minuten op laag vuur garen.</label></li>
-        <li><input type="checkbox" id="step-11"><label for="step-11">Serveer met komkommer raita.</label></li>
-      </ol>
+      <ol class="steps" id="stepsList"></ol>
+      <div class="note" id="recipeNote" hidden></div>
     </main>
   </div>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
 <script src="theme.js" defer></script>
 </body>
 </html>

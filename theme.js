@@ -60,20 +60,25 @@
       }
     }
 
-    // Afvinkbare kookstappen (per pagina onthouden)
-    const stepsList = document.querySelector('ol.steps');
-    if (stepsList) {
-      const key = 'stappen-' + location.pathname.split('/').pop();
-      let state = JSON.parse(localStorage.getItem(key) || '{}');
-      stepsList.querySelectorAll('input[type=checkbox]').forEach((cb) => {
-        cb.checked = !!state[cb.id];
-        cb.closest('li').classList.toggle('done', cb.checked);
-        cb.addEventListener('change', () => {
-          state[cb.id] = cb.checked;
-          localStorage.setItem(key, JSON.stringify(state));
-          cb.closest('li').classList.toggle('done', cb.checked);
+    // Zoekveld op de receptenindex
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      const cards = Array.from(document.querySelectorAll('.grid .card'));
+      const emptyState = document.getElementById('searchEmpty');
+      const normalize = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+      const filter = () => {
+        const q = normalize(searchInput.value.trim());
+        let visible = 0;
+        cards.forEach(card => {
+          const haystack = normalize(card.textContent);
+          const match = !q || haystack.includes(q);
+          card.style.display = match ? '' : 'none';
+          if (match) visible++;
         });
-      });
+        if (emptyState) emptyState.hidden = visible !== 0;
+      };
+      searchInput.addEventListener('input', filter);
+      filter();
     }
   });
 })();

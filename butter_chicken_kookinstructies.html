@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-title" content="Kookinstructies Butter Chicken">
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body data-recipe="butter_chicken" data-page="kook">
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
     <div class="page-controls">
@@ -23,48 +23,30 @@
       </div>
     </div>
     <header>
-      <h1>Kookinstructies voor Butter Chicken</h1>
-      <p class="subtitle">Herkomst: RecipeTin Eats (Nagi Maehashi)</p>
+      <div>
+        <h1 id="recipeTitle">Kookinstructies voor Butter Chicken</h1>
+        <p class="subtitle" id="recipeHerkomst"></p>
+      </div>
     </header>
     <div class="actions">
       <a href="butter_chicken_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
-    <a href="https://www.youtube.com/watch?v=shwVCPAxU5E" target="_blank" rel="noopener" class="video-card">
-      <img src="https://img.youtube.com/vi/shwVCPAxU5E/hqdefault.jpg" alt="Video thumbnail Butter Chicken">
+    <a id="videoCard" href="#" target="_blank" rel="noopener" class="video-card" hidden>
+      <img id="videoThumb" src="" alt="">
       <span class="video-card-play">▶</span>
       <span class="video-card-label">Bekijk video</span>
     </a>
     <main>
+      <div class="servings-control" id="servingsControl"></div>
       <h2>Ingrediënten</h2>
-      <ul>
-        <li>125 ml volle yoghurt</li>
-        <li>1 eetlepel citroensap</li>
-        <li>1 theelepel kurkuma</li>
-        <li>2 theelepels garam masala</li>
-        <li>½ theelepel chilipoeder of cayennepeper</li>
-        <li>1 theelepel gemalen komijn</li>
-        <li>1 eetlepel verse gember, geraspt</li>
-        <li>2 tenen knoflook, geperst</li>
-        <li>750 gram kipdijfilet, in stukken</li>
-        <li>2 eetlepels ghee of boter (of 1 eetlepel plantaardige olie)</li>
-        <li>250 ml tomatenpassata</li>
-        <li>250 ml slagroom</li>
-        <li>1 eetlepel suiker</li>
-        <li>1¼ theelepel zout</li>
-        <li>Basmatirijst of witte rijst, om te serveren</li>
-        <li>Verse koriander (optioneel)</li>
-      </ul>
+      <ul id="ingredientsList"></ul>
       <h2>Kookinstructies</h2>
-      <ol class="steps">
-        <li><input type="checkbox" id="step-1"><label for="step-1">Meng 125 ml yoghurt, 1 eetlepel citroensap, 1 theelepel kurkuma, 2 theelepels garam masala, ½ theelepel chilipoeder, 1 theelepel komijn, 1 eetlepel gember en 2 tenen knoflook in een kom. Voeg de 750 gram kipdijfilet toe, dek af en laat minimaal 3 uur (bij voorkeur een hele nacht) marineren in de koelkast.</label></li>
-        <li><input type="checkbox" id="step-2"><label for="step-2">Verhit 2 eetlepels ghee op hoog vuur in een grote koekenpan. Haal de kip uit de marinade (schud de marinade er niet af) en leg in de pan.</label></li>
-        <li><input type="checkbox" id="step-3"><label for="step-3">Bak de kip ca. 3 minuten tot deze rondom wit is (de kip bruint niet echt door de marinade).</label></li>
-        <li><input type="checkbox" id="step-4"><label for="step-4">Voeg 250 ml tomatenpassata, 250 ml slagroom, 1 eetlepel suiker en 1¼ theelepel zout toe, samen met eventuele overgebleven marinade uit de kom. Zet het vuur laag en laat 20 minuten sudderen.</label></li>
-        <li><input type="checkbox" id="step-5"><label for="step-5">Proef en voeg eventueel extra zout toe naar smaak.</label></li>
-        <li><input type="checkbox" id="step-6"><label for="step-6">Garneer met verse koriander indien gewenst en serveer met basmatirijst of witte rijst.</label></li>
-      </ol>
+      <ol class="steps" id="stepsList"></ol>
+      <div class="note" id="recipeNote" hidden></div>
     </main>
   </div>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
 <script src="theme.js" defer></script>
 </body>
 </html>

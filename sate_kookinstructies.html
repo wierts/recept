@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kookinstructies – Saté Ajam</title>
+<title>Kookinstructies – Indische Saté Ajam</title>
 <meta name="theme-color" content="#0b1220">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Kookinstructies Saté Ajam">
+<meta name="apple-mobile-web-app-title" content="Kookinstructies Indische Saté Ajam">
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body data-recipe="sate" data-page="kook">
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
     <div class="page-controls">
@@ -23,54 +23,30 @@
       </div>
     </div>
     <header>
-      <h1>Kookinstructies voor Saté Ajam</h1>
-      <p class="subtitle">Herkomst: Jop van der Bijl (YouTube)</p>
+      <div>
+        <h1 id="recipeTitle">Kookinstructies voor Indische Saté Ajam</h1>
+        <p class="subtitle" id="recipeHerkomst"></p>
+      </div>
     </header>
     <div class="actions">
       <a href="sate_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
-    <a href="https://www.youtube.com/watch?v=bEY7DklnKec" target="_blank" rel="noopener" class="video-card">
-      <img src="https://img.youtube.com/vi/bEY7DklnKec/hqdefault.jpg" alt="Video thumbnail Saté Ajam">
+    <a id="videoCard" href="#" target="_blank" rel="noopener" class="video-card" hidden>
+      <img id="videoThumb" src="" alt="">
       <span class="video-card-play">▶</span>
       <span class="video-card-label">Bekijk video</span>
     </a>
     <main>
-      <h2>Ingrediënten Marinade</h2>
-      <ul>
-        <li>1 kilo kipdijfilet</li>
-        <li>3 tenen knoflook</li>
-        <li>1,5 eetlepel sambal oelek</li>
-        <li>1 theelepel zout</li>
-        <li>2 eetlepels citroensap</li>
-        <li>2 eetlepels olie</li>
-        <li>1,5 kopje ketjap Manis</li>
-      </ul>
-      <h2>Ingrediënten Pindasaus</h2>
-      <ul>
-        <li>scheutje zonnebloemolie</li>
-        <li>2 tenen knoflook</li>
-        <li>2 theelepels djahé</li>
-        <li>2 theelepels ketoembar</li>
-        <li>1 theelepel trassi</li>
-        <li>0,5 theelepel djinten</li>
-        <li>1 kopje ketjap</li>
-        <li>350 gram pindakaas</li>
-        <li>2 blaadjes daun jeruk</li>
-        <li>scheutje citroensap</li>
-        <li>sambal oelek naar smaak</li>
-        <li>zout en suiker naar smaak</li>
-      </ul>
+      <div class="servings-control" id="servingsControl"></div>
+      <h2>Ingrediënten</h2>
+      <ul id="ingredientsList"></ul>
       <h2>Kookinstructies</h2>
-      <ol class="steps">
-        <li><input type="checkbox" id="step-1"><label for="step-1">Snijd 1 kilo kipdijfilet in stukjes.</label></li>
-        <li><input type="checkbox" id="step-2"><label for="step-2">Maak een marinade van 3 tenen knoflook, 1,5 eetlepel sambal oelek, 1 theelepel zout, 2 eetlepels citroensap, 2 eetlepels olie en 1,5 kopje ketjap Manis.</label></li>
-        <li><input type="checkbox" id="step-3"><label for="step-3">Meng de marinade met de kip en laat dit 1-2 uur marineren.</label></li>
-        <li><input type="checkbox" id="step-4"><label for="step-4">Maak de pindasaus door knoflook te fruiten, dan 2 theelepels djahé, 2 theelepels ketoembar, 1 theelepel trassi en 0,5 theelepel djinten toe te voegen, en af te blussen met 1 kopje ketjap en 350 gram pindakaas.</label></li>
-        <li><input type="checkbox" id="step-5"><label for="step-5">Grill de gemarineerde kip op satéstokjes.</label></li>
-        <li><input type="checkbox" id="step-6"><label for="step-6">Serveer met pindasaus, lontong en eventueel geschaafde amandelen en koriander.</label></li>
-      </ol>
+      <ol class="steps" id="stepsList"></ol>
+      <div class="note" id="recipeNote" hidden></div>
     </main>
   </div>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
 <script src="theme.js" defer></script>
 </body>
 </html>

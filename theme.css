@@ -46,6 +46,37 @@ ol.steps li.done::before{content:"✓"}
 
 .note{background:rgba(127,127,127,.08);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--muted);margin-top:16px}
 
+/* Portie-aanpasser */
+.servings-control{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(127,127,127,.06);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin:16px 0}
+.servings-control[hidden]{display:none}
+.servings-label{color:var(--muted);font-size:.92rem}
+.servings-stepper{display:flex;align-items:center;gap:12px}
+.servings-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--ink);font-size:1.1rem;line-height:1;cursor:pointer;transition:all .2s ease}
+.servings-btn:hover{border-color:var(--accent);color:var(--ink)}
+.servings-value{min-width:1.6em;text-align:center;font-weight:700}
+
+/* Zoekveld op de receptenindex */
+.search-wrap{margin:0 0 22px}
+.search-input{width:100%;padding:12px 16px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--ink);font-size:1rem}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.search-empty{text-align:center;color:var(--muted);padding:24px 0}
+.search-empty[hidden]{display:none}
+
+/* Boodschappenlijst checklist (gedeeld door alle recepten) */
+.checklist-controls{display:flex;gap:8px;flex-wrap:wrap}
+.checklist-controls button,.checklist-card .btn{background:var(--card);border:1px solid var(--border);color:var(--ink);padding:10px 12px;border-radius:10px;cursor:pointer}
+.checklist-controls button:hover,.checklist-card .btn:hover{border-color:var(--accent)}
+.checklist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+.checklist-card{background:rgba(127,127,127,.06);border:1px solid var(--border);border-radius:14px;padding:14px}
+.checklist-card h2{font-size:1.05rem;margin:0 0 8px 0}
+.checklist-card ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.checklist-card li{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;border:1px dashed transparent;margin-bottom:0}
+.checklist-card li.done{opacity:.6;text-decoration:line-through}
+.checklist-card input[type=checkbox]{width:20px;height:20px}
+.checklist-footer{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(0deg,var(--bg) 40%,transparent);padding:10px 16px}
+.checklist-status{max-width:860px;margin:0 auto;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.checklist-tip{font-size:.9rem}
+
 @media (min-width: 768px){
   .wrap{max-width:760px;padding:32px 32px 100px}
   h1{font-size:1.75rem}

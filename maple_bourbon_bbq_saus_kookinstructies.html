@@ -9,10 +9,10 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Kookinstructies BBQ-saus">
+<meta name="apple-mobile-web-app-title" content="Kookinstructies Maple Bourbon BBQ-saus">
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body data-recipe="maple_bourbon_bbq_saus" data-page="kook">
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
     <div class="page-controls">
@@ -24,41 +24,29 @@
     </div>
     <header>
       <div>
-        <h1>Kookinstructies voor Maple Bourbon BBQ-saus</h1>
-        <div class="subtitle">Metrieke versie van het originele Amerikaanse maat-recept.</div>
-        <div class="subtitle">Herkomst: onbekend</div>
+        <h1 id="recipeTitle">Kookinstructies voor Maple Bourbon BBQ-saus</h1>
+        <p class="subtitle" id="recipeHerkomst"></p>
       </div>
     </header>
     <div class="actions">
       <a href="maple_bourbon_bbq_saus_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
+    <a id="videoCard" href="#" target="_blank" rel="noopener" class="video-card" hidden>
+      <img id="videoThumb" src="" alt="">
+      <span class="video-card-play">▶</span>
+      <span class="video-card-label">Bekijk video</span>
+    </a>
     <main>
+      <div class="servings-control" id="servingsControl"></div>
       <h2>Ingrediënten</h2>
-      <ul>
-        <li>440 gram bruine basterdsuiker</li>
-        <li>4 gram gemberpoeder (± 1 theelepel)</li>
-        <li>2 gram cayennepeper (± ½ theelepel)</li>
-        <li>120 ml witte wijnazijn</li>
-        <li>160 ml bourbon (bij voorkeur Jim Beam)</li>
-        <li>3 gram zout (± ½ theelepel)</li>
-        <li>120 ml ahornazijn (of vervanger, zie notities)</li>
-        <li>25 gram witte suiker (± 2 eetlepels)</li>
-        <li>160 ml ahornsiroop</li>
-        <li>240 gram ketchup</li>
-        <li>2,5 ml vanille-extract (± ½ theelepel)</li>
-      </ul>
+      <ul id="ingredientsList"></ul>
       <h2>Kookinstructies</h2>
-      <ol class="steps">
-        <li><input type="checkbox" id="step-1"><label for="step-1">Combineer alle ingrediënten (bruine basterdsuiker, gemberpoeder, cayennepeper, witte wijnazijn, bourbon, zout, ahornazijn, witte suiker, ahornsiroop, ketchup en vanille-extract) in een sauspan.</label></li>
-        <li><input type="checkbox" id="step-2"><label for="step-2">Breng het geheel op laag-middelhoog vuur aan de kook en laat daarna zachtjes sudderen.</label></li>
-        <li><input type="checkbox" id="step-3"><label for="step-3">Roer regelmatig en laat de saus ca. 15 minuten inkoken tot deze is ingedikt.</label></li>
-        <li><input type="checkbox" id="step-4"><label for="step-4">Laat de saus iets afkoelen en giet hem eventueel door een zeef voor een gladde structuur. Bewaar afgekoeld in een afgesloten pot in de koelkast.</label></li>
-      </ol>
-      <div class="note">
-        <strong>Notitie:</strong> Geen ahornazijn? Vervang de 120 ml door 60 ml witte wijnazijn gemengd met 60 ml ahornsiroop.
-      </div>
+      <ol class="steps" id="stepsList"></ol>
+      <div class="note" id="recipeNote" hidden></div>
     </main>
   </div>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
 <script src="theme.js" defer></script>
 </body>
 </html>

@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-title" content="Kookinstructies Pad Thai">
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body data-recipe="padthai" data-page="kook">
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
     <div class="page-controls">
@@ -23,52 +23,30 @@
       </div>
     </div>
     <header>
-      <h1>Kookinstructies voor Pad Thai</h1>
-      <p class="subtitle">Herkomst: RecipeTin Eats (Nagi Maehashi)</p>
+      <div>
+        <h1 id="recipeTitle">Kookinstructies voor Pad Thai</h1>
+        <p class="subtitle" id="recipeHerkomst"></p>
+      </div>
     </header>
     <div class="actions">
       <a href="padthai_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
     </div>
-    <a href="https://www.youtube.com/watch?v=gpqX9XMW5aE" target="_blank" rel="noopener" class="video-card">
-      <img src="https://img.youtube.com/vi/gpqX9XMW5aE/hqdefault.jpg" alt="Video thumbnail Pad Thai">
+    <a id="videoCard" href="#" target="_blank" rel="noopener" class="video-card" hidden>
+      <img id="videoThumb" src="" alt="">
       <span class="video-card-play">▶</span>
       <span class="video-card-label">Bekijk video</span>
     </a>
     <main>
+      <div class="servings-control" id="servingsControl"></div>
       <h2>Ingrediënten</h2>
-      <ul>
-        <li>125 gram platte rijstnoedels (Pad Thai stijl)</li>
-        <li>1,5 eetlepel tamarindepuree (geen concentraat)</li>
-        <li>3 eetlepels (afgestreken) bruine basterdsuiker</li>
-        <li>2 eetlepels vissaus</li>
-        <li>1,5 eetlepel oestersaus</li>
-        <li>2-3 eetlepels plantaardige of canola-olie</li>
-        <li>½ ui, in ringen</li>
-        <li>2 tenen knoflook, fijngehakt</li>
-        <li>150 gram kipfilet (of -dij), in dunne plakjes</li>
-        <li>2 eieren, losgeklopt</li>
-        <li>150 gram taugé</li>
-        <li>75 gram stevige tofu, in reepjes van 3 cm</li>
-        <li>25 gram bieslookknoflook (garlic chives), in stukken van 3 cm</li>
-        <li>35 gram fijngehakte pinda's</li>
-        <li>Limoenpartjes (essentieel)</li>
-        <li>Gemalen chili of cayennepeper (optioneel)</li>
-        <li>Extra taugé, om te serveren</li>
-      </ul>
+      <ul id="ingredientsList"></ul>
       <h2>Kookinstructies</h2>
-      <ol class="steps">
-        <li><input type="checkbox" id="step-1"><label for="step-1">Doe de 125 gram rijstnoedels in een grote kom en giet er ruim kokend water overheen. Laat 5 minuten weken, giet af in een vergiet en spoel kort onder koud water. Laat ze niet langer dan 5-10 minuten liggen.</label></li>
-        <li><input type="checkbox" id="step-2"><label for="step-2">Meng de saus van 1,5 eetlepel tamarindepuree, 3 eetlepels bruine basterdsuiker, 2 eetlepels vissaus en 1,5 eetlepel oestersaus in een kommetje.</label></li>
-        <li><input type="checkbox" id="step-3"><label for="step-3">Verhit 2 eetlepels olie in een grote antiaanbakpan of goed ingebakken koekenpan op hoog vuur. Voeg 2 tenen knoflook en ½ ui toe en bak 30 seconden.</label></li>
-        <li><input type="checkbox" id="step-4"><label for="step-4">Voeg de 150 gram kipfilet toe en bak 1,5 minuut tot bijna gaar.</label></li>
-        <li><input type="checkbox" id="step-5"><label for="step-5">Schuif de kip opzij, giet de 2 losgeklopte eieren aan de andere kant en roerbak los (voeg eventueel een scheutje extra olie toe als de pan te droog is). Meng daarna door de kip.</label></li>
-        <li><input type="checkbox" id="step-6"><label for="step-6">Voeg de 150 gram taugé, 75 gram tofu en de noedels toe, gevolgd door de saus.</label></li>
-        <li><input type="checkbox" id="step-7"><label for="step-7">Roerbak voorzichtig ca. 1,5 minuut tot de saus is opgenomen door de noedels.</label></li>
-        <li><input type="checkbox" id="step-8"><label for="step-8">Voeg de 25 gram bieslookknoflook en de helft van de 35 gram pinda's toe. Roerbak kort en haal van het vuur.</label></li>
-        <li><input type="checkbox" id="step-9"><label for="step-9">Serveer direct, bestrooid met de resterende pinda's en limoenpartjes ernaast, eventueel met een snufje chili en extra taugé (op z'n Thais!). Pers voor het eten limoensap naar smaak over het gerecht.</label></li>
-      </ol>
+      <ol class="steps" id="stepsList"></ol>
+      <div class="note" id="recipeNote" hidden></div>
     </main>
   </div>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
 <script src="theme.js" defer></script>
 </body>
 </html>
