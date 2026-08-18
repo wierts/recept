@@ -54,7 +54,9 @@ const ASSETS = [
   "./spaghetti_al_limone_boodschappenlijst.html",
   "./spaghetti_al_limone_kookinstructies.html",
   "./spaghetti_al_limone_romig_boodschappenlijst.html",
-  "./spaghetti_al_limone_romig_kookinstructies.html"
+  "./spaghetti_al_limone_romig_kookinstructies.html",
+  "./gratin_dauphinois_boodschappenlijst.html",
+  "./gratin_dauphinois_kookinstructies.html"
 ];
 
 self.addEventListener('install', (e) => {

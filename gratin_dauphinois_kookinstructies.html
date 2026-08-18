@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kookinstructies – Gratin Dauphinois</title>
+<meta name="theme-color" content="#0b1220">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kookinstructies Gratin Dauphinois">
+<link rel="stylesheet" href="theme.css">
+</head>
+<body data-recipe="gratin_dauphinois" data-page="kook">
+<noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
+  <div class="wrap">
+    <div class="page-controls">
+      <a href="index.html" class="back-btn">&#8592; Terug naar recepten</a>
+      <div class="control-buttons">
+        <button id="themeToggle" class="icon-btn" title="Licht/donker thema" type="button">☀️</button>
+        <button id="wakeLockBtn" class="wake-btn" type="button">🔆 Voorkom dat scherm slaapt</button>
+      </div>
+    </div>
+    <header>
+      <div>
+        <h1 id="recipeTitle">Kookinstructies voor Gratin Dauphinois</h1>
+        <p class="subtitle" id="recipeHerkomst"></p>
+      </div>
+    </header>
+    <div class="actions">
+      <a href="gratin_dauphinois_boodschappenlijst.html" class="nav-btn">🛒 Bekijk boodschappenlijst</a>
+    </div>
+    <a id="videoCard" href="#" target="_blank" rel="noopener" class="video-card" hidden>
+      <img id="videoThumb" src="" alt="">
+      <span class="video-card-play">▶</span>
+      <span class="video-card-label">Bekijk video</span>
+    </a>
+    <main>
+      <div class="servings-control" id="servingsControl"></div>
+      <h2>Ingrediënten</h2>
+      <ul id="ingredientsList"></ul>
+      <h2>Kookinstructies</h2>
+      <ol class="steps" id="stepsList"></ol>
+      <div class="note" id="recipeNote" hidden></div>
+    </main>
+  </div>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
+<script src="theme.js" defer></script>
+</body>
+</html>

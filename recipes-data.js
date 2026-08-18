@@ -22,7 +22,8 @@ window.RECIPES = {
     "kip_piccata",
     "avgolemono",
     "spaghetti_al_limone",
-    "spaghetti_al_limone_romig"
+    "spaghetti_al_limone_romig",
+    "gratin_dauphinois"
   ],
   "recipes": {
     "butter_chicken": {
@@ -2801,6 +2802,70 @@ window.RECIPES = {
         "Bestrooi met geraspte Parmigiano en gehakte peterselie voor het serveren in diepe borden, eventueel afgewerkt met extra citroenrasp."
       ],
       "note": null
+    },
+    "gratin_dauphinois": {
+      "title": "Gratin Dauphinois",
+      "herkomst": "legratindauphinois.fr",
+      "videoId": null,
+      "time": "3 uur",
+      "difficulty": "medium",
+      "difficultyLabel": "Gemiddeld",
+      "servings": 4,
+      "ingredients": [
+        {
+          "id": "ing-0",
+          "qty": 800.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "aardappelen"
+        },
+        {
+          "id": "ing-1",
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "teen",
+          "rest": "knoflook"
+        },
+        {
+          "id": "ing-2",
+          "qty": 500.0,
+          "qtyMax": null,
+          "unit": "ml",
+          "rest": "volle melk"
+        },
+        {
+          "id": "ing-3",
+          "qty": 250.0,
+          "qtyMax": null,
+          "unit": "ml",
+          "rest": "slagroom"
+        },
+        {
+          "id": "ing-4",
+          "text": "Nootmuskaat, naar smaak"
+        },
+        {
+          "id": "ing-5",
+          "text": "Zout en peper naar smaak"
+        },
+        {
+          "id": "ing-6",
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "klontje",
+          "rest": "boter"
+        }
+      ],
+      "steps": [
+        "Verwarm de oven voor op 150°C.",
+        "Schil de aardappelen, was ze en snijd ze in dunne plakjes (eventueel met een mandoline, voorzichtig). Spoel de plakjes niet af — dat spoelt het bindende zetmeel weg.",
+        "Schil de teen knoflook en wrijf hiermee royaal de ovenschaal in. Beboter de schaal daarna goed.",
+        "Leg afwisselend laagjes aardappel in de schaal en breng elke laag op smaak met zout, peper en geraspte nootmuskaat. Ga door tot de schaal vol is.",
+        "Meng de melk en slagroom en giet dit over de aardappelen tot ze net onder staan. (Gebruik naar wens meer room voor een rijkere gratin.)",
+        "Bak 2,5 tot 3 uur op 150°C. Houd de bovenkant in de gaten zodat deze niet verbrandt.",
+        "Test de gaarheid door met de punt van een mesje in de aardappelen te prikken — dit moet zonder weerstand doorheen gaan."
+      ],
+      "note": "Een échte gratin dauphinois bevat geen kaas — dat onderscheidt hem van andere aardappelgratins."
     }
   }
 };
