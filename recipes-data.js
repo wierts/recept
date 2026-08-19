@@ -2805,8 +2805,8 @@ window.RECIPES = {
     },
     "gratin_dauphinois": {
       "title": "Gratin Dauphinois",
-      "herkomst": "legratindauphinois.fr",
-      "videoId": null,
+      "herkomst": "Dauphiné-streek, Frankrijk – ontstond vlak voor de Franse Revolutie. De authentieke versie bevat geen kaas en geen ei.",
+      "videoId": "YvpYyfRkxSI",
       "time": "3 uur",
       "difficulty": "medium",
       "difficultyLabel": "Gemiddeld",
