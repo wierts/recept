@@ -31,29 +31,60 @@
     if (item.text) return item.text;
     const q = item.qty * factor;
     const qMax = item.qtyMax != null ? item.qtyMax * factor : null;
-    const numPart = qMax != null ? `${formatQty(q)}-${formatQty(qMax)}` : formatQty(q);
+    let numPart = qMax != null ? `${formatQty(q)}-${formatQty(qMax)}` : formatQty(q);
+    if (item.qtyPlus != null) numPart += ` + ${formatQty(item.qtyPlus * factor)}`;
     const parts = [numPart];
     if (item.unit) parts.push(item.unit);
     if (item.rest) parts.push(item.rest);
     return parts.join(' ').trim();
   }
 
-  // Herschaalt hoeveelheden die letterlijk in de kooktekst genoemd worden (bv. "voeg 250 ml bouillon toe"),
-  // zodat de stappen kloppen met de portie-aanpasser. Beperkt bewust tot ingrediënt-eenheden (gram, ml,
-  // eetlepel(s), theelepel(s), tenen, kopjes, ...) zodat kooktijden ("10 minuten"), temperaturen ("180 graden")
-  // en afmetingen ("5 cm") NOOIT worden aangepast.
-  const SCALE_UNIT_RE = /(\d+(?:[.,]\d+)?)(?:\s*-\s*(\d+(?:[.,]\d+)?))?(\s*(?:gram|kilo|kg|ml|liter|l|eetlepels?|el\b|theelepels?|tl\b|tenen|teentjes?|kopjes?))/gi;
+  // Herschaalt hoeveelheden die letterlijk in de kooktekst genoemd worden (bv. "voeg 250 ml bouillon toe",
+  // "6 kaffir limoenblaadjes", "½ theelepel zout"), zodat de stappen kloppen met de portie-aanpasser.
+  // Een getal wordt alleen geschaald als het direct gevolgd wordt door een ingrediënt-eenheid (gram, ml,
+  // eetlepel, ...) of door een woord dat ook in de ingrediëntenlijst van dit recept voorkomt. Kooktijden
+  // ("10 minuten"), temperaturen ("180 graden", "150°C") en afmetingen ("5 cm") worden NOOIT aangepast.
+  const GLYPHS = { '½': 0.5, '¼': 0.25, '¾': 0.75, '⅓': 1 / 3, '⅔': 2 / 3, '⅛': 0.125 };
+  const NUM = '(?:\\d+(?:[.,]\\d+)?[½¼¾⅓⅔⅛]?|[½¼¾⅓⅔⅛])';
+  const QTY_RE = new RegExp('(^|[^\\d.,])(' + NUM + ')(?:(\\s*-\\s*|\\s+tot\\s+)(' + NUM + '))?(?=([\\s\\S]{0,60}))', 'g');
+  const UNIT_WORDS = new Set(['gram', 'kilo', 'kg', 'ml', 'liter', 'l', 'eetlepel', 'eetlepels', 'el', 'theelepel',
+    'theelepels', 'tl', 'tenen', 'teen', 'teentje', 'teentjes', 'kopje', 'kopjes', 'blikje', 'blikjes']);
+  const NEVER_SCALE = /^\s*(?:minuten|minuut|min\b|uur|uren|seconden|sec\b|graden|°|cm|mm|keer|x\b|dagen|nachten|%|sterren|stemmen|\/)/i;
+  const STOP = new Set(['de', 'het', 'een', 'en', 'of', 'in', 'op', 'met', 'van', 'voor', 'naar', 'tot', 'ca', 'om', 'te',
+    'bij', 'aan', 'uit', 'extra', 'plus', 'stuk', 'stukken', 'stukje', 'stukjes', 'grote', 'groot', 'klein', 'kleine', 'verse', 'vers', 'fijn', 'smaak', 'zout']);
 
-  function scaleStepText(text, factor) {
+  function parseNum(str) {
+    const m = str.match(/^(\d+(?:[.,]\d+)?)?([½¼¾⅓⅔⅛])?$/);
+    if (!m) return NaN;
+    return (m[1] ? parseFloat(m[1].replace(',', '.')) : 0) + (m[2] ? GLYPHS[m[2]] : 0);
+  }
+
+  function words(str) {
+    return (str || '').toLowerCase().split(/[^a-zà-ÿ']+/).filter(w => w.length >= 2 && !STOP.has(w));
+  }
+
+  function ingredientWords(recipe) {
+    if (recipe._scaleWords) return recipe._scaleWords;
+    const set = new Set(UNIT_WORDS);
+    recipe.ingredients.forEach(i => {
+      if (i.qty == null) return;
+      words(i.unit).concat(words(i.rest)).forEach(w => set.add(w));
+    });
+    recipe._scaleWords = set;
+    return set;
+  }
+
+  function scaleStepText(text, factor, recipe) {
     if (!text || factor === 1) return text;
-    return text.replace(SCALE_UNIT_RE, (match, n1, n2, unitPart) => {
-      const v1 = parseFloat(n1.replace(',', '.')) * factor;
-      let out = formatQty(v1);
-      if (n2) {
-        const v2 = parseFloat(n2.replace(',', '.')) * factor;
-        out += '-' + formatQty(v2);
-      }
-      return out + unitPart;
+    const known = ingredientWords(recipe);
+    return text.replace(QTY_RE, (match, pre, n1, sep, n2, after) => {
+      if (NEVER_SCALE.test(after)) return match;
+      // Kijk naar maximaal de eerste twee woorden na het getal (bv. "2 gesnipperde uien").
+      const next = after.trim().split(/\s+/).slice(0, 2).map(w => w.toLowerCase().replace(/[^a-zà-ÿ']/g, ''));
+      if (!next.some(w => known.has(w))) return match;
+      let out = pre + formatQty(parseNum(n1) * factor);
+      if (n2) out += sep + formatQty(parseNum(n2) * factor);
+      return out;
     });
   }
 
@@ -160,7 +191,7 @@
 
     function renderSteps(factor) {
       stepLabelEls.forEach(({ el, original }) => {
-        el.textContent = scaleStepText(original, factor);
+        el.textContent = scaleStepText(original, factor, recipe);
       });
     }
 
@@ -168,7 +199,7 @@
       if (!noteEl) return;
       if (recipe.note) {
         noteEl.hidden = false;
-        noteEl.innerHTML = `<strong>Notitie:</strong> ${scaleStepText(recipe.note, factor)}`;
+        noteEl.innerHTML = `<strong>Notitie:</strong> ${scaleStepText(recipe.note, factor, recipe)}`;
       } else {
         noteEl.hidden = true;
       }

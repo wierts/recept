@@ -2047,7 +2047,10 @@ window.RECIPES = {
         },
         {
           "id": "ing-12",
-          "text": "Blikje bambooreepjes"
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "blikje",
+          "rest": "bambooreepjes"
         },
         {
           "id": "ing-13",
@@ -2260,7 +2263,11 @@ window.RECIPES = {
         },
         {
           "id": "ing-3",
-          "text": "2 + 2 tenen knoflook"
+          "qty": 2.0,
+          "qtyMax": null,
+          "qtyPlus": 2.0,
+          "unit": "tenen",
+          "rest": "knoflook"
         },
         {
           "id": "ing-4",
@@ -2292,7 +2299,11 @@ window.RECIPES = {
         },
         {
           "id": "ing-8",
-          "text": "¼ + 1 theelepel cayennepeper"
+          "qty": 0.25,
+          "qtyMax": null,
+          "qtyPlus": 1.0,
+          "unit": "theelepel",
+          "rest": "cayennepeper"
         },
         {
           "id": "ing-9",
@@ -2303,11 +2314,19 @@ window.RECIPES = {
         },
         {
           "id": "ing-10",
-          "text": "2 + 1 theelepels zout"
+          "qty": 2.0,
+          "qtyMax": null,
+          "qtyPlus": 1.0,
+          "unit": "theelepels",
+          "rest": "zout"
         },
         {
           "id": "ing-11",
-          "text": "2 + 2 theelepels suiker"
+          "qty": 2.0,
+          "qtyMax": null,
+          "qtyPlus": 2.0,
+          "unit": "theelepels",
+          "rest": "suiker"
         },
         {
           "id": "ing-12",
