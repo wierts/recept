@@ -1,4 +1,4 @@
-const CACHE_NAME = 'recepten-checklist-v10';
+const CACHE_NAME = 'recepten-checklist-v11';
 const ASSETS = [
   "./",
   "./index.html",
@@ -56,7 +56,13 @@ const ASSETS = [
   "./spaghetti_al_limone_romig_boodschappenlijst.html",
   "./spaghetti_al_limone_romig_kookinstructies.html",
   "./gratin_dauphinois_boodschappenlijst.html",
-  "./gratin_dauphinois_kookinstructies.html"
+  "./gratin_dauphinois_kookinstructies.html",
+  "./risotto_sbirraglia_boodschappenlijst.html",
+  "./risotto_sbirraglia_kookinstructies.html",
+  "./citroen_risotto_kip_boodschappenlijst.html",
+  "./citroen_risotto_kip_kookinstructies.html",
+  "./paella_valenciana_boodschappenlijst.html",
+  "./paella_valenciana_kookinstructies.html"
 ];
 
 self.addEventListener('install', (e) => {

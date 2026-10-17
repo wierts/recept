@@ -141,7 +141,23 @@
     const titleEl = document.getElementById('recipeTitle');
     if (titleEl) titleEl.textContent = `Kookinstructies voor ${recipe.title}`;
     const herkomstEl = document.getElementById('recipeHerkomst');
-    if (herkomstEl) herkomstEl.textContent = recipe.herkomst ? `Herkomst: ${recipe.herkomst}` : '';
+    if (herkomstEl) {
+      herkomstEl.textContent = recipe.herkomst ? `Herkomst: ${recipe.herkomst}` : '';
+      if (recipe.origineleNaam) {
+        const orig = document.createElement('em');
+        orig.textContent = recipe.origineleNaam;
+        herkomstEl.append(herkomstEl.textContent ? ' · Origineel: ' : 'Origineel: ', orig);
+      }
+      if (recipe.bronUrl) {
+        const a = document.createElement('a');
+        a.href = recipe.bronUrl;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = 'Bekijk origineel recept ↗';
+        a.style.color = 'inherit';
+        herkomstEl.append(' · ', a);
+      }
+    }
 
     renderVideoCard(recipe);
 

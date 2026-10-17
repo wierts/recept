@@ -23,7 +23,10 @@ window.RECIPES = {
     "avgolemono",
     "spaghetti_al_limone",
     "spaghetti_al_limone_romig",
-    "gratin_dauphinois"
+    "gratin_dauphinois",
+    "risotto_sbirraglia",
+    "citroen_risotto_kip",
+    "paella_valenciana"
   ],
   "recipes": {
     "butter_chicken": {
@@ -2885,6 +2888,284 @@ window.RECIPES = {
         "Test de gaarheid door met de punt van een mesje in de aardappelen te prikken — dit moet zonder weerstand doorheen gaan."
       ],
       "note": "Een échte gratin dauphinois bevat geen kaas — dat onderscheidt hem van andere aardappelgratins."
+    },
+    "risotto_sbirraglia": {
+      "title": "Risotto alla Sbirraglia – Venetiaanse Kiprisotto",
+      "herkomst": "Dissapore",
+      "origineleNaam": "Risotto alla sbirraglia, la ricetta veneta",
+      "bronUrl": "https://www.dissapore.com/ricette/risotto-alla-sbirraglia/",
+      "videoId": null,
+      "time": "35 min",
+      "difficulty": "easy",
+      "difficultyLabel": "Makkelijk",
+      "servings": 4,
+      "ingredients": [
+        {
+          "id": "ing-0",
+          "qty": 250.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "risottorijst (arborio of carnaroli)"
+        },
+        {
+          "id": "ing-1",
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "witte ui",
+          "rest": ""
+        },
+        {
+          "id": "ing-2",
+          "qty": 5.0,
+          "qtyMax": null,
+          "unit": "eetlepels",
+          "rest": "olijfolie extra vierge"
+        },
+        {
+          "id": "ing-3",
+          "qty": 300.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "kipdijfilet"
+        },
+        {
+          "id": "ing-4",
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "liter",
+          "rest": "kippenbouillon"
+        },
+        {
+          "id": "ing-5",
+          "qty": 30.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "boter"
+        },
+        {
+          "id": "ing-6",
+          "qty": 40.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "Parmezaanse kaas, geraspt (optioneel)"
+        },
+        {
+          "id": "ing-7",
+          "text": "Zout"
+        },
+        {
+          "id": "ing-8",
+          "text": "Versgemalen zwarte peper"
+        }
+      ],
+      "steps": [
+        "Snipper 1 witte ui fijn en stoof hem met 5 eetlepels olijfolie op laag vuur in een pan met antiaanbaklaag, al roerend, tot de ui zacht en glazig is.",
+        "Snijd 300 gram kipdijfilet in stukjes van maximaal 2 cm, voeg toe en bak 5 minuten mee.",
+        "Breng intussen 1 liter kippenbouillon aan de kook en houd hem heet.",
+        "Voeg 250 gram risottorijst toe en rooster 1 minuut op hoog vuur, al roerend met een houten lepel.",
+        "Schenk een soeplepel kokende kippenbouillon erbij en roer tot alles is opgenomen. Herhaal tot de rijst gaar is, ca. 15 minuten.",
+        "Zet het vuur uit en roer 30 gram boter er stevig door (mantecatura). Roer eventueel 40 gram Parmezaanse kaas mee.",
+        "Breng op smaak met zout en zwarte peper en serveer direct."
+      ],
+      "note": "Traditioneel trek je bouillon van een hele kip en gaat het vlees in de risotto. Voor meer diepte kun je een paar kippenlevertjes meebakken met de ui en de kip. Het origineel gebruikt kipfilet en geen kaas."
+    },
+    "citroen_risotto_kip": {
+      "title": "Citroenrisotto met Kip, Prei en Krokante Salie",
+      "herkomst": "Cucina Naturale (Barbara Toselli)",
+      "origineleNaam": "Risotto al limone con pollo, porri e salvia croccante",
+      "bronUrl": "https://www.cucina-naturale.it/ricette/risotto_al_limone_con_pollo_porri_e_salvia_croccante/",
+      "videoId": null,
+      "time": "35 min",
+      "difficulty": "easy",
+      "difficultyLabel": "Makkelijk",
+      "servings": 4,
+      "ingredients": [
+        {
+          "id": "ing-0",
+          "qty": 1.5,
+          "qtyMax": null,
+          "unit": "liter",
+          "rest": "groentebouillon"
+        },
+        {
+          "id": "ing-1",
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "prei",
+          "rest": ""
+        },
+        {
+          "id": "ing-2",
+          "qty": 30.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "boter"
+        },
+        {
+          "id": "ing-3",
+          "qty": 300.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "risottorijst (carnaroli)"
+        },
+        {
+          "id": "ing-4",
+          "qty": 200.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "kipdijfilet, in blokjes"
+        },
+        {
+          "id": "ing-5",
+          "qty": 1.0,
+          "qtyMax": null,
+          "unit": "citroen",
+          "rest": "(onbespoten)"
+        },
+        {
+          "id": "ing-6",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "eetlepels",
+          "rest": "Parmezaanse kaas, geraspt"
+        },
+        {
+          "id": "ing-7",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "salieblaadjes",
+          "rest": ""
+        },
+        {
+          "id": "ing-8",
+          "text": "Olie om te frituren"
+        },
+        {
+          "id": "ing-9",
+          "text": "Zout"
+        },
+        {
+          "id": "ing-10",
+          "text": "Witte peper"
+        }
+      ],
+      "steps": [
+        "Breng 1,5 liter groentebouillon aan de kook en zet het vuur daarna laag, zodat hij heet blijft.",
+        "Snijd 1 prei in dunne ringen en laat zacht worden in een pan met 15 gram boter; voeg een scheutje bouillon toe zodat de prei niet kleurt.",
+        "Voeg 300 gram risottorijst toe en laat de rijst het vocht van de prei volledig opnemen.",
+        "Kook ca. 10 minuten verder: roer steeds en voeg telkens een soeplepel hete bouillon toe.",
+        "Voeg 200 gram kipdijfilet in blokjes toe, breng op smaak met zout en witte peper en laat nog ca. 8 minuten verder garen, met bouillon erbij als dat nodig is.",
+        "Roer vlak voordat je de pan van het vuur haalt 3 eetlepels gezeefd citroensap erdoor.",
+        "Zet het vuur uit en roer de resterende 15 gram boter, 2 eetlepels Parmezaanse kaas en de fijngeraspte schil van de citroen erdoor.",
+        "Frituur 2 salieblaadjes een paar tellen in hete olie tot ze krokant zijn; laat uitlekken op keukenpapier en bestrooi met een beetje zout.",
+        "Verdeel de risotto over de borden en garneer met de krokante salie."
+      ],
+      "note": "Het origineel gebruikt kipfilet (6 minuten garen). Het noemt ook 2 laurierblaadjes, maar die komen niet terug in de bereiding en zijn hier weggelaten. Wijnsuggestie uit het origineel: Terre di Franciacorta Bianco."
+    },
+    "paella_valenciana": {
+      "title": "Paella Valenciana",
+      "herkomst": "Traditioneel Valenciaans recept",
+      "origineleNaam": "Paella valenciana",
+      "bronUrl": null,
+      "videoId": null,
+      "time": "1 uur 15 min",
+      "difficulty": "medium",
+      "difficultyLabel": "Gemiddeld",
+      "servings": 4,
+      "ingredients": [
+        {
+          "id": "ing-0",
+          "qty": 360.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "bomba- of paellarijst"
+        },
+        {
+          "id": "ing-1",
+          "qty": 600.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "kippendijen met bot, in stukken"
+        },
+        {
+          "id": "ing-2",
+          "qty": 500.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "konijn, in stukken"
+        },
+        {
+          "id": "ing-3",
+          "qty": 240.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "platte sperziebonen (judía ferraura), in stukken"
+        },
+        {
+          "id": "ing-4",
+          "qty": 160.0,
+          "qtyMax": null,
+          "unit": "gram",
+          "rest": "witte bonen (garrofó of boterbonen), voorgekookt"
+        },
+        {
+          "id": "ing-5",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "rijpe tomaten",
+          "rest": "geraspt"
+        },
+        {
+          "id": "ing-6",
+          "qty": 8.0,
+          "qtyMax": null,
+          "unit": "eetlepels",
+          "rest": "olijfolie extra vierge"
+        },
+        {
+          "id": "ing-7",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "theelepels",
+          "rest": "zoete paprikapoeder (pimentón dulce)"
+        },
+        {
+          "id": "ing-8",
+          "text": "Flinke snuf saffraandraadjes"
+        },
+        {
+          "id": "ing-9",
+          "qty": 1.5,
+          "qtyMax": null,
+          "unit": "liter",
+          "rest": "water"
+        },
+        {
+          "id": "ing-10",
+          "qty": 3.0,
+          "qtyMax": null,
+          "unit": "theelepels",
+          "rest": "zout"
+        },
+        {
+          "id": "ing-11",
+          "qty": 2.0,
+          "qtyMax": null,
+          "unit": "takjes",
+          "rest": "verse rozemarijn"
+        }
+      ],
+      "steps": [
+        "Verhit 8 eetlepels olijfolie in een paellapan (ca. 40 cm) op middelhoog vuur. Bestrooi 600 gram kippendijen en 500 gram konijn met een snuf zout en bak rondom goudbruin (ca. 15-20 minuten).",
+        "Schuif het vlees naar de rand en bak 240 gram sperziebonen en 160 gram witte bonen in het midden mee (ca. 5 minuten).",
+        "Voeg 2 geraspte tomaten toe en laat inkoken tot een donkere saus. Roer 2 theelepels paprikapoeder kort door en laat het niet verbranden (ca. 4 minuten).",
+        "Voeg 1,5 liter water, de saffraan en de rest van het zout toe en laat zachtjes koken (ca. 20 minuten). De bouillon moet duidelijk zout smaken.",
+        "Verdeel 360 gram rijst gelijkmatig over de pan en roer daarna NIET meer. Kook 10 minuten op hoog vuur.",
+        "Zet het vuur laag en laat ca. 8 minuten garen tot het vocht is opgenomen; leg in de laatste minuten 2 takjes rozemarijn erop.",
+        "Socarrat: zet het vuur 1-2 minuten hoog tot de bodem knispert en geroosterd ruikt.",
+        "Haal van het vuur, dek af met een schone theedoek en laat 5 minuten rusten. Eet direct uit de pan."
+      ],
+      "note": "Geen konijn? Neem extra kippendijen. Echte Valenciana bevat geen chorizo, ui of zeevruchten. Gebruik een brede, ondiepe pan met een rijstlaag van ca. 1 cm; voor 4 personen een pan van ca. 40 cm. Met gewone paellarijst ca. 200 ml minder water dan bij bomba."
     }
   }
 };
