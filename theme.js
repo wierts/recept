@@ -12,7 +12,7 @@
     document.documentElement.setAttribute('data-theme', t);
     localStorage.setItem(THEME_KEY, t);
     const btn = document.getElementById('themeToggle');
-    if (btn) btn.textContent = t === 'light' ? '🌙' : '☀️';
+    if (btn) btn.textContent = '🌓';
   }
 
   applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
