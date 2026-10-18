@@ -153,7 +153,9 @@ window.RECIPES = {
         "Proef en voeg eventueel extra zout toe naar smaak.",
         "Garneer met verse koriander indien gewenst en serveer met basmatirijst of witte rijst."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Butter Chicken",
+      "bronUrl": "https://www.recipetineats.com/butter-chicken/"
     },
     "chow_mein": {
       "title": "Chow Mein",
@@ -300,7 +302,9 @@ window.RECIPES = {
         "Bak de rode ui, kool en wortel kort op hoog vuur aan en haal uit de wok.",
         "Voeg olie toe en bak de noedels op hoog vuur ca. 2 minuten per kant tot lichtjes goudbruin. Voeg de saus toe, meng de kip en groenten erdoor, roer de taugé erdoor en bak nog 1 minuut. Werk af met sesamolie."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Chicken Chow Mein (鷄肉炒麵)",
+      "bronUrl": "https://www.madewithlau.com/recipes/chow-mein"
     },
     "general_tsos_chicken": {
       "title": "General Tso's Chicken",
@@ -492,7 +496,9 @@ window.RECIPES = {
         "Verhit wat frituurolie in een schone pan. Bak de gedroogde pepers 10-15 seconden, voeg knoflook en gember toe en bak 20-30 seconden. Giet de saus erbij en roer 20-30 seconden. Bind met een mengsel van maizena en water, voeg de paprika en sesamolie toe en roer nog 30 seconden.",
         "Meng de kip door de saus tot alles goed bedekt is. Serveer direct, eventueel op een bedje van broccoli en gegarneerd met tomaat, samen met witte rijst."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "General Tso's Chicken (左宗棠鸡)",
+      "bronUrl": "https://www.madewithlau.com/recipes/general-tsos-chicken"
     },
     "indiase_chicken_biriyani": {
       "title": "Indiase Chicken Biriyani",
@@ -702,7 +708,9 @@ window.RECIPES = {
         "Laat het geheel 30 minuten op laag vuur garen.",
         "Serveer met komkommer raita."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Hoe maak je Indiase Chicken Biriyani? (kip met rijst recept)",
+      "bronUrl": "https://www.youtube.com/watch?v=e50f_fbfmx0"
     },
     "kantonese_kip": {
       "title": "Kantonese Kip",
@@ -815,7 +823,9 @@ window.RECIPES = {
         "Voeg de broccoli, het water en de saus toe. Roer goed door en laat 1-2 minuten sudderen tot de saus glanzend en ingedikt is.",
         "Serveer direct over witte rijst."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Kantonese kip",
+      "bronUrl": "https://www.youtube.com/watch?v=R18Ccm0FvoY"
     },
     "korma": {
       "title": "Kip Korma",
@@ -958,7 +968,9 @@ window.RECIPES = {
         "Voeg 250 ml slagroom toe en kook het geheel nog 5-10 minuten.",
         "Strooi bij het serveren wat geschaafde amandelen en fijngehakt korianderblad over het gerecht."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Hoe maak je Indiase Kip Korma? (met gekruide rijst recept)",
+      "bronUrl": "https://www.youtube.com/watch?v=AAhFJampDt0"
     },
     "kung_pao_chicken": {
       "title": "Kung Pao Chicken",
@@ -1207,11 +1219,13 @@ window.RECIPES = {
         "Blancheer de wortel, bleekselderij, broccolistronk en paprika's kort in gezouten kokend water tot beetgaar en giet af.",
         "Bak de gedroogde pepers, sjalotten en knoflook kort aan. Voeg de kip en groenten toe, giet de saus erbij en roer de slurry erdoor tot de saus bindt. Werk af met sesamolie en strooi de knapperige pinda's erover."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Kung Pao Chicken (宮保雞丁)",
+      "bronUrl": "https://www.madewithlau.com/recipes/kung-pao-chicken"
     },
     "maple_bourbon_bbq_saus": {
       "title": "Maple Bourbon BBQ-saus",
-      "herkomst": "onbekend",
+      "herkomst": "The Art of Doing Stuff",
       "videoId": null,
       "time": "20 min",
       "difficulty": "easy",
@@ -1302,7 +1316,9 @@ window.RECIPES = {
         "Roer regelmatig en laat de saus ca. 15 minuten inkoken tot deze is ingedikt.",
         "Laat de saus iets afkoelen en giet hem eventueel door een zeef voor een gladde structuur. Bewaar afgekoeld in een afgesloten pot in de koelkast."
       ],
-      "note": "Geen ahornazijn? Vervang de 120 ml door 60 ml witte wijnazijn gemengd met 60 ml ahornsiroop."
+      "note": "Geen ahornazijn? Vervang de 120 ml door 60 ml witte wijnazijn gemengd met 60 ml ahornsiroop.",
+      "origineleNaam": "The Award Losing Maple Bourbon BBQ Sauce!",
+      "bronUrl": "https://www.theartofdoingstuff.com/the-award-losing-maple-bourbon-bbq-sauce/"
     },
     "massaman_curry": {
       "title": "Beef Massaman Curry",
@@ -1399,7 +1415,9 @@ window.RECIPES = {
         "Proef en breng op smaak met extra vissaus, suiker of tamarinde naar wens.",
         "Serveer met jasmijnrijst."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Beef Massaman Curry (มัสมั่นเนื้อ)",
+      "bronUrl": "https://hot-thai-kitchen.com/beef-massaman-curry/"
     },
     "mongolian_beef": {
       "title": "Mongolian Beef",
@@ -1519,7 +1537,9 @@ window.RECIPES = {
         "Bind de saus met 1 eetlepel maizena en meng het vlees erdoor.",
         "Serveer met witte rijst."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Hoe maak je Mongolian Beef? (rundvlees recept)",
+      "bronUrl": "https://www.youtube.com/watch?v=fN-LtdxjdE0"
     },
     "nasi": {
       "title": "Nasi Goreng",
@@ -1619,7 +1639,9 @@ window.RECIPES = {
         "Voeg de 5-6 eieren toe en bak alles goed door.",
         "Voeg optionele ingrediënten toe en breng op smaak met zout en ketjap."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Hoe maak je Nasi Goreng? (Indische keuken)",
+      "bronUrl": "https://www.youtube.com/watch?v=u2vkxYPfjeQ"
     },
     "padthai": {
       "title": "Pad Thai",
@@ -1752,7 +1774,9 @@ window.RECIPES = {
         "Voeg de 25 gram bieslookknoflook en de helft van de 35 gram pinda's toe. Roerbak kort en haal van het vuur.",
         "Serveer direct, bestrooid met de resterende pinda's en limoenpartjes ernaast, eventueel met een snufje chili en extra taugé (op z'n Thais!). Pers voor het eten limoensap naar smaak over het gerecht."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Chicken Pad Thai",
+      "bronUrl": "https://www.recipetineats.com/chicken-pad-thai/"
     },
     "sate": {
       "title": "Indische Saté Ajam",
@@ -1821,7 +1845,9 @@ window.RECIPES = {
         "Grill de gemarineerde kip op satéstokjes.",
         "Serveer met pindasaus, lontong en eventueel geschaafde amandelen en koriander."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Hoe maak je Indische Saté Ajam met Pindasaus? (Kipsaté)",
+      "bronUrl": "https://www.youtube.com/watch?v=bEY7DklnKec"
     },
     "sticky_chicken": {
       "title": "Sticky Honey Chicken",
@@ -1965,7 +1991,9 @@ window.RECIPES = {
         "Frituur de kipstukjes in hete olie tot ze goudbruin zijn.",
         "Voeg de gefrituurde kip toe aan de saus en verwarm al roerend tot alles goed bedekt is met de saus. Bestrooi met sesamzaad en bosui voor het serveren."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Hoe maak je Sticky Honey Chicken? (Zoete kip recept)",
+      "bronUrl": "https://www.youtube.com/watch?v=bEg0_jybXjw"
     },
     "thaise_groene_curry": {
       "title": "Thaise Groene Curry",
@@ -2099,7 +2127,9 @@ window.RECIPES = {
         "Voeg 250 gram kipfilet toe en kook tot deze gaar is. Roer goed door.",
         "Bestrooi met Thaise basilicum voor het serveren."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Hoe maak je Thaise Groene Curry? (pittige curry recept)",
+      "bronUrl": "https://www.youtube.com/watch?v=MoMNmqOSzxM"
     },
     "thaise_rode_curry": {
       "title": "Thaise Rode Curry",
@@ -2232,7 +2262,9 @@ window.RECIPES = {
         "Haal van het vuur en roer de 12 Thaise basilicumblaadjes erdoor.",
         "Serveer over jasmijnrijst, gegarneerd met verse rode peper en koriander naar wens."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Thai Red Curry with Chicken",
+      "bronUrl": "https://www.recipetineats.com/thai-red-curry-with-chicken/"
     },
     "tikka_masala": {
       "title": "Kip Tikka Masala",
@@ -2396,7 +2428,9 @@ window.RECIPES = {
         "Voeg ¼ liter slagroom en 1 eetlepel amandelmeel toe en laat het nog 10 minuten koken.",
         "Voeg de kip toe en laat dit nog eens 10 minuten sudderen."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Hoe maak je Indiase Kip Tikka Masala? (Murgh Tikka Masala recept)",
+      "bronUrl": "https://www.youtube.com/watch?v=l8PWYBn4cGA"
     },
     "ravioli_spinazie_citroen": {
       "title": "Ravioli met Spinazie, Roomkaas en Citroenbotersaus",
@@ -2504,7 +2538,9 @@ window.RECIPES = {
         "Schenk de slagroom erbij en warm door. Voeg 1-2 eetlepels kookvocht van de pasta toe.",
         "Haal van het vuur en roer de parmezaan erdoor. Breng op smaak met zout en peper en meng met de ravioli."
       ],
-      "note": "UK-recept van Somebody Feed Seb (4,88/5 bij 8 stemmen) — zelfgemaakte pasta, maar met kant-en-klare verse ravioli-vellen gaat het ook sneller."
+      "note": "UK-recept van Somebody Feed Seb (4,88/5 bij 8 stemmen) — zelfgemaakte pasta, maar met kant-en-klare verse ravioli-vellen gaat het ook sneller.",
+      "origineleNaam": "Home-Made Spinach & Cream Cheese Ravioli with Lemon Butter Sauce",
+      "bronUrl": "https://somebodyfeedseb.com/spinach-cream-cheese-ravioli/"
     },
     "kip_piccata": {
       "title": "Kip Piccata met Citroensaus",
@@ -2610,7 +2646,9 @@ window.RECIPES = {
         "Zet het vuur laag, voeg de koude boterblokjes toe en zwenk de pan tot een glanzende saus ontstaat.",
         "Roer de kappertjes en peterselie erdoor en serveer de saus over de kip."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Chicken Piccata",
+      "bronUrl": "https://www.recipetineats.com/chicken-piccata/"
     },
     "avgolemono": {
       "title": "Avgolemono – Griekse Citroen-Eiersoep met Kip",
@@ -2674,7 +2712,9 @@ window.RECIPES = {
         "Voeg al kloppend 5-6 grote soeplepels warme bouillon geleidelijk toe aan het ei-citroenmengsel, zodat het langzaam op temperatuur komt.",
         "Giet het ei-citroenmengsel terug in de iets afgekoelde soep en serveer direct. Kali oreksi – eet smakelijk!"
       ],
-      "note": "Laat de soep na stap 4 iets afkoelen voordat je het ei-citroenmengsel toevoegt, anders schift het ei."
+      "note": "Laat de soep na stap 4 iets afkoelen voordat je het ei-citroenmengsel toevoegt, anders schift het ei.",
+      "origineleNaam": "Soepa avgolemono – ei-citroensoep",
+      "bronUrl": "https://www.grieksegids.nl/gerechten/soupa-avgolemono.php"
     },
     "spaghetti_al_limone": {
       "title": "Spaghetti al Limone",
@@ -2747,7 +2787,9 @@ window.RECIPES = {
         "Haal van het vuur en meng met de Pecorino Romano.",
         "Serveer gegarneerd met extra citroenrasp en verse munt."
       ],
-      "note": "5 sterren bij 15 stemmen — gekozen boven de vergelijkbare versie van Recipes from Italy (5 sterren bij slechts 2 stemmen)."
+      "note": "5 sterren bij 15 stemmen — gekozen boven de vergelijkbare versie van Recipes from Italy (5 sterren bij slechts 2 stemmen).",
+      "origineleNaam": "Spaghetti al Limone",
+      "bronUrl": "https://www.vincenzosplate.com/spaghetti-al-limone/"
     },
     "spaghetti_al_limone_romig": {
       "title": "Romige Spaghetti al Limone",
@@ -2823,7 +2865,9 @@ window.RECIPES = {
         "Doe de afgegoten spaghetti in de pan met de saus. Meng goed door en voeg zo nodig kookvocht toe voor een romige consistentie.",
         "Bestrooi met geraspte Parmigiano en gehakte peterselie voor het serveren in diepe borden, eventueel afgewerkt met extra citroenrasp."
       ],
-      "note": null
+      "note": null,
+      "origineleNaam": "Spaghetti al limone",
+      "bronUrl": "https://www.buonissimo.it/lericette/1198_Spaghetti_al_limone"
     },
     "gratin_dauphinois": {
       "title": "Gratin Dauphinois",
@@ -2887,7 +2931,9 @@ window.RECIPES = {
         "Bak 2,5 tot 3 uur op 150°C. Houd de bovenkant in de gaten zodat deze niet verbrandt.",
         "Test de gaarheid door met de punt van een mesje in de aardappelen te prikken — dit moet zonder weerstand doorheen gaan."
       ],
-      "note": "Een échte gratin dauphinois bevat geen kaas — dat onderscheidt hem van andere aardappelgratins."
+      "note": "Een échte gratin dauphinois bevat geen kaas — dat onderscheidt hem van andere aardappelgratins.",
+      "origineleNaam": "Recette du véritable gratin dauphinois",
+      "bronUrl": "https://www.youtube.com/watch?v=YvpYyfRkxSI"
     },
     "risotto_sbirraglia": {
       "title": "Risotto alla Sbirraglia – Venetiaanse Kiprisotto",
