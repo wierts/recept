@@ -1,4 +1,4 @@
-const CACHE_NAME = 'recepten-checklist-v13';
+const CACHE_NAME = 'recepten-checklist-v14';
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,6 +8,7 @@ const ASSETS = [
   "./theme.js",
   "./recipe.js",
   "./recipes-data.js",
+  "./versie.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png",
@@ -81,7 +82,19 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
-  if (url.origin === location.origin) {
+  if (url.origin !== location.origin) return;
+  // versie.json: netwerk eerst (zodat het versienummer klopt), offline uit de cache.
+  if (url.pathname.endsWith('/versie.json')) {
+    e.respondWith(
+      fetch(e.request).then(resp => {
+        const copy = resp.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put('./versie.json', copy));
+        return resp;
+      }).catch(() => caches.match('./versie.json'))
+    );
+    return;
+  }
+  {
     e.respondWith(
       caches.match(e.request).then(cached =>
         cached || fetch(e.request).then(resp => {

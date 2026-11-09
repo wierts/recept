@@ -1,5 +1,5 @@
 (function () {
-  const BASE_SERVINGS = 4;
+  const DEFAULT_SERVINGS = 4;
   const MIN_SERVINGS = 1;
   const MAX_SERVINGS = 12;
 
@@ -90,9 +90,15 @@
 
   function servingsKey(slug) { return 'porties-' + slug; }
 
-  function getServings(slug) {
+  // Aantal personen waarvoor het recept in recipes-data.js is uitgeschreven.
+  function baseServings(recipe) {
+    const n = parseInt(recipe.servings, 10);
+    return n > 0 ? n : DEFAULT_SERVINGS;
+  }
+
+  function getServings(slug, base) {
     const v = parseInt(localStorage.getItem(servingsKey(slug)), 10);
-    if (!v || v < MIN_SERVINGS || v > MAX_SERVINGS) return BASE_SERVINGS;
+    if (!v || v < MIN_SERVINGS || v > MAX_SERVINGS) return base;
     return v;
   }
 
@@ -100,9 +106,9 @@
     localStorage.setItem(servingsKey(slug), String(v));
   }
 
-  function renderServingsControl(container, slug, onChange) {
+  function renderServingsControl(container, slug, base, onChange) {
     if (!container) return;
-    let servings = getServings(slug);
+    let servings = getServings(slug, base);
     container.innerHTML = `
       <span class="servings-label">Aantal personen</span>
       <div class="servings-stepper">
@@ -116,11 +122,11 @@
       servings = Math.min(MAX_SERVINGS, Math.max(MIN_SERVINGS, next));
       valueEl.textContent = servings;
       setServings(slug, servings);
-      onChange(servings / BASE_SERVINGS);
+      onChange(servings / base);
     };
     container.querySelector('#servingsMinus').addEventListener('click', () => update(servings - 1));
     container.querySelector('#servingsPlus').addEventListener('click', () => update(servings + 1));
-    onChange(servings / BASE_SERVINGS);
+    onChange(servings / base);
   }
 
   function renderVideoCard(recipe) {
@@ -222,7 +228,7 @@
     }
 
     if (recipe.ingredients.some(i => i.qty != null)) {
-      renderServingsControl(servingsControl, slug, (factor) => {
+      renderServingsControl(servingsControl, slug, baseServings(recipe), (factor) => {
         renderIngredients(factor);
         renderSteps(factor);
         renderNote(factor);
@@ -314,7 +320,7 @@
     }
 
     if (recipe.ingredients.some(i => i.qty != null)) {
-      renderServingsControl(servingsControl, slug, (factor) => { currentFactor = factor; render(); });
+      renderServingsControl(servingsControl, slug, baseServings(recipe), (factor) => { currentFactor = factor; render(); });
     } else {
       if (servingsControl) servingsControl.hidden = true;
       render();
@@ -349,10 +355,109 @@
     });
   }
 
+  // Bouwt de receptkaarten op de index uit recipes-data.js (volgorde volgens RECIPES.order).
+  // jjjj-mm-dd → dd-mm-jjjj
+  function formatDate(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    return m ? `${m[3]}-${m[2]}-${m[1]}` : (iso || '');
+  }
+
+  const SOORT_LABEL = { verbetering: 'Verbetering', fix: 'Fix', onderhoud: 'Onderhoud' };
+
+  // Leest versie.json en toont "vX.Y.Z · bijgewerkt dd-mm-jjjj"; klik opent het wijzigingsoverzicht.
+  async function initVersion() {
+    const btn = document.getElementById('verBtn');
+    const dialog = document.getElementById('versionDialog');
+    const list = document.getElementById('versionList');
+    if (!btn) return;
+    let info;
+    try {
+      const resp = await fetch('versie.json', { cache: 'no-store' });
+      if (!resp.ok) return;
+      info = await resp.json();
+    } catch (e) { return; }
+    btn.textContent = `v${info.versie} · bijgewerkt ${formatDate(info.datum)}`;
+    btn.title = 'Bekijk wijzigingsoverzicht';
+    btn.hidden = false;
+    if (!dialog || !list) return;
+    list.innerHTML = '';
+    (info.geschiedenis || []).forEach(g => {
+      const li = document.createElement('li');
+      const head = document.createElement('div');
+      head.className = 'ver-item-head';
+      const v = document.createElement('strong');
+      v.textContent = `v${g.versie}`;
+      const meta = document.createElement('span');
+      meta.className = 'ver-meta';
+      meta.textContent = `${formatDate(g.datum)} · ${SOORT_LABEL[g.soort] || g.soort}`;
+      head.append(v, meta);
+      const p = document.createElement('p');
+      p.textContent = g.omschrijving;
+      li.append(head, p);
+      list.appendChild(li);
+    });
+    btn.addEventListener('click', () => dialog.showModal());
+    const close = document.getElementById('versionClose');
+    if (close) close.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  }
+
+  function initIndex(data) {
+    initVersion();
+
+    const grid = document.getElementById('recipeGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    const slugs = (data.order || []).filter(s => data.recipes[s])
+      .concat(Object.keys(data.recipes).filter(s => !(data.order || []).includes(s)));
+
+    slugs.forEach(slug => {
+      const r = data.recipes[slug];
+      const card = document.createElement('div');
+      card.className = 'card';
+      // Zoekveld doorzoekt ook bron en originele naam, zonder dat die op de kaart staan.
+      card.dataset.search = [r.title, r.origineleNaam, r.herkomst].filter(Boolean).join(' ');
+
+      const h2 = document.createElement('h2');
+      h2.textContent = r.title;
+      card.appendChild(h2);
+
+      const meta = document.createElement('div');
+      meta.className = 'card-meta';
+      if (r.time) {
+        const t = document.createElement('span');
+        t.className = 'badge';
+        t.textContent = `⏱ ${r.time}`;
+        meta.appendChild(t);
+      }
+      if (r.difficultyLabel) {
+        const d = document.createElement('span');
+        d.className = 'badge' + (r.difficulty ? ' ' + r.difficulty : '');
+        d.textContent = r.difficultyLabel;
+        meta.appendChild(d);
+      }
+      card.appendChild(meta);
+
+      [['boodschappenlijst', 'Bekijk Boodschappenlijst'], ['kookinstructies', 'Bekijk Kookinstructies']].forEach(([page, label]) => {
+        const a = document.createElement('a');
+        a.href = `${slug}_${page}.html`;
+        a.className = 'btn';
+        a.textContent = label;
+        card.appendChild(a);
+      });
+      grid.appendChild(card);
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
+    if (!window.RECIPES) return;
+    if (body.dataset.page === 'index') {
+      initIndex(window.RECIPES);
+      return;
+    }
     const slug = body.dataset.recipe;
-    if (!slug || !window.RECIPES) return;
+    if (!slug) return;
     const recipe = window.RECIPES.recipes[slug];
     if (!recipe) return;
     if (body.dataset.page === 'kook') {

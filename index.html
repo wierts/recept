@@ -24,6 +24,11 @@
     --card-hover: rgba(255,255,255,0.06);
     --shadow: 0 4px 24px rgba(0,0,0,0.3);
   }
+  :root[data-theme="light"] {
+    --border-hover: #cbd0d8;
+    --card-hover: rgba(0,0,0,0.03);
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
 
   * { box-sizing: border-box; }
 
@@ -32,8 +37,8 @@
   body {
     margin: 0;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(180deg, #0b1220 0%, #0f1724 50%, #111827 100%);
-    color: #ffffff;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--card) 100%);
+    color: var(--ink);
     line-height: 1.5;
   }
 
@@ -52,7 +57,7 @@
     font-size: 2rem;
     font-weight: 700;
     margin: 0 0 8px 0;
-    background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
+    background: linear-gradient(135deg, var(--ink) 0%, var(--muted) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -71,7 +76,7 @@
   }
 
   .card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+    background: linear-gradient(180deg, rgba(127,127,127,0.07) 0%, rgba(127,127,127,0.03) 100%);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 20px;
@@ -142,7 +147,7 @@
     font-size: 0.78rem;
     padding: 3px 8px;
     border-radius: 6px;
-    background: rgba(255,255,255,0.06);
+    background: rgba(127,127,127,0.08);
     border: 1px solid var(--border);
     color: var(--muted);
   }
@@ -168,260 +173,34 @@
   }
 </style>
 </head>
-<body>
+<body data-page="index">
 <noscript><div style="padding:20px;color:#e5e7eb;background:#1f2937;margin:16px;border-radius:10px;">JavaScript is uitgeschakeld. Zet JavaScript aan om deze pagina te gebruiken.</div></noscript>
   <div class="wrap">
     <div class="page-controls" style="justify-content:flex-end;margin-bottom:-6px">
       <div class="control-buttons">
-        <button id="themeToggle" class="icon-btn" title="Licht/donker thema" type="button">☀️</button>
+        <button id="themeToggle" class="icon-btn" title="Licht/donker thema" type="button">🌓</button>
       </div>
     </div>
     <header>
       <h1>Recepten Selectie</h1>
       <p class="subtitle">Selecteer een recept om te bekijken</p>
-      <p class="subtitle" style="margin-top:4px;font-size:0.82rem;opacity:0.75;">Laatst bijgewerkt: 18 oktober 2026</p>
+      <p class="subtitle" style="margin-top:6px;"><button type="button" id="verBtn" class="ver-btn" hidden></button></p>
     </header>
     <div class="search-wrap">
       <input type="search" id="searchInput" class="search-input" placeholder="Zoek op naam, keuken of bron…" aria-label="Zoek recept">
     </div>
-    <section class="grid">
-      <div class="card">
-        <h2>Nasi Goreng</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 30 min</span>
-          <span class="badge easy">Makkelijk</span>
-        </div>
-        <a href="nasi_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="nasi_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Sticky Honey Chicken</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 45 min</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="sticky_chicken_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="sticky_chicken_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Kip Korma</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 1 uur</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="korma_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="korma_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Indische Saté Ajam</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 1,5 uur</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="sate_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="sate_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Kip Tikka Masala</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 1,5 uur</span>
-          <span class="badge hard">Uitdagend</span>
-        </div>
-        <a href="tikka_masala_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="tikka_masala_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Thaise Groene Curry</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 45 min</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="thaise_groene_curry_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="thaise_groene_curry_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Thaise Rode Curry</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 25 min</span>
-          <span class="badge easy">Makkelijk</span>
-        </div>
-        <a href="thaise_rode_curry_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="thaise_rode_curry_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Pad Thai</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 30 min</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="padthai_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="padthai_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Butter Chicken</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 35 min</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="butter_chicken_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="butter_chicken_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Mongolian Beef</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 1,5 uur</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="mongolian_beef_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="mongolian_beef_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Indiase Chicken Biriyani</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 2 uur</span>
-          <span class="badge hard">Uitdagend</span>
-        </div>
-        <a href="indiase_chicken_biriyani_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="indiase_chicken_biriyani_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Maple Bourbon BBQ-saus</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 20 min</span>
-          <span class="badge easy">Makkelijk</span>
-        </div>
-        <a href="maple_bourbon_bbq_saus_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="maple_bourbon_bbq_saus_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>General Tso's Chicken</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 1 uur</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="general_tsos_chicken_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="general_tsos_chicken_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Chow Mein</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 35 min</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="chow_mein_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="chow_mein_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Kung Pao Chicken</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 45 min</span>
-          <span class="badge hard">Uitdagend</span>
-        </div>
-        <a href="kung_pao_chicken_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="kung_pao_chicken_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Beef Massaman Curry</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 3 uur</span>
-          <span class="badge hard">Uitdagend</span>
-        </div>
-        <a href="massaman_curry_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="massaman_curry_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Kantonese Kip</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 30 min</span>
-          <span class="badge easy">Makkelijk</span>
-        </div>
-        <a href="kantonese_kip_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="kantonese_kip_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Ravioli met Spinazie, Roomkaas en Citroenbotersaus</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 1,5 uur</span>
-          <span class="badge hard">Uitdagend</span>
-        </div>
-        <a href="ravioli_spinazie_citroen_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="ravioli_spinazie_citroen_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Kip Piccata met Citroensaus</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 35 min</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="kip_piccata_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="kip_piccata_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Avgolemono – Griekse Citroen-Eiersoep met Kip</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 1 uur</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="avgolemono_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="avgolemono_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Spaghetti al Limone</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 20 min</span>
-          <span class="badge easy">Makkelijk</span>
-        </div>
-        <a href="spaghetti_al_limone_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="spaghetti_al_limone_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Romige Spaghetti al Limone</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 20 min</span>
-          <span class="badge easy">Makkelijk</span>
-        </div>
-        <a href="spaghetti_al_limone_romig_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="spaghetti_al_limone_romig_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Gratin Dauphinois</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 3 uur</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="gratin_dauphinois_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="gratin_dauphinois_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Risotto alla Sbirraglia – Venetiaanse Kiprisotto</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 35 min</span>
-          <span class="badge easy">Makkelijk</span>
-        </div>
-        <a href="risotto_sbirraglia_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="risotto_sbirraglia_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Citroenrisotto met Kip, Prei en Krokante Salie</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 35 min</span>
-          <span class="badge easy">Makkelijk</span>
-        </div>
-        <a href="citroen_risotto_kip_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="citroen_risotto_kip_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-      <div class="card">
-        <h2>Paella Valenciana</h2>
-        <div class="card-meta">
-          <span class="badge">⏱ 1 uur 15 min</span>
-          <span class="badge medium">Gemiddeld</span>
-        </div>
-        <a href="paella_valenciana_boodschappenlijst.html" class="btn">Bekijk Boodschappenlijst</a>
-        <a href="paella_valenciana_kookinstructies.html" class="btn">Bekijk Kookinstructies</a>
-      </div>
-    </section>
+    <section class="grid" id="recipeGrid"></section>
     <p class="search-empty" id="searchEmpty" hidden>Geen recepten gevonden.</p>
   </div>
+  <dialog id="versionDialog" class="ver-dialog" aria-labelledby="versionTitle">
+    <div class="ver-dialog-head">
+      <h2 id="versionTitle">Wijzigingsoverzicht</h2>
+      <button type="button" class="icon-btn" id="versionClose" aria-label="Sluiten">✕</button>
+    </div>
+    <ol class="ver-list" id="versionList"></ol>
+  </dialog>
+<script src="recipes-data.js"></script>
+<script src="recipe.js" defer></script>
 <script src="theme.js" defer></script>
 </body>
 </html>

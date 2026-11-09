@@ -1,0 +1,352 @@
+{
+  "versie": "1.4.0",
+  "datum": "2026-11-09",
+  "geschiedenis": [
+    {
+      "versie": "1.4.0",
+      "datum": "2026-11-09",
+      "soort": "verbetering",
+      "omschrijving": "Versienummer met wijzigingsoverzicht. De receptenlijst wordt automatisch uit de receptdata opgebouwd, het aantal personen komt uit het recept, zoeken werkt ook op bron en originele naam, en de lichte modus van de startpagina is gerepareerd.",
+      "commits": [
+        {
+          "hash": "",
+          "datum": "2026-11-09",
+          "titel": "v1.4.0 – Versienummering en index uit receptdata (deze versie)"
+        }
+      ]
+    },
+    {
+      "versie": "1.3.1",
+      "datum": "2026-10-18",
+      "soort": "fix",
+      "omschrijving": "Thema-knop toont één pictogram voor licht/donker.",
+      "commits": [
+        {
+          "hash": "483da73",
+          "datum": "2026-10-18 19:05",
+          "titel": "dag nacht aanpassing"
+        }
+      ]
+    },
+    {
+      "versie": "1.3.0",
+      "datum": "2026-10-18",
+      "soort": "verbetering",
+      "omschrijving": "Bij recepten de originele naam en een link naar het originele recept.",
+      "commits": [
+        {
+          "hash": "aea2cda",
+          "datum": "2026-10-18 19:00",
+          "titel": "originele recepten toegevoegd"
+        }
+      ]
+    },
+    {
+      "versie": "1.2.0",
+      "datum": "2026-10-17",
+      "soort": "verbetering",
+      "omschrijving": "Drie nieuwe recepten: Risotto alla Sbirraglia, Citroenrisotto met kip en Paella Valenciana.",
+      "commits": [
+        {
+          "hash": "16f521a",
+          "datum": "2026-10-17 10:29",
+          "titel": "3 nieuw recepten"
+        }
+      ]
+    },
+    {
+      "versie": "1.1.0",
+      "datum": "2026-10-13",
+      "soort": "verbetering",
+      "omschrijving": "Portie-aanpasser schaalt hoeveelheden in de stappen correct; nieuw app-icoon.",
+      "commits": [
+        {
+          "hash": "604d7fa",
+          "datum": "2026-10-13 18:44",
+          "titel": "Portie-schaling gerepareerd en nieuw app-icoon"
+        },
+        {
+          "hash": "e261701",
+          "datum": "2026-10-13 18:40",
+          "titel": "Scale recipe step quantities correctly"
+        }
+      ]
+    },
+    {
+      "versie": "1.0.0",
+      "datum": "2026-08-19",
+      "soort": "verbetering",
+      "omschrijving": "Alle recepten centraal in één databestand, portie-aanpasser die ook de stappen schaalt, en nieuwe recepten (o.a. Italiaanse en Griekse gerechten, Gratin Dauphinois).",
+      "commits": [
+        {
+          "hash": "b7002ce",
+          "datum": "2026-08-19 19:59",
+          "titel": "Update Dauphinois recipe metadata"
+        },
+        {
+          "hash": "816efd7",
+          "datum": "2026-08-19 16:37",
+          "titel": "Remove obsolete HTML and theme files"
+        },
+        {
+          "hash": "0b54cd1",
+          "datum": "2026-08-19 16:36",
+          "titel": "opschonen"
+        },
+        {
+          "hash": "8795f32",
+          "datum": "2026-08-19 16:31",
+          "titel": "Add recipe pages and theme assets"
+        },
+        {
+          "hash": "0a17d49",
+          "datum": "2026-08-18 22:53",
+          "titel": "Add Gratin Dauphinois recipe pages"
+        },
+        {
+          "hash": "42734fe",
+          "datum": "2026-08-18 22:45",
+          "titel": "Scale recipe step quantities with servings"
+        },
+        {
+          "hash": "c1520e2",
+          "datum": "2026-08-18 22:36",
+          "titel": "Add five new recipe pages and data"
+        },
+        {
+          "hash": "6b5f999",
+          "datum": "2026-08-18 22:23",
+          "titel": "Add centralized recipes-data and recipe.js"
+        }
+      ]
+    },
+    {
+      "versie": "0.6.0",
+      "datum": "2026-08-18",
+      "soort": "verbetering",
+      "omschrijving": "Nieuwe recepten: General Tso's Chicken, Chow Mein, Kung Pao Chicken, Kantonese Kip en Beef Massaman Curry, met herkomst per recept.",
+      "commits": [
+        {
+          "hash": "5e8a1bd",
+          "datum": "2026-08-18 22:03",
+          "titel": "Update recipe provenance labels"
+        },
+        {
+          "hash": "0cd4b86",
+          "datum": "2026-08-18 21:57",
+          "titel": "Update Massaman curry origin text"
+        },
+        {
+          "hash": "f37e141",
+          "datum": "2026-08-18 21:53",
+          "titel": "Add Beef Massaman Curry recipe pages"
+        },
+        {
+          "hash": "569b9d1",
+          "datum": "2026-08-18 20:45",
+          "titel": "Add Kantonese Kip pages & origin subtitles"
+        },
+        {
+          "hash": "c35c58d",
+          "datum": "2026-08-10 20:45",
+          "titel": "Add Chow Mein and Kung Pao Chicken recipes"
+        },
+        {
+          "hash": "b9dd9bd",
+          "datum": "2026-08-10 20:37",
+          "titel": "Add General Tso's Chicken recipe pages"
+        }
+      ]
+    },
+    {
+      "versie": "0.5.0",
+      "datum": "2026-08-07",
+      "soort": "verbetering",
+      "omschrijving": "Videolinks bij recepten en licht/donker-modus.",
+      "commits": [
+        {
+          "hash": "a139902",
+          "datum": "2026-08-07 09:55",
+          "titel": "Update .DS_Store"
+        },
+        {
+          "hash": "9c91701",
+          "datum": "2026-08-06 20:11",
+          "titel": "oude files weg"
+        },
+        {
+          "hash": "4d60da6",
+          "datum": "2026-08-06 19:51",
+          "titel": "licht donker modus"
+        },
+        {
+          "hash": "a6fab35",
+          "datum": "2026-08-06 19:09",
+          "titel": "video links en consistente namen"
+        }
+      ]
+    },
+    {
+      "versie": "0.4.0",
+      "datum": "2026-08-04",
+      "soort": "verbetering",
+      "omschrijving": "Hoeveelheden bij ingrediënten, bijgewerkte recepten en datum op de startpagina.",
+      "commits": [
+        {
+          "hash": "c8ec033",
+          "datum": "2026-08-04 08:20",
+          "titel": "Update .DS_Store"
+        },
+        {
+          "hash": "9ac62ee",
+          "datum": "2026-08-04 08:20",
+          "titel": "datum op eerste pagina"
+        },
+        {
+          "hash": "3c088cf",
+          "datum": "2026-08-04 08:10",
+          "titel": "update thai red curry;pad thai; butter chicken"
+        },
+        {
+          "hash": "6853b02",
+          "datum": "2026-07-22 10:59",
+          "titel": "hoeveelheden toegevoegd"
+        }
+      ]
+    },
+    {
+      "versie": "0.3.0",
+      "datum": "2026-07-07",
+      "soort": "verbetering",
+      "omschrijving": "Werkt als app en offline; Maple Bourbon BBQ-saus toegevoegd.",
+      "commits": [
+        {
+          "hash": "0528bb1",
+          "datum": "2026-07-07 16:52",
+          "titel": "nieuwe sw.js file"
+        },
+        {
+          "hash": "942c548",
+          "datum": "2026-07-07 09:50",
+          "titel": "bourbon BBQ saus"
+        },
+        {
+          "hash": "0e9c11c",
+          "datum": "2026-07-07 08:23",
+          "titel": "Create .DS_Store"
+        },
+        {
+          "hash": "30a861f",
+          "datum": "2026-07-07 08:23",
+          "titel": "claude update"
+        }
+      ]
+    },
+    {
+      "versie": "0.2.0",
+      "datum": "2026-04-20",
+      "soort": "verbetering",
+      "omschrijving": "Receptenoverzicht als startpagina, Nasi Goreng en verbeteringen aan Korma en Tikka Masala.",
+      "commits": [
+        {
+          "hash": "17cb79e",
+          "datum": "2026-04-20 08:02",
+          "titel": "Merge pull request #5 from wierts/wierts-patch-4"
+        },
+        {
+          "hash": "868d398",
+          "datum": "2026-04-20 08:01",
+          "titel": "verdere verbeteringen van Claude"
+        },
+        {
+          "hash": "d1c436c",
+          "datum": "2026-04-19 09:20",
+          "titel": "Add files via upload"
+        },
+        {
+          "hash": "d73a44e",
+          "datum": "2026-04-19 09:18",
+          "titel": "Merge pull request #4 from wierts/wierts-patch-3"
+        },
+        {
+          "hash": "c038e10",
+          "datum": "2026-04-19 09:18",
+          "titel": "fix voor korma en tikka masala"
+        },
+        {
+          "hash": "24c041a",
+          "datum": "2026-04-19 08:57",
+          "titel": "Delete alle_recepten.html"
+        },
+        {
+          "hash": "2eda2dc",
+          "datum": "2026-04-19 08:54",
+          "titel": "Merge pull request #3 from wierts/wierts-patch-3"
+        },
+        {
+          "hash": "8f74427",
+          "datum": "2026-04-19 08:54",
+          "titel": "verbeteringen via Claude code"
+        },
+        {
+          "hash": "4b50520",
+          "datum": "2026-04-19 08:27",
+          "titel": "new index file"
+        },
+        {
+          "hash": "4ebca13",
+          "datum": "2026-04-18 19:33",
+          "titel": "verbeterde index"
+        },
+        {
+          "hash": "7bb2f95",
+          "datum": "2026-04-18 18:37",
+          "titel": "nieuwe index file met goed links"
+        },
+        {
+          "hash": "465f723",
+          "datum": "2026-04-18 18:31",
+          "titel": "Merge pull request #2 from wierts/wierts-patch-2"
+        },
+        {
+          "hash": "5eda7ad",
+          "datum": "2026-04-18 18:30",
+          "titel": "nieuwe Indesx en overview html"
+        },
+        {
+          "hash": "c1d0bb7",
+          "datum": "2026-04-18 17:57",
+          "titel": "Add files via upload"
+        },
+        {
+          "hash": "c0de254",
+          "datum": "2026-04-18 16:52",
+          "titel": "Add files via upload"
+        },
+        {
+          "hash": "5055cf6",
+          "datum": "2026-04-18 16:34",
+          "titel": "Toevoeging van Nasi recept"
+        }
+      ]
+    },
+    {
+      "versie": "0.1.0",
+      "datum": "2026-03-20",
+      "soort": "verbetering",
+      "omschrijving": "Eerste versie van de receptensite.",
+      "commits": [
+        {
+          "hash": "732d4e8",
+          "datum": "2026-03-20 16:59",
+          "titel": "Add files via upload"
+        },
+        {
+          "hash": "5f42f97",
+          "datum": "2026-03-20 16:49",
+          "titel": "Initial commit"
+        }
+      ]
+    }
+  ]
+}
