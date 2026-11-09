@@ -19,7 +19,7 @@ Persoonlijke receptensite van Duco en Maartje: per recept een **boodschappenlijs
 | `versie.json` | Versienummer, datum en wijzigingsgeschiedenis; getoond als `vX.Y.Z · bijgewerkt dd-mm-jjjj` op de index, klik opent het overzicht |
 | `<slug>_boodschappenlijst.html` | Lege schil met `<body data-recipe="<slug>" data-page="lijst">` |
 | `<slug>_kookinstructies.html` | Lege schil met `<body data-recipe="<slug>" data-page="kook">` |
-| `sw.js` | Service worker, cache-first (versie.json netwerk-eerst). `CACHE_NAME = 'recepten-checklist-vNN'` + lijst `ASSETS` |
+| `sw.js` | Service worker, netwerk-eerst met de cache als offline-terugval. `CACHE_NAME = 'recepten-checklist-vNN'` + lijst `ASSETS` |
 | `bronnen/` | Originele bronbestanden (PDF's) van recepten; niet gebruikt door de site |
 | `manifest.webmanifest`, `icons/` | PWA-instellingen en app-iconen |
 
@@ -50,7 +50,7 @@ Afspraken:
 - **Slug** = snake_case, gelijk aan de bestandsnaam-prefix en de key in `recipes`.
 - `servings` = aantal personen waarvoor het recept is uitgeschreven (standaard 4; ontbreekt het, dan geldt 4). De portie-aanpasser schaalt vanaf dat getal, van 1 t/m 12.
 - Ingrediënt-`id`'s (`ing-0`, `ing-1`, …) niet hernummeren bij bestaande recepten: ze zijn de sleutel voor afgevinkte items in localStorage.
-- Hoeveelheden in de **staptekst** schalen mee als het getal gevolgd wordt door een eenheid (gram, ml, eetlepel, theelepel, tenen …) of door een woord uit de ingrediëntenlijst. Tijden, temperaturen en maten (minuten, graden, °C, cm) schalen nooit. Schrijf hoeveelheden in stappen dus als "250 ml bouillon", tijden als "10 minuten".
+- Hoeveelheden in de **staptekst** schalen mee als het getal gevolgd wordt door een eenheid (gram, ml, eetlepel, theelepel, tenen …) of door een woord uit de ingrediëntenlijst. Tijden, temperaturen, maten (minuten, graden, °C, cm) en hoeveelheden "per …" ("1 per persoon", "225 gram per filet") schalen nooit. Hetzelfde geldt voor getallen tussen haakjes in `rest` van een ingrediënt (bv. "(70 gram)"). Bij een andere portiegrootte wordt het woord na de hoeveelheid in enkel- of meervoud gezet (eetlepel/eetlepels, teen/tenen, klein blikje/kleine blikjes). Schrijf hoeveelheden in stappen dus als "250 ml bouillon", tijden als "10 minuten".
 - Breuken als ½ ¼ ¾ ⅓ ⅔ ⅛ zijn toegestaan in staptekst.
 
 ## Nieuw recept toevoegen – checklist
@@ -63,7 +63,7 @@ Afspraken:
 6. Controleren in de browser: index, beide pagina's, portie-aanpasser (bv. 2 en 6 personen), staptekst schaalt correct, licht/donker.
 7. Commit + annotated tag (zie hieronder).
 
-Bij **elke** wijziging aan bestaande bestanden (CSS, JS, data): `CACHE_NAME` in `sw.js` ophogen.
+Bij elke wijziging `CACHE_NAME` in `sw.js` ophogen, zodat oude caches worden opgeruimd.
 
 ## Versienummering
 

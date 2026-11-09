@@ -1,4 +1,4 @@
-const CACHE_NAME = 'recepten-checklist-v14';
+const CACHE_NAME = 'recepten-checklist-v15';
 const ASSETS = [
   "./",
   "./index.html",
@@ -80,29 +80,23 @@ self.addEventListener('activate', (e) => {
   self.clients.claim();
 });
 
+// Netwerk eerst: met internet altijd de nieuwste versie (en de cache wordt bijgewerkt),
+// zonder internet de opgeslagen versie. Zo is een update direct zichtbaar na het openen.
 self.addEventListener('fetch', (e) => {
+  if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return;
-  // versie.json: netwerk eerst (zodat het versienummer klopt), offline uit de cache.
-  if (url.pathname.endsWith('/versie.json')) {
-    e.respondWith(
-      fetch(e.request).then(resp => {
+  e.respondWith(
+    fetch(e.request).then(resp => {
+      if (resp.ok) {
         const copy = resp.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put('./versie.json', copy));
-        return resp;
-      }).catch(() => caches.match('./versie.json'))
-    );
-    return;
-  }
-  {
-    e.respondWith(
-      caches.match(e.request).then(cached =>
-        cached || fetch(e.request).then(resp => {
-          const copy = resp.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(e.request, copy));
-          return resp;
-        })
-      ).catch(() => caches.match('./index.html'))
-    );
-  }
+        caches.open(CACHE_NAME).then(cache => cache.put(e.request, copy));
+      }
+      return resp;
+    }).catch(() =>
+      caches.match(e.request, { ignoreSearch: true }).then(cached =>
+        cached || (e.request.mode === 'navigate' ? caches.match('./index.html') : Response.error())
+      )
+    )
+  );
 });

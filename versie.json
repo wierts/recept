@@ -1,7 +1,20 @@
 {
-  "versie": "1.4.0",
+  "versie": "1.4.1",
   "datum": "2026-11-09",
   "geschiedenis": [
+    {
+      "versie": "1.4.1",
+      "datum": "2026-11-09",
+      "soort": "fix",
+      "omschrijving": "Kookstappen kun je weer uitvinken met één knop. Hoeveelheden tussen haakjes schalen mee met het aantal personen, met correct enkel- en meervoud. Updates zijn direct zichtbaar na het openen van de app.",
+      "commits": [
+        {
+          "hash": "",
+          "datum": "2026-11-09",
+          "titel": "v1.4.1 – Resetknop kookstappen, schalen tussen haakjes en direct updaten (deze versie)"
+        }
+      ]
+    },
     {
       "versie": "1.4.0",
       "datum": "2026-11-09",
@@ -9,9 +22,9 @@
       "omschrijving": "Versienummer met wijzigingsoverzicht. De receptenlijst wordt automatisch uit de receptdata opgebouwd, het aantal personen komt uit het recept, zoeken werkt ook op bron en originele naam, en de lichte modus van de startpagina is gerepareerd.",
       "commits": [
         {
-          "hash": "",
-          "datum": "2026-11-09",
-          "titel": "v1.4.0 – Versienummering en index uit receptdata (deze versie)"
+          "hash": "0a9db81",
+          "datum": "2026-11-09 16:47",
+          "titel": "v1.4.0 – Versienummering en index uit receptdata"
         }
       ]
     },

@@ -101,3 +101,7 @@ ol.steps li.done::before{content:"✓"}
 .ver-item-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .ver-meta{color:var(--muted);font-size:.85rem}
 .ver-list p{margin:4px 0 0;color:var(--ink);font-size:.95rem;line-height:1.45}
+
+/* Resetknop onder de kookstappen */
+.reset-steps{margin-top:8px}
+.reset-steps[hidden]{display:none}

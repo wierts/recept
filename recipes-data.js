@@ -2558,7 +2558,7 @@ window.RECIPES = {
           "qty": 450.0,
           "qtyMax": null,
           "unit": "gram",
-          "rest": "kipfilet (2 grote stukken)"
+          "rest": "kipfilet (ca. 225 gram per filet)"
         },
         {
           "id": "ing-1",

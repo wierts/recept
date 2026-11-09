@@ -27,7 +27,7 @@
     return String(rounded).replace('.', ',');
   }
 
-  function ingredientLabel(item, factor) {
+  function ingredientLabel(item, factor, recipe) {
     if (item.text) return item.text;
     const q = item.qty * factor;
     const qMax = item.qtyMax != null ? item.qtyMax * factor : null;
@@ -35,21 +35,22 @@
     if (item.qtyPlus != null) numPart += ` + ${formatQty(item.qtyPlus * factor)}`;
     const parts = [numPart];
     if (item.unit) parts.push(item.unit);
-    if (item.rest) parts.push(item.rest);
-    return parts.join(' ').trim();
+    // Getallen in de omschrijving (bv. "(70 gram)", "(of 1 eetlepel olie)") schalen mee, maten in cm niet.
+    if (item.rest) parts.push(recipe ? scaleStepText(item.rest, factor, recipe) : item.rest);
+    return fixPlurals(parts.join(' ').trim(), factor);
   }
 
   // Herschaalt hoeveelheden die letterlijk in de kooktekst genoemd worden (bv. "voeg 250 ml bouillon toe",
   // "6 kaffir limoenblaadjes", "½ theelepel zout"), zodat de stappen kloppen met de portie-aanpasser.
   // Een getal wordt alleen geschaald als het direct gevolgd wordt door een ingrediënt-eenheid (gram, ml,
   // eetlepel, ...) of door een woord dat ook in de ingrediëntenlijst van dit recept voorkomt. Kooktijden
-  // ("10 minuten"), temperaturen ("180 graden", "150°C") en afmetingen ("5 cm") worden NOOIT aangepast.
+  // ("10 minuten"), hoeveelheden per persoon/stuk ("1 per persoon", "225 gram per filet"), temperaturen ("180 graden", "150°C") en afmetingen ("5 cm") worden NOOIT aangepast.
   const GLYPHS = { '½': 0.5, '¼': 0.25, '¾': 0.75, '⅓': 1 / 3, '⅔': 2 / 3, '⅛': 0.125 };
   const NUM = '(?:\\d+(?:[.,]\\d+)?[½¼¾⅓⅔⅛]?|[½¼¾⅓⅔⅛])';
   const QTY_RE = new RegExp('(^|[^\\d.,])(' + NUM + ')(?:(\\s*-\\s*|\\s+tot\\s+)(' + NUM + '))?(?=([\\s\\S]{0,60}))', 'g');
   const UNIT_WORDS = new Set(['gram', 'kilo', 'kg', 'ml', 'liter', 'l', 'eetlepel', 'eetlepels', 'el', 'theelepel',
     'theelepels', 'tl', 'tenen', 'teen', 'teentje', 'teentjes', 'kopje', 'kopjes', 'blikje', 'blikjes']);
-  const NEVER_SCALE = /^\s*(?:minuten|minuut|min\b|uur|uren|seconden|sec\b|graden|°|cm|mm|keer|x\b|dagen|nachten|%|sterren|stemmen|\/)/i;
+  const NEVER_SCALE = /^\s*(?:minuten|minuut|min\b|uur|uren|seconden|sec\b|graden|°|cm|mm|keer|x\b|dagen|nachten|%|sterren|stemmen|per\b|[a-zà-ÿ]+\s+per\b|\/)/i;
   const STOP = new Set(['de', 'het', 'een', 'en', 'of', 'in', 'op', 'met', 'van', 'voor', 'naar', 'tot', 'ca', 'om', 'te',
     'bij', 'aan', 'uit', 'extra', 'plus', 'stuk', 'stukken', 'stukje', 'stukjes', 'grote', 'groot', 'klein', 'kleine', 'verse', 'vers', 'fijn', 'smaak', 'zout']);
 
@@ -85,6 +86,37 @@
       let out = pre + formatQty(parseNum(n1) * factor);
       if (n2) out += sep + formatQty(parseNum(n2) * factor);
       return out;
+    });
+  }
+
+  function scaleText(text, factor, recipe) {
+    return fixPlurals(scaleStepText(text, factor, recipe), factor);
+  }
+
+  // Zet het woord na een geschaalde hoeveelheid in enkel- of meervoud ("2 eetlepel" → "2 eetlepels",
+  // "1 theelepels" → "1 theelepel", "2 klein blikje" → "2 kleine blikjes"). Alleen bij factor ≠ 1,
+  // zodat de oorspronkelijke tekst van het recept ongewijzigd blijft.
+  const PLURALS = {
+    eetlepel: 'eetlepels', theelepel: 'theelepels', teen: 'tenen', teentje: 'teentjes', kopje: 'kopjes',
+    blikje: 'blikjes', blik: 'blikken', stuk: 'stukken', stukje: 'stukjes', takje: 'takjes', blaadje: 'blaadjes',
+    klontje: 'klontjes', handje: 'handjes', ei: 'eieren', ui: 'uien', citroen: 'citroenen', limoen: 'limoenen',
+    sjalot: 'sjalotten', aubergine: 'aubergines', spriet: 'sprieten', kom: 'kommen', kippenpoot: 'kippenpoten'
+  };
+  const SINGULARS = Object.fromEntries(Object.entries(PLURALS).map(([a, b]) => [b, a]));
+  const ADJ = { klein: 'kleine', groot: 'grote' };
+  const ADJ_SINGULAR = { kleine: 'klein', grote: 'groot' };
+  const PLURAL_RE = new RegExp('(' + NUM + ')(\\s+)(?:(klein|kleine|groot|grote)(\\s+))?([a-zà-ÿ]+)\\b', 'gi');
+
+  function fixPlurals(text, factor) {
+    if (!text || factor === 1) return text;
+    return text.replace(PLURAL_RE, (match, num, sp1, adj, sp2, word) => {
+      const lower = word.toLowerCase();
+      if (!PLURALS[lower] && !SINGULARS[lower]) return match;
+      const many = parseNum(num) > 1;
+      const newWord = many ? (PLURALS[lower] || lower) : (SINGULARS[lower] || lower);
+      let newAdj = adj;
+      if (adj) newAdj = many ? (ADJ[adj.toLowerCase()] || adj) : (ADJ_SINGULAR[adj.toLowerCase()] || adj);
+      return num + sp1 + (adj ? newAdj + sp2 : '') + newWord;
     });
   }
 
@@ -177,7 +209,7 @@
       ingList.innerHTML = '';
       recipe.ingredients.forEach(item => {
         const li = document.createElement('li');
-        li.textContent = ingredientLabel(item, factor);
+        li.textContent = ingredientLabel(item, factor, recipe);
         ingList.appendChild(li);
       });
     }
@@ -188,6 +220,11 @@
       stepsList.innerHTML = '';
       const key = 'stappen-' + slug;
       let state = JSON.parse(localStorage.getItem(key) || '{}');
+      const resetBtn = document.createElement('button');
+      resetBtn.type = 'button';
+      resetBtn.className = 'nav-btn reset-steps';
+      resetBtn.textContent = '↺ Alle stappen uitvinken';
+      const updateReset = () => { resetBtn.hidden = !Object.values(state).some(Boolean); };
       recipe.steps.forEach((text, idx) => {
         const id = 'step-' + (idx + 1);
         const li = document.createElement('li');
@@ -205,15 +242,28 @@
           state[id] = cb.checked;
           localStorage.setItem(key, JSON.stringify(state));
           li.classList.toggle('done', cb.checked);
+          updateReset();
         });
         stepsList.appendChild(li);
         stepLabelEls.push({ el: label, original: text });
       });
+      resetBtn.addEventListener('click', () => {
+        state = {};
+        localStorage.removeItem(key);
+        stepsList.querySelectorAll('li').forEach(li => {
+          li.classList.remove('done');
+          const cb = li.querySelector('input');
+          if (cb) cb.checked = false;
+        });
+        updateReset();
+      });
+      stepsList.after(resetBtn);
+      updateReset();
     }
 
     function renderSteps(factor) {
       stepLabelEls.forEach(({ el, original }) => {
-        el.textContent = scaleStepText(original, factor, recipe);
+        el.textContent = scaleText(original, factor, recipe);
       });
     }
 
@@ -221,7 +271,7 @@
       if (!noteEl) return;
       if (recipe.note) {
         noteEl.hidden = false;
-        noteEl.innerHTML = `<strong>Notitie:</strong> ${scaleStepText(recipe.note, factor, recipe)}`;
+        noteEl.innerHTML = `<strong>Notitie:</strong> ${scaleText(recipe.note, factor, recipe)}`;
       } else {
         noteEl.hidden = true;
       }
@@ -257,7 +307,7 @@
     function saveCustom() { localStorage.setItem(STORAGE_KEY + '-custom', JSON.stringify(customItems)); }
 
     function allItems(factor) {
-      const base = recipe.ingredients.map(item => ({ id: item.id, label: ingredientLabel(item, factor) }));
+      const base = recipe.ingredients.map(item => ({ id: item.id, label: ingredientLabel(item, factor, recipe) }));
       return base.concat(customItems.map(c => ({ id: c.id, label: c.label })));
     }
 
