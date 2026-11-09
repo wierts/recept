@@ -95,12 +95,15 @@ if (data) {
 }
 
 // ---------------------------------------------------------------- pagina's
+// De paginaschillen en de receptpagina's in sw.js worden gegenereerd (node tools/genereer.mjs).
+try { execFileSync(process.execPath, [path.join(root, 'tools', 'genereer.mjs'), '--check'], { stdio: 'pipe', encoding: 'utf8' }); }
+catch (e) { fout('pagina\'s of sw.js zijn niet up-to-date met recipes-data.js → draai: node tools/genereer.mjs\n      ' + String(e.stdout || e.message).trim().split('\n').slice(0, 6).join('\n      ')); }
 const htmlFiles = fs.readdirSync(root).filter(f => f.endsWith('.html'));
 const PAGINA = { boodschappenlijst: 'lijst', kookinstructies: 'kook' };
 for (const slug of slugs) {
   for (const [naam, type] of Object.entries(PAGINA)) {
     const f = `${slug}_${naam}.html`;
-    if (!exists(f)) { fout(`${f} ontbreekt (kopieer een bestaand paar en pas de slug aan)`); continue; }
+    if (!exists(f)) { fout(`${f} ontbreekt → draai: node tools/genereer.mjs`); continue; }
     const h = read(f);
     if (!h.includes(`data-recipe="${slug}"`)) fout(`${f}: data-recipe moet "${slug}" zijn`);
     if (!h.includes(`data-page="${type}"`)) fout(`${f}: data-page moet "${type}" zijn`);
@@ -205,8 +208,7 @@ try {
 const jsBestanden = [
   ...fs.readdirSync(root).filter(f => f.endsWith('.js')),
   ...fs.readdirSync(path.join(root, 'js')).filter(f => f.endsWith('.js')).map(f => `js/${f}`),
-  ...fs.readdirSync(path.join(root, 'tools')).filter(f => f.endsWith('.mjs'))
-    .map(f => `tools/${f}`)
+  ...fs.readdirSync(path.join(root, 'tools')).filter(f => f.endsWith('.mjs')).map(f => `tools/${f}`)
 ];
 for (const f of jsBestanden) {
   try { execFileSync(process.execPath, ['--check', path.join(root, f)], { stdio: 'pipe' }); }

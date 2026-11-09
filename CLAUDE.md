@@ -17,13 +17,14 @@ Persoonlijke receptensite van Duco en Maartje: per recept een **boodschappenlijs
 | `js/kookinstructies.js`, `js/boodschappenlijst.js` | De twee receptpagina's: kookstappen (favoriet, notitie, reset) en checklist (eigen items, delen, reset) |
 | `js/schalen.js` | Zuivere rekenlogica zonder DOM: `niceMetric`, `ingredientLabel`, `scaleText`, meervouden |
 | `js/opslag.js`, `js/porties.js`, `js/versie.js` | localStorage-toegang (alles met try/catch), portie-aanpasser, versieknop en -overzicht |
+| `tools/genereer.mjs` | Maakt de 2 paginaschillen per recept en de receptpagina's in `sw.js` (`ASSETS`) uit `recipes-data.js`; `--check` controleert alleen |
 | `tools/check.mjs` | Controlescript (alleen Node): data, paginapaar per recept, `sw.js`, manifest, `versie.json`, syntax en schaaltests |
 | `theme.js` | Registreert de service worker, licht/donker-thema (volgt het toestel tot je zelf kiest; past ook de statusbalkkleur aan), wake lock (scherm aan tijdens koken) |
 | `theme.css` | Gedeelde stijl voor alle pagina's (index heeft daarnaast eigen inline `<style>`) |
 | `index.html` | Schil voor het overzicht (`data-page="index"`); kaarten worden door `js/index.js` uit de data gemaakt |
 | `versie.json` | Versienummer, datum en wijzigingsgeschiedenis; getoond als `vX.Y.Z · bijgewerkt dd-mm-jjjj` op de index, klik opent het overzicht |
-| `<slug>_boodschappenlijst.html` | Lege schil met `<body data-recipe="<slug>" data-page="lijst">` |
-| `<slug>_kookinstructies.html` | Lege schil met `<body data-recipe="<slug>" data-page="kook">` |
+| `<slug>_boodschappenlijst.html` | *Gegenereerd, niet met de hand bewerken.* Lege schil met `<body data-recipe="<slug>" data-page="lijst">` |
+| `<slug>_kookinstructies.html` | *Gegenereerd, niet met de hand bewerken.* Lege schil met `<body data-recipe="<slug>" data-page="kook">` |
 | `sw.js` | Service worker, netwerk-eerst met de cache als offline-terugval. `CACHE_NAME = 'recepten-checklist-vNN'` + lijst `ASSETS` |
 | `bronnen/` | Originele bronbestanden (PDF's) van recepten; niet gebruikt door de site |
 | `manifest.webmanifest`, `icons/` | PWA-instellingen en app-iconen |
@@ -63,9 +64,9 @@ Afspraken:
 ## Nieuw recept toevoegen – checklist
 
 1. Recept toevoegen aan `recipes-data.js` (object in `recipes` + slug achteraan in `order`).
-2. `<slug>_boodschappenlijst.html` en `<slug>_kookinstructies.html` maken door een bestaand paar te kopiëren en `data-recipe`, `<title>`, `apple-mobile-web-app-title`, h1 en de onderlinge link aan te passen.
+2. `node tools/genereer.mjs` draaien: maakt de twee pagina's van het nieuwe recept en zet ze in `sw.js`.
 3. De kaart op de index verschijnt vanzelf (titel, `keuken`, `time`, `difficulty`/`difficultyLabel` uit de data). Zet ook `hoofdingredient` (bestaande waarde, zie hierboven). Gebruik bij `keuken` bij voorkeur een bestaande waarde (Indiaas, Thais, Chinees, Indonesisch, Italiaans, Grieks, Frans, Spaans, Amerikaans, Aziatisch), zodat de filterknoppen overzichtelijk blijven.
-4. In `sw.js` beide pagina's aan `ASSETS` toevoegen (ook elke nieuwe `js/`-module) en `CACHE_NAME` met 1 ophogen (anders zien geïnstalleerde apps de wijziging niet).
+4. `CACHE_NAME` in `sw.js` met 1 ophogen (nieuwe `js/`-modules moet je zelf in `ASSETS` zetten; de receptpagina's doet de generator) (anders zien geïnstalleerde apps de wijziging niet).
 5. Nieuwe versie in `versie.json` (zie hieronder).
 6. Controleren in de browser: index, beide pagina's, portie-aanpasser (bv. 2 en 6 personen), staptekst schaalt correct, licht/donker.
 7. Commit + annotated tag (zie hieronder).

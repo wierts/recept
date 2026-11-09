@@ -1,7 +1,20 @@
 {
-  "versie": "1.6.1",
+  "versie": "1.6.2",
   "datum": "2026-11-09",
   "geschiedenis": [
+    {
+      "versie": "1.6.2",
+      "datum": "2026-11-09",
+      "soort": "onderhoud",
+      "omschrijving": "Een nieuw recept toevoegen is eenvoudiger: de pagina's per recept worden nu door een script gemaakt, zodat alleen de receptgegevens nog met de hand worden ingevoerd. Voor jou verandert er niets.",
+      "commits": [
+        {
+          "hash": "",
+          "datum": "2026-11-09",
+          "titel": "v1.6.2 – Receptpagina's gegenereerd uit de data (deze versie)"
+        }
+      ]
+    },
     {
       "versie": "1.6.1",
       "datum": "2026-11-09",
@@ -9,9 +22,9 @@
       "omschrijving": "Onder de motorkap opgeruimd: de code is opgesplitst in kleine onderdelen (schalen, opslag, zoeken, lijst en kookpagina) en er is een controlescript voor de recepten. Voor jou verandert er niets.",
       "commits": [
         {
-          "hash": "",
-          "datum": "2026-11-09",
-          "titel": "v1.6.1 – Code opgesplitst in modules en controlescript (deze versie)"
+          "hash": "278f3b7",
+          "datum": "2026-11-09 18:04",
+          "titel": "v1.6.1 – Code opgesplitst in modules en controlescript"
         }
       ]
     },
