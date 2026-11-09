@@ -15,7 +15,7 @@ Persoonlijke receptensite met per recept een afvinkbare **boodschappenlijst** en
 
 ## Techniek
 
-Statische HTML, CSS en vanilla JavaScript, zonder build-stap. Alle receptinhoud staat in `recipes-data.js`; de pagina's per recept zijn lege schillen die door `recipe.js` gevuld worden. Zie `CLAUDE.md` voor het dataformaat en de stappen om een recept toe te voegen.
+Statische HTML, CSS en vanilla JavaScript, zonder build-stap. Alle receptinhoud staat in `recipes-data.js`; de pagina's per recept zijn lege schillen die door de modules in `js/` gevuld worden. Met `node tools/check.mjs` controleer je data, pagina's en offline-cache. Zie `CLAUDE.md` voor het dataformaat en de stappen om een recept toe te voegen.
 
 ## Toekomstige features
 

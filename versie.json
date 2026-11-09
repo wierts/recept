@@ -1,7 +1,20 @@
 {
-  "versie": "1.6.0",
+  "versie": "1.6.1",
   "datum": "2026-11-09",
   "geschiedenis": [
+    {
+      "versie": "1.6.1",
+      "datum": "2026-11-09",
+      "soort": "onderhoud",
+      "omschrijving": "Onder de motorkap opgeruimd: de code is opgesplitst in kleine onderdelen (schalen, opslag, zoeken, lijst en kookpagina) en er is een controlescript voor de recepten. Voor jou verandert er niets.",
+      "commits": [
+        {
+          "hash": "",
+          "datum": "2026-11-09",
+          "titel": "v1.6.1 – Code opgesplitst in modules en controlescript (deze versie)"
+        }
+      ]
+    },
     {
       "versie": "1.6.0",
       "datum": "2026-11-09",
@@ -9,9 +22,9 @@
       "omschrijving": "Favorieten (♡) en eigen notities per recept, filters op hoofdingrediënt en bereidingstijd, en je zoekopdracht, filters en plek in de lijst blijven bewaard na een bezoek aan een recept. Hoeveelheden worden bij andere aantallen personen nu netjes afgerond (½ kilo wordt 500 gram, 62½ ml wordt 65 ml).",
       "commits": [
         {
-          "hash": "",
-          "datum": "2026-11-09",
-          "titel": "v1.6.0 – Favorieten, notities, filters en nettere hoeveelheden (deze versie)"
+          "hash": "a2341d8",
+          "datum": "2026-11-09 17:41",
+          "titel": "v1.6.0 – Favorieten, notities, filters en nettere hoeveelheden"
         }
       ]
     },

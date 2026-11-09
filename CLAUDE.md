@@ -12,10 +12,15 @@ Persoonlijke receptensite van Duco en Maartje: per recept een **boodschappenlijs
 | Bestand | Rol |
 |---|---|
 | `recipes-data.js` | **Enige bron van receptinhoud.** `window.RECIPES = { order: [...], recipes: { <slug>: {...} } }`. `order` = volgorde op de index |
-| `recipe.js` | Rendert alles uit de data: de kaarten op de index (+ versieknop), en per recept de portie-aanpasser, schalen van hoeveelheden (ook in staptekst), checklist-opslag, delen |
-| `theme.js` | Registreert de service worker, licht/donker-thema (volgt het toestel tot je zelf kiest; past ook de statusbalkkleur aan), wake lock (scherm aan tijdens koken), zoekveld + keukenfilter op de index |
+| `js/app.js` | Startpunt (ES-module, geladen door elke pagina): kiest op `body[data-page]` tussen `index`, `kook` en `lijst` |
+| `js/index.js`, `js/zoeken.js` | Index: kaarten en filterknoppen uit de data (+ `parseMinutes`); zoeken, filters en herstel van zoekopdracht/scrollpositie |
+| `js/kookinstructies.js`, `js/boodschappenlijst.js` | De twee receptpagina's: kookstappen (favoriet, notitie, reset) en checklist (eigen items, delen, reset) |
+| `js/schalen.js` | Zuivere rekenlogica zonder DOM: `niceMetric`, `ingredientLabel`, `scaleText`, meervouden |
+| `js/opslag.js`, `js/porties.js`, `js/versie.js` | localStorage-toegang (alles met try/catch), portie-aanpasser, versieknop en -overzicht |
+| `tools/check.mjs` | Controlescript (alleen Node): data, paginapaar per recept, `sw.js`, manifest, `versie.json`, syntax en schaaltests |
+| `theme.js` | Registreert de service worker, licht/donker-thema (volgt het toestel tot je zelf kiest; past ook de statusbalkkleur aan), wake lock (scherm aan tijdens koken) |
 | `theme.css` | Gedeelde stijl voor alle pagina's (index heeft daarnaast eigen inline `<style>`) |
-| `index.html` | Schil voor het overzicht (`data-page="index"`); kaarten worden door `recipe.js` uit de data gemaakt |
+| `index.html` | Schil voor het overzicht (`data-page="index"`); kaarten worden door `js/index.js` uit de data gemaakt |
 | `versie.json` | Versienummer, datum en wijzigingsgeschiedenis; getoond als `vX.Y.Z · bijgewerkt dd-mm-jjjj` op de index, klik opent het overzicht |
 | `<slug>_boodschappenlijst.html` | Lege schil met `<body data-recipe="<slug>" data-page="lijst">` |
 | `<slug>_kookinstructies.html` | Lege schil met `<body data-recipe="<slug>" data-page="kook">` |
@@ -60,7 +65,7 @@ Afspraken:
 1. Recept toevoegen aan `recipes-data.js` (object in `recipes` + slug achteraan in `order`).
 2. `<slug>_boodschappenlijst.html` en `<slug>_kookinstructies.html` maken door een bestaand paar te kopiëren en `data-recipe`, `<title>`, `apple-mobile-web-app-title`, h1 en de onderlinge link aan te passen.
 3. De kaart op de index verschijnt vanzelf (titel, `keuken`, `time`, `difficulty`/`difficultyLabel` uit de data). Zet ook `hoofdingredient` (bestaande waarde, zie hierboven). Gebruik bij `keuken` bij voorkeur een bestaande waarde (Indiaas, Thais, Chinees, Indonesisch, Italiaans, Grieks, Frans, Spaans, Amerikaans, Aziatisch), zodat de filterknoppen overzichtelijk blijven.
-4. In `sw.js` beide pagina's aan `ASSETS` toevoegen en `CACHE_NAME` met 1 ophogen (anders zien geïnstalleerde apps de wijziging niet).
+4. In `sw.js` beide pagina's aan `ASSETS` toevoegen (ook elke nieuwe `js/`-module) en `CACHE_NAME` met 1 ophogen (anders zien geïnstalleerde apps de wijziging niet).
 5. Nieuwe versie in `versie.json` (zie hieronder).
 6. Controleren in de browser: index, beide pagina's, portie-aanpasser (bv. 2 en 6 personen), staptekst schaalt correct, licht/donker.
 7. Commit + annotated tag (zie hieronder).
@@ -71,7 +76,7 @@ Bij elke wijziging `CACHE_NAME` in `sw.js` ophogen, zodat oude caches worden opg
 
 Alles is per toestel; er is geen server. Sleutels: `favorieten` (JSON-lijst met slugs), `notitie-<slug>` (eigen notitie), `porties-<slug>`, `stappen-<slug>` (afgevinkte kookstappen), `<slug>-checklist-v1` en `<slug>-checklist-v1-custom` (boodschappenlijst), `recepten-theme`. In `sessionStorage`: `recepten-index` (zoekopdracht, filters en scrollpositie van de index). Wijzig deze sleutels niet zonder reden: bestaande favorieten en notities van gebruikers verdwijnen dan.
 
-Hoeveelheden in gram/ml/kilo/liter worden bij een andere portiegrootte afgerond en omgezet (½ kilo → 500 gram, 1500 gram → 1,5 kilo) in `niceMetric()` in `recipe.js`, in zowel de ingrediëntenlijst als de stappen. Bij het oorspronkelijke aantal personen blijft de tekst ongewijzigd.
+Hoeveelheden in gram/ml/kilo/liter worden bij een andere portiegrootte afgerond en omgezet (½ kilo → 500 gram, 1500 gram → 1,5 kilo) in `niceMetric()` in `js/schalen.js`, in zowel de ingrediëntenlijst als de stappen. Bij het oorspronkelijke aantal personen blijft de tekst ongewijzigd.
 
 ## Versienummering
 
@@ -92,7 +97,8 @@ Zelfde werkwijze als de Wijnkelder- en facturen-app. Elke commit is een eigen ve
   git -c user.name="$N" -c user.email="$E" tag -a vX.Y.Z -m "vX.Y.Z – <omschrijving>"
   ```
 - Commitbericht: `vX.Y.Z – <titel>` + opsomming, in het Nederlands. Alleen de gewijzigde bestanden stagen, nooit `git add -A`.
-- Claude pusht nooit; Duco pusht via GitHub Desktop (annotated tags gaan mee). Gepushte commits niet amenden of hertaggen.
+- Draai vóór elke commit `node tools/check.mjs` (moet "✓ Alles in orde" geven; waarschuwingen lezen).
+- Claude pusht nooit; Duco pusht via GitHub Desktop. Tags gaan daar niet mee: daarna in Terminal `git push --tags`. Gepushte commits niet amenden of hertaggen.
 
 ## Werkwijze met Claude
 

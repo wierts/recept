@@ -1,4 +1,4 @@
-const CACHE_NAME = 'recepten-checklist-v17';
+const CACHE_NAME = 'recepten-checklist-v18';
 const ASSETS = [
   "./",
   "./index.html",
@@ -6,7 +6,15 @@ const ASSETS = [
   "./sw.js",
   "./theme.css",
   "./theme.js",
-  "./recipe.js",
+  "./js/app.js",
+  "./js/boodschappenlijst.js",
+  "./js/index.js",
+  "./js/kookinstructies.js",
+  "./js/opslag.js",
+  "./js/porties.js",
+  "./js/schalen.js",
+  "./js/versie.js",
+  "./js/zoeken.js",
   "./recipes-data.js",
   "./versie.json",
   "./icons/icon-192.png",
