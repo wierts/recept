@@ -4,6 +4,10 @@
 :root[data-theme="light"]{
   --bg:#f4f5f7;--card:#ffffff;--ink:#111827;--muted:#6b7280;--accent:#16a34a;--accent-ink:#ffffff;--border:#e2e4e9;--accent-hover:#15803d;
 }
+/* Vóór theme.js geladen is: volg het toestel (voorkomt een donkere flits in lichte modus) */
+@media (prefers-color-scheme: light){:root:not([data-theme]){
+  --bg:#f4f5f7;--card:#ffffff;--ink:#111827;--muted:#6b7280;--accent:#16a34a;--accent-ink:#ffffff;--border:#e2e4e9;--accent-hover:#15803d;
+}}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),var(--card));color:var(--ink);transition:background .2s ease,color .2s ease}
@@ -105,3 +109,21 @@ ol.steps li.done::before{content:"✓"}
 /* Resetknop onder de kookstappen */
 .reset-steps{margin-top:8px}
 .reset-steps[hidden]{display:none}
+
+/* Keukenlabel en filterknoppen (index) */
+.badge.keuken{color:var(--ink)}
+.chip-row{display:flex;gap:8px;overflow-x:auto;padding:2px 0 4px;margin:-10px 0 22px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chip-row::-webkit-scrollbar{display:none}
+.chip-row[hidden]{display:none}
+.chip{flex:0 0 auto;border:1px solid var(--border);background:var(--card);color:var(--muted);border-radius:999px;padding:6px 12px;font:inherit;font-size:.85rem;cursor:pointer;white-space:nowrap;transition:all .2s ease}
+.chip:hover{border-color:var(--accent);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+/* Eigen item toevoegen op de boodschappenlijst */
+.add-item{display:flex;gap:8px;margin-top:12px}
+.add-item input{flex:1;min-width:0;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--ink);font-size:1rem}
+.add-item input:focus{outline:none;border-color:var(--accent)}
+.add-item .btn{white-space:nowrap}
+.checklist-card li label{flex:1}
+.remove-item{border:none;background:none;color:var(--muted);font-size:1rem;cursor:pointer;padding:4px 8px;border-radius:8px}
+.remove-item:hover{color:var(--ink);background:rgba(127,127,127,.12)}

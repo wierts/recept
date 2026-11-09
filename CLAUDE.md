@@ -13,7 +13,7 @@ Persoonlijke receptensite van Duco en Maartje: per recept een **boodschappenlijs
 |---|---|
 | `recipes-data.js` | **Enige bron van receptinhoud.** `window.RECIPES = { order: [...], recipes: { <slug>: {...} } }`. `order` = volgorde op de index |
 | `recipe.js` | Rendert alles uit de data: de kaarten op de index (+ versieknop), en per recept de portie-aanpasser, schalen van hoeveelheden (ook in staptekst), checklist-opslag, delen |
-| `theme.js` | Registreert de service worker, licht/donker-thema, wake lock (scherm aan tijdens koken), zoekveld op de index |
+| `theme.js` | Registreert de service worker, licht/donker-thema (volgt het toestel tot je zelf kiest; past ook de statusbalkkleur aan), wake lock (scherm aan tijdens koken), zoekveld + keukenfilter op de index |
 | `theme.css` | Gedeelde stijl voor alle pagina's (index heeft daarnaast eigen inline `<style>`) |
 | `index.html` | Schil voor het overzicht (`data-page="index"`); kaarten worden door `recipe.js` uit de data gemaakt |
 | `versie.json` | Versienummer, datum en wijzigingsgeschiedenis; getoond als `vX.Y.Z · bijgewerkt dd-mm-jjjj` op de index, klik opent het overzicht |
@@ -28,6 +28,7 @@ Persoonlijke receptensite van Duco en Maartje: per recept een **boodschappenlijs
 ```js
 "<slug>": {
   "title": "Kip Korma",
+  "keuken": "Indiaas",                            // label op de kaart + filterknop op de index
   "herkomst": "RecipeTin Eats (Nagi Maehashi)",   // bron/kok, getoond als "Herkomst: …"
   "origineleNaam": "Chicken Korma",               // optioneel, originele titel
   "bronUrl": "https://…",                         // optioneel, link naar origineel recept
@@ -57,7 +58,7 @@ Afspraken:
 
 1. Recept toevoegen aan `recipes-data.js` (object in `recipes` + slug achteraan in `order`).
 2. `<slug>_boodschappenlijst.html` en `<slug>_kookinstructies.html` maken door een bestaand paar te kopiëren en `data-recipe`, `<title>`, `apple-mobile-web-app-title`, h1 en de onderlinge link aan te passen.
-3. De kaart op de index verschijnt vanzelf (titel, `time`, `difficulty`/`difficultyLabel` uit de data).
+3. De kaart op de index verschijnt vanzelf (titel, `keuken`, `time`, `difficulty`/`difficultyLabel` uit de data). Gebruik bij `keuken` bij voorkeur een bestaande waarde (Indiaas, Thais, Chinees, Indonesisch, Italiaans, Grieks, Frans, Spaans, Amerikaans, Aziatisch), zodat de filterknoppen overzichtelijk blijven.
 4. In `sw.js` beide pagina's aan `ASSETS` toevoegen en `CACHE_NAME` met 1 ophogen (anders zien geïnstalleerde apps de wijziging niet).
 5. Nieuwe versie in `versie.json` (zie hieronder).
 6. Controleren in de browser: index, beide pagina's, portie-aanpasser (bv. 2 en 6 personen), staptekst schaalt correct, licht/donker.
@@ -95,4 +96,4 @@ Zelfde werkwijze als de Wijnkelder- en facturen-app. Elke commit is een eigen ve
 
 ## Bekende aandachtspunten
 
-- Het zoekveld belooft "keuken", maar recepten hebben (nog) geen veld voor de keuken.
+- Geen openstaande punten.

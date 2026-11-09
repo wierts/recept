@@ -7,22 +7,46 @@
   }
 
   const THEME_KEY = 'recepten-theme';
+  const THEME_COLORS = { dark: '#0b1220', light: '#f4f5f7' };
+  const systemDark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
-  function applyTheme(t) {
-    document.documentElement.setAttribute('data-theme', t);
-    localStorage.setItem(THEME_KEY, t);
-    const btn = document.getElementById('themeToggle');
-    if (btn) btn.textContent = '🌓';
+  function storedTheme() {
+    try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
   }
 
-  applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+  // Zonder eigen keuze volgt het thema de instelling van het toestel (licht/donker).
+  function systemTheme() {
+    return systemDark && !systemDark.matches ? 'light' : 'dark';
+  }
+
+  function applyTheme(t, remember) {
+    document.documentElement.setAttribute('data-theme', t);
+    if (remember) { try { localStorage.setItem(THEME_KEY, t); } catch (e) {} }
+    // Kleur van de browser-/statusbalk: één meta-tag zonder media-voorwaarde, zodat ook een eigen keuze werkt.
+    document.querySelectorAll('meta[name="theme-color"]').forEach((m, i) => { if (i > 0) m.remove(); });
+    let meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) { meta = document.createElement('meta'); meta.name = 'theme-color'; document.head.appendChild(meta); }
+    meta.removeAttribute('media');
+    meta.content = THEME_COLORS[t];
+  }
+
+  applyTheme(storedTheme() || systemTheme(), false);
+  if (systemDark && systemDark.addEventListener) {
+    systemDark.addEventListener('change', () => { if (!storedTheme()) applyTheme(systemTheme(), false); });
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
     const themeBtn = document.getElementById('themeToggle');
     if (themeBtn) {
       themeBtn.addEventListener('click', () => {
-        const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        applyTheme(cur);
+        const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        // Kies je hetzelfde als het toestel, dan volgt de app het toestel weer.
+        if (next === systemTheme()) {
+          try { localStorage.removeItem(THEME_KEY); } catch (e) {}
+          applyTheme(next, false);
+        } else {
+          applyTheme(next, true);
+        }
       });
     }
 
@@ -67,16 +91,18 @@
       const normalize = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
       const filter = () => {
         const q = normalize(searchInput.value.trim());
+        const keuken = document.body.dataset.keuken || '';
         let visible = 0;
         document.querySelectorAll('.grid .card').forEach(card => {
           const haystack = normalize(card.textContent + ' ' + (card.dataset.search || ''));
-          const match = !q || haystack.includes(q);
+          const match = (!q || haystack.includes(q)) && (!keuken || card.dataset.keuken === keuken);
           card.style.display = match ? '' : 'none';
           if (match) visible++;
         });
         if (emptyState) emptyState.hidden = visible !== 0;
       };
       searchInput.addEventListener('input', filter);
+      document.addEventListener('recepten-filter', filter);
       filter();
     }
   });

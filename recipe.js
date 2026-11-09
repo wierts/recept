@@ -308,7 +308,7 @@
 
     function allItems(factor) {
       const base = recipe.ingredients.map(item => ({ id: item.id, label: ingredientLabel(item, factor, recipe) }));
-      return base.concat(customItems.map(c => ({ id: c.id, label: c.label })));
+      return base.concat(customItems.map(c => ({ id: c.id, label: c.label, custom: true })));
     }
 
     let currentFactor = 1;
@@ -322,18 +322,28 @@
       const h2 = document.createElement('h2');
       h2.textContent = recipe.title;
 
+      // Eigen item toevoegen via een invoerveld onder de lijst (geen pop-up).
+      const addForm = document.createElement('form');
+      addForm.className = 'add-item';
+      const addInput = document.createElement('input');
+      addInput.type = 'text';
+      addInput.placeholder = 'Eigen item toevoegen…';
+      addInput.setAttribute('aria-label', 'Eigen item toevoegen');
+      addInput.enterKeyHint = 'done';
       const addBtn = document.createElement('button');
+      addBtn.type = 'submit';
       addBtn.className = 'btn';
-      addBtn.style.float = 'right';
-      addBtn.title = 'Eigen item toevoegen';
-      addBtn.textContent = '+ Item';
-      addBtn.addEventListener('click', () => {
-        const label = prompt('Nieuw item toevoegen');
+      addBtn.textContent = '+ Toevoegen';
+      addForm.append(addInput, addBtn);
+      addForm.addEventListener('submit', (ev) => {
+        ev.preventDefault();
+        const label = addInput.value.trim();
         if (!label) return;
-        const id = 'custom-' + Date.now();
-        customItems.push({ id, label });
+        customItems.push({ id: 'custom-' + Date.now(), label });
         saveCustom();
         render();
+        const again = root.querySelector('.add-item input');
+        if (again) again.focus();
       });
 
       const ul = document.createElement('ul');
@@ -353,12 +363,27 @@
         lab.textContent = it.label;
         li.classList.toggle('done', cb.checked);
         li.appendChild(cb); li.appendChild(lab);
+        if (it.custom) {
+          const del = document.createElement('button');
+          del.type = 'button';
+          del.className = 'remove-item';
+          del.setAttribute('aria-label', `${it.label} verwijderen`);
+          del.textContent = '✕';
+          del.addEventListener('click', () => {
+            customItems = customItems.filter(c => c.id !== it.id);
+            delete state[it.id];
+            saveCustom();
+            save();
+            render();
+          });
+          li.appendChild(del);
+        }
         ul.appendChild(li);
       });
 
-      card.appendChild(addBtn);
       card.appendChild(h2);
       card.appendChild(ul);
+      card.appendChild(addForm);
       root.appendChild(card);
       updateProgress();
     }
@@ -387,6 +412,12 @@
       render();
     }
 
+    function flash(btn, msg) {
+      const old = btn.textContent;
+      btn.textContent = msg;
+      setTimeout(() => { btn.textContent = old; }, 1800);
+    }
+
     if (checkAllBtn) checkAllBtn.addEventListener('click', () => setAll(true));
     if (uncheckAllBtn) uncheckAllBtn.addEventListener('click', () => setAll(false));
     if (resetBtn) resetBtn.addEventListener('click', () => {
@@ -395,10 +426,19 @@
     if (shareBtn) shareBtn.addEventListener('click', async () => {
       const items = allItems(currentFactor);
       const lines = items.map(x => `${state[x.id] ? '[x]' : '[ ]'} ${x.label}`).join('\n');
-      const text = `${recipe.title} – Checklist\n\n${lines}`;
+      const text = `${recipe.title} – Boodschappenlijst\n\n${lines}`;
+      // Op iPhone/iPad het deelmenu (WhatsApp, Berichten, Notities…); anders naar het klembord.
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: `${recipe.title} – Boodschappenlijst`, text });
+          return;
+        } catch (e) {
+          if (e && e.name === 'AbortError') return;
+        }
+      }
       try {
         await navigator.clipboard.writeText(text);
-        alert('Checklist gekopieerd naar je klembord!');
+        flash(shareBtn, 'Gekopieerd ✓');
       } catch (e) {
         prompt('Kopieer de checklist:', text);
       }
@@ -466,7 +506,8 @@
       const card = document.createElement('div');
       card.className = 'card';
       // Zoekveld doorzoekt ook bron en originele naam, zonder dat die op de kaart staan.
-      card.dataset.search = [r.title, r.origineleNaam, r.herkomst].filter(Boolean).join(' ');
+      card.dataset.search = [r.title, r.origineleNaam, r.herkomst, r.keuken].filter(Boolean).join(' ');
+      card.dataset.keuken = r.keuken || '';
 
       const h2 = document.createElement('h2');
       h2.textContent = r.title;
@@ -474,6 +515,12 @@
 
       const meta = document.createElement('div');
       meta.className = 'card-meta';
+      if (r.keuken) {
+        const k = document.createElement('span');
+        k.className = 'badge keuken';
+        k.textContent = r.keuken;
+        meta.appendChild(k);
+      }
       if (r.time) {
         const t = document.createElement('span');
         t.className = 'badge';
@@ -496,6 +543,32 @@
         card.appendChild(a);
       });
       grid.appendChild(card);
+    });
+    renderKeukenFilter(slugs.map(s => data.recipes[s].keuken).filter(Boolean));
+  }
+
+  // Filterknoppen per keuken boven de kaarten; werkt samen met het zoekveld (theme.js).
+  function renderKeukenFilter(keukens) {
+    const wrap = document.getElementById('keukenFilter');
+    if (!wrap) return;
+    const counts = {};
+    keukens.forEach(k => { counts[k] = (counts[k] || 0) + 1; });
+    const names = Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b, 'nl'));
+    if (!names.length) { wrap.hidden = true; return; }
+    wrap.innerHTML = '';
+    ['Alle'].concat(names).forEach(name => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip';
+      b.dataset.keuken = name === 'Alle' ? '' : name;
+      b.textContent = name === 'Alle' ? 'Alle' : `${name} (${counts[name]})`;
+      b.setAttribute('aria-pressed', name === 'Alle' ? 'true' : 'false');
+      b.addEventListener('click', () => {
+        wrap.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b ? 'true' : 'false'));
+        document.body.dataset.keuken = b.dataset.keuken;
+        document.dispatchEvent(new Event('recepten-filter'));
+      });
+      wrap.appendChild(b);
     });
   }
 

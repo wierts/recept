@@ -1,7 +1,20 @@
 {
-  "versie": "1.4.1",
+  "versie": "1.5.0",
   "datum": "2026-11-09",
   "geschiedenis": [
+    {
+      "versie": "1.5.0",
+      "datum": "2026-11-09",
+      "soort": "verbetering",
+      "omschrijving": "Elk recept heeft een keuken, met filterknoppen op de startpagina. Het thema volgt licht/donker van je toestel. Delen opent het deelmenu van je iPhone, en eigen items voeg je toe (en verwijder je) in de lijst zelf.",
+      "commits": [
+        {
+          "hash": "",
+          "datum": "2026-11-09",
+          "titel": "v1.5.0 – Keuken per recept, thema volgt toestel, delen en eigen items (deze versie)"
+        }
+      ]
+    },
     {
       "versie": "1.4.1",
       "datum": "2026-11-09",
@@ -9,9 +22,9 @@
       "omschrijving": "Kookstappen kun je weer uitvinken met één knop. Hoeveelheden tussen haakjes schalen mee met het aantal personen, met correct enkel- en meervoud. Updates zijn direct zichtbaar na het openen van de app.",
       "commits": [
         {
-          "hash": "",
-          "datum": "2026-11-09",
-          "titel": "v1.4.1 – Resetknop kookstappen, schalen tussen haakjes en direct updaten (deze versie)"
+          "hash": "435d387",
+          "datum": "2026-11-09 17:06",
+          "titel": "v1.4.1 – Resetknop kookstappen, schalen tussen haakjes en direct updaten"
         }
       ]
     },

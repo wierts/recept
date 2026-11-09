@@ -1,4 +1,4 @@
-const CACHE_NAME = 'recepten-checklist-v15';
+const CACHE_NAME = 'recepten-checklist-v16';
 const ASSETS = [
   "./",
   "./index.html",

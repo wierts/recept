@@ -33,6 +33,7 @@ window.RECIPES = {
   "recipes": {
     "butter_chicken": {
       "title": "Butter Chicken",
+      "keuken": "Indiaas",
       "herkomst": "RecipeTin Eats (Nagi Maehashi)",
       "videoId": "shwVCPAxU5E",
       "time": "35 min",
@@ -161,6 +162,7 @@ window.RECIPES = {
     },
     "chow_mein": {
       "title": "Chow Mein",
+      "keuken": "Chinees",
       "herkomst": "Made With Lau",
       "videoId": "VXiUA--QqIY",
       "time": "35 min",
@@ -310,6 +312,7 @@ window.RECIPES = {
     },
     "general_tsos_chicken": {
       "title": "General Tso's Chicken",
+      "keuken": "Chinees",
       "herkomst": "Made With Lau",
       "videoId": "AE_-ROS98PA",
       "time": "1 uur",
@@ -504,6 +507,7 @@ window.RECIPES = {
     },
     "indiase_chicken_biriyani": {
       "title": "Indiase Chicken Biriyani",
+      "keuken": "Indiaas",
       "herkomst": "Jop van der Bijl (YouTube)",
       "videoId": "e50f_fbfmx0",
       "time": "2 uur",
@@ -716,6 +720,7 @@ window.RECIPES = {
     },
     "kantonese_kip": {
       "title": "Kantonese Kip",
+      "keuken": "Chinees",
       "herkomst": "Kookse.tv, oorspronkelijk gebaseerd op \"Chicken Broccoli Stir Fry (extra saucy!)\" van Nagi Maehashi (RecipeTin Eats).",
       "videoId": "R18Ccm0FvoY",
       "time": "30 min",
@@ -831,6 +836,7 @@ window.RECIPES = {
     },
     "korma": {
       "title": "Kip Korma",
+      "keuken": "Indiaas",
       "herkomst": "Jop van der Bijl (YouTube)",
       "videoId": "AAhFJampDt0",
       "time": "1 uur",
@@ -976,6 +982,7 @@ window.RECIPES = {
     },
     "kung_pao_chicken": {
       "title": "Kung Pao Chicken",
+      "keuken": "Chinees",
       "herkomst": "Made With Lau",
       "videoId": "cnyTv7Gfl5g",
       "time": "45 min",
@@ -1227,6 +1234,7 @@ window.RECIPES = {
     },
     "maple_bourbon_bbq_saus": {
       "title": "Maple Bourbon BBQ-saus",
+      "keuken": "Amerikaans",
       "herkomst": "The Art of Doing Stuff",
       "videoId": null,
       "time": "20 min",
@@ -1324,6 +1332,7 @@ window.RECIPES = {
     },
     "massaman_curry": {
       "title": "Beef Massaman Curry",
+      "keuken": "Thais",
       "herkomst": "Hot Thai Kitchen (hot-thai-kitchen.com)",
       "videoId": "Z5v8F_zhwF8",
       "time": "3 uur",
@@ -1423,6 +1432,7 @@ window.RECIPES = {
     },
     "mongolian_beef": {
       "title": "Mongolian Beef",
+      "keuken": "Chinees",
       "herkomst": "Jop van der Bijl (YouTube)",
       "videoId": "fN-LtdxjdE0",
       "time": "1,5 uur",
@@ -1545,6 +1555,7 @@ window.RECIPES = {
     },
     "nasi": {
       "title": "Nasi Goreng",
+      "keuken": "Indonesisch",
       "herkomst": "Jop van der Bijl (YouTube)",
       "videoId": "u2vkxYPfjeQ",
       "time": "30 min",
@@ -1647,6 +1658,7 @@ window.RECIPES = {
     },
     "padthai": {
       "title": "Pad Thai",
+      "keuken": "Thais",
       "herkomst": "RecipeTin Eats (Nagi Maehashi)",
       "videoId": "gpqX9XMW5aE",
       "time": "30 min",
@@ -1782,6 +1794,7 @@ window.RECIPES = {
     },
     "sate": {
       "title": "Indische Saté Ajam",
+      "keuken": "Indonesisch",
       "herkomst": "Jop van der Bijl (YouTube)",
       "videoId": "bEY7DklnKec",
       "time": "1,5 uur",
@@ -1853,6 +1866,7 @@ window.RECIPES = {
     },
     "sticky_chicken": {
       "title": "Sticky Honey Chicken",
+      "keuken": "Aziatisch",
       "herkomst": "Jop van der Bijl (YouTube)",
       "videoId": "bEg0_jybXjw",
       "time": "45 min",
@@ -1999,6 +2013,7 @@ window.RECIPES = {
     },
     "thaise_groene_curry": {
       "title": "Thaise Groene Curry",
+      "keuken": "Thais",
       "herkomst": "Jop van der Bijl (YouTube)",
       "videoId": "MoMNmqOSzxM",
       "time": "45 min",
@@ -2135,6 +2150,7 @@ window.RECIPES = {
     },
     "thaise_rode_curry": {
       "title": "Thaise Rode Curry",
+      "keuken": "Thais",
       "herkomst": "RecipeTin Eats (Nagi Maehashi)",
       "videoId": "bzyX9goHYkM",
       "time": "25 min",
@@ -2270,6 +2286,7 @@ window.RECIPES = {
     },
     "tikka_masala": {
       "title": "Kip Tikka Masala",
+      "keuken": "Indiaas",
       "herkomst": "Jop van der Bijl (YouTube)",
       "videoId": "l8PWYBn4cGA",
       "time": "1,5 uur",
@@ -2436,6 +2453,7 @@ window.RECIPES = {
     },
     "ravioli_spinazie_citroen": {
       "title": "Ravioli met Spinazie, Roomkaas en Citroenbotersaus",
+      "keuken": "Italiaans",
       "herkomst": "Somebody Feed Seb",
       "videoId": null,
       "time": "1,5 uur",
@@ -2546,6 +2564,7 @@ window.RECIPES = {
     },
     "kip_piccata": {
       "title": "Kip Piccata met Citroensaus",
+      "keuken": "Italiaans",
       "herkomst": "RecipeTin Eats (Nagi Maehashi)",
       "videoId": null,
       "time": "35 min",
@@ -2654,6 +2673,7 @@ window.RECIPES = {
     },
     "avgolemono": {
       "title": "Avgolemono – Griekse Citroen-Eiersoep met Kip",
+      "keuken": "Grieks",
       "herkomst": "Grieksegids.nl",
       "videoId": null,
       "time": "1 uur",
@@ -2720,6 +2740,7 @@ window.RECIPES = {
     },
     "spaghetti_al_limone": {
       "title": "Spaghetti al Limone",
+      "keuken": "Italiaans",
       "herkomst": "Vincenzo's Plate",
       "videoId": null,
       "time": "20 min",
@@ -2795,6 +2816,7 @@ window.RECIPES = {
     },
     "spaghetti_al_limone_romig": {
       "title": "Romige Spaghetti al Limone",
+      "keuken": "Italiaans",
       "herkomst": "Buonissimo.it",
       "videoId": null,
       "time": "20 min",
@@ -2873,6 +2895,7 @@ window.RECIPES = {
     },
     "gratin_dauphinois": {
       "title": "Gratin Dauphinois",
+      "keuken": "Frans",
       "herkomst": "Dauphiné-streek, Frankrijk – ontstond vlak voor de Franse Revolutie. De authentieke versie bevat geen kaas en geen ei.",
       "videoId": "YvpYyfRkxSI",
       "time": "3 uur",
@@ -2939,6 +2962,7 @@ window.RECIPES = {
     },
     "risotto_sbirraglia": {
       "title": "Risotto alla Sbirraglia – Venetiaanse Kiprisotto",
+      "keuken": "Italiaans",
       "herkomst": "Dissapore",
       "origineleNaam": "Risotto alla sbirraglia, la ricetta veneta",
       "bronUrl": "https://www.dissapore.com/ricette/risotto-alla-sbirraglia/",
@@ -3019,6 +3043,7 @@ window.RECIPES = {
     },
     "citroen_risotto_kip": {
       "title": "Citroenrisotto met Kip, Prei en Krokante Salie",
+      "keuken": "Italiaans",
       "herkomst": "Cucina Naturale (Barbara Toselli)",
       "origineleNaam": "Risotto al limone con pollo, porri e salvia croccante",
       "bronUrl": "https://www.cucina-naturale.it/ricette/risotto_al_limone_con_pollo_porri_e_salvia_croccante/",
@@ -3112,6 +3137,7 @@ window.RECIPES = {
     },
     "paella_valenciana": {
       "title": "Paella Valenciana",
+      "keuken": "Spaans",
       "herkomst": "Traditioneel Valenciaans recept",
       "origineleNaam": "Paella valenciana",
       "bronUrl": null,
