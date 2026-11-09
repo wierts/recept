@@ -112,7 +112,8 @@ ol.steps li.done::before{content:"✓"}
 
 /* Keukenlabel en filterknoppen (index) */
 .badge.keuken{color:var(--ink)}
-.chip-row{display:flex;gap:8px;overflow-x:auto;padding:2px 0 4px;margin:-10px 0 22px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.filters{display:grid;gap:4px;margin:-10px 0 22px}
+.chip-row{display:flex;gap:8px;overflow-x:auto;padding:2px 0 4px;margin:0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .chip-row::-webkit-scrollbar{display:none}
 .chip-row[hidden]{display:none}
 .chip{flex:0 0 auto;border:1px solid var(--border);background:var(--card);color:var(--muted);border-radius:999px;padding:6px 12px;font:inherit;font-size:.85rem;cursor:pointer;white-space:nowrap;transition:all .2s ease}
@@ -127,3 +128,14 @@ ol.steps li.done::before{content:"✓"}
 .checklist-card li label{flex:1}
 .remove-item{border:none;background:none;color:var(--muted);font-size:1rem;cursor:pointer;padding:4px 8px;border-radius:8px}
 .remove-item:hover{color:var(--ink);background:rgba(127,127,127,.12)}
+
+/* Favorieten en eigen notities */
+.card{position:relative}
+.fav-btn{position:absolute;top:10px;right:10px;border:none;background:none;color:var(--muted);font-size:1.4rem;line-height:1;cursor:pointer;padding:6px;border-radius:8px}
+.fav-btn:hover{color:var(--ink)}
+.fav-btn[aria-pressed="true"]{color:#ef4444}
+.fav-toggle[aria-pressed="true"]{border-color:#ef4444;color:#ef4444}
+.my-notes{margin-top:8px}
+.my-notes textarea{width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--ink);font:inherit;resize:vertical}
+.my-notes textarea:focus{outline:none;border-color:var(--accent)}
+.my-notes-hint{color:var(--muted);font-size:.85rem;margin:6px 0 0}

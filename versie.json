@@ -1,7 +1,20 @@
 {
-  "versie": "1.5.0",
+  "versie": "1.6.0",
   "datum": "2026-11-09",
   "geschiedenis": [
+    {
+      "versie": "1.6.0",
+      "datum": "2026-11-09",
+      "soort": "verbetering",
+      "omschrijving": "Favorieten (♡) en eigen notities per recept, filters op hoofdingrediënt en bereidingstijd, en je zoekopdracht, filters en plek in de lijst blijven bewaard na een bezoek aan een recept. Hoeveelheden worden bij andere aantallen personen nu netjes afgerond (½ kilo wordt 500 gram, 62½ ml wordt 65 ml).",
+      "commits": [
+        {
+          "hash": "",
+          "datum": "2026-11-09",
+          "titel": "v1.6.0 – Favorieten, notities, filters en nettere hoeveelheden (deze versie)"
+        }
+      ]
+    },
     {
       "versie": "1.5.0",
       "datum": "2026-11-09",
@@ -9,9 +22,9 @@
       "omschrijving": "Elk recept heeft een keuken, met filterknoppen op de startpagina. Het thema volgt licht/donker van je toestel. Delen opent het deelmenu van je iPhone, en eigen items voeg je toe (en verwijder je) in de lijst zelf.",
       "commits": [
         {
-          "hash": "",
-          "datum": "2026-11-09",
-          "titel": "v1.5.0 – Keuken per recept, thema volgt toestel, delen en eigen items (deze versie)"
+          "hash": "e72bb72",
+          "datum": "2026-11-09 17:27",
+          "titel": "v1.5.0 – Keuken per recept, thema volgt toestel, delen en eigen items"
         }
       ]
     },

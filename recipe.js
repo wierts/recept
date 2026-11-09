@@ -27,6 +27,37 @@
     return String(rounded).replace('.', ',');
   }
 
+  // Maakt hoeveelheden in gram/ml/kilo/liter leesbaar na het schalen: afronden op logische stappen en
+  // omzetten tussen eenheden (½ kilo → 500 gram, 1500 gram → 1,5 kilo). Alleen bij een andere portiegrootte
+  // dan het recept; bij het oorspronkelijke aantal blijft de tekst van het recept ongewijzigd.
+  const METRIC = new Set(['gram', 'ml', 'kilo', 'liter']);
+
+  function roundNice(v) {
+    if (v < 10) return Math.round(v * 2) / 2;
+    if (v < 20) return Math.round(v);
+    if (v < 250) return Math.round(v / 5) * 5;
+    return Math.round(v / 25) * 25;
+  }
+
+  function fmtDec(n) {
+    return String(Math.round(n * 100) / 100).replace('.', ',');
+  }
+
+  function niceMetric(q, qMax, unit) {
+    const big = unit === 'kilo' || unit === 'liter';
+    const mult = big ? 1000 : 1;
+    const a0 = q * mult;
+    const b0 = qMax != null ? qMax * mult : null;
+    const baseUnit = unit === 'kilo' || unit === 'gram' ? 'gram' : 'ml';
+    if ((b0 != null ? b0 : a0) >= 1000) {
+      // Hele kwarten (1,25 / 1,5 / 1,75) blijven exact, de rest op 100 gram afgerond.
+      const f = (x) => fmtDec((x % 250 === 0 ? x : Math.round(x / 100) * 100) / 1000);
+      return { a: f(a0), b: b0 != null ? f(b0) : null, unit: baseUnit === 'gram' ? 'kilo' : 'liter' };
+    }
+    const f = (x) => fmtDec(roundNice(x));
+    return { a: f(a0), b: b0 != null ? f(b0) : null, unit: baseUnit };
+  }
+
   function ingredientLabel(item, factor, recipe) {
     if (item.text) return item.text;
     const q = item.qty * factor;
@@ -34,7 +65,13 @@
     let numPart = qMax != null ? `${formatQty(q)}-${formatQty(qMax)}` : formatQty(q);
     if (item.qtyPlus != null) numPart += ` + ${formatQty(item.qtyPlus * factor)}`;
     const parts = [numPart];
-    if (item.unit) parts.push(item.unit);
+    let unit = item.unit;
+    if (factor !== 1 && item.qtyPlus == null && METRIC.has(unit)) {
+      const n = niceMetric(q, qMax, unit);
+      parts[0] = n.b != null ? `${n.a}-${n.b}` : n.a;
+      unit = n.unit;
+    }
+    if (unit) parts.push(unit);
     // Getallen in de omschrijving (bv. "(70 gram)", "(of 1 eetlepel olie)") schalen mee, maten in cm niet.
     if (item.rest) parts.push(recipe ? scaleStepText(item.rest, factor, recipe) : item.rest);
     return fixPlurals(parts.join(' ').trim(), factor);
@@ -47,7 +84,7 @@
   // ("10 minuten"), hoeveelheden per persoon/stuk ("1 per persoon", "225 gram per filet"), temperaturen ("180 graden", "150°C") en afmetingen ("5 cm") worden NOOIT aangepast.
   const GLYPHS = { '½': 0.5, '¼': 0.25, '¾': 0.75, '⅓': 1 / 3, '⅔': 2 / 3, '⅛': 0.125 };
   const NUM = '(?:\\d+(?:[.,]\\d+)?[½¼¾⅓⅔⅛]?|[½¼¾⅓⅔⅛])';
-  const QTY_RE = new RegExp('(^|[^\\d.,])(' + NUM + ')(?:(\\s*-\\s*|\\s+tot\\s+)(' + NUM + '))?(?=([\\s\\S]{0,60}))', 'g');
+  const QTY_RE = new RegExp('(^|[^\\d.,])(' + NUM + ')(?:(\\s*-\\s*|\\s+tot\\s+)(' + NUM + '))?(?:(\\s+)(kilo|liter|gram|ml)\\b)?(?=([\\s\\S]{0,60}))', 'g');
   const UNIT_WORDS = new Set(['gram', 'kilo', 'kg', 'ml', 'liter', 'l', 'eetlepel', 'eetlepels', 'el', 'theelepel',
     'theelepels', 'tl', 'tenen', 'teen', 'teentje', 'teentjes', 'kopje', 'kopjes', 'blikje', 'blikjes']);
   const NEVER_SCALE = /^\s*(?:minuten|minuut|min\b|uur|uren|seconden|sec\b|graden|°|cm|mm|keer|x\b|dagen|nachten|%|sterren|stemmen|per\b|[a-zà-ÿ]+\s+per\b|\/)/i;
@@ -78,11 +115,16 @@
   function scaleStepText(text, factor, recipe) {
     if (!text || factor === 1) return text;
     const known = ingredientWords(recipe);
-    return text.replace(QTY_RE, (match, pre, n1, sep, n2, after) => {
-      if (NEVER_SCALE.test(after)) return match;
+    return text.replace(QTY_RE, (match, pre, n1, sep, n2, usp, unit, after) => {
+      const rest = (usp || '') + (unit || '') + after;
+      if (NEVER_SCALE.test(rest)) return match;
       // Kijk naar maximaal de eerste twee woorden na het getal (bv. "2 gesnipperde uien").
-      const next = after.trim().split(/\s+/).slice(0, 2).map(w => w.toLowerCase().replace(/[^a-zà-ÿ']/g, ''));
+      const next = rest.trim().split(/\s+/).slice(0, 2).map(w => w.toLowerCase().replace(/[^a-zà-ÿ']/g, ''));
       if (!next.some(w => known.has(w))) return match;
+      if (unit) {
+        const n = niceMetric(parseNum(n1) * factor, n2 ? parseNum(n2) * factor : null, unit);
+        return pre + n.a + (n.b != null ? (sep || '-') + n.b : '') + usp + n.unit;
+      }
       let out = pre + formatQty(parseNum(n1) * factor);
       if (n2) out += sep + formatQty(parseNum(n2) * factor);
       return out;
@@ -203,6 +245,47 @@
     const stepsList = document.getElementById('stepsList');
     const noteEl = document.getElementById('recipeNote');
     const servingsControl = document.getElementById('servingsControl');
+
+    // Favoriet-knop naast de link naar de boodschappenlijst.
+    const actions = document.querySelector('.actions');
+    if (actions) {
+      const fb = document.createElement('button');
+      fb.type = 'button';
+      fb.className = 'nav-btn fav-toggle';
+      const paintFav = () => {
+        const on = isFav(slug);
+        fb.textContent = on ? '♥ Favoriet' : '♡ Favoriet';
+        fb.setAttribute('aria-pressed', on ? 'true' : 'false');
+      };
+      fb.addEventListener('click', () => { setFav(slug, !isFav(slug)); paintFav(); });
+      paintFav();
+      actions.appendChild(fb);
+    }
+
+    // Eigen notities bij het recept, bewaard op dit toestel.
+    const mainEl = document.querySelector('main');
+    if (mainEl) {
+      const wrap = document.createElement('section');
+      wrap.className = 'my-notes';
+      const h = document.createElement('h2');
+      h.textContent = 'Mijn notities';
+      const ta = document.createElement('textarea');
+      ta.rows = 3;
+      ta.placeholder = 'Bijvoorbeeld: iets minder chili, of 10 minuten langer sudderen…';
+      ta.setAttribute('aria-label', 'Mijn notities bij dit recept');
+      try { ta.value = localStorage.getItem(noteKey(slug)) || ''; } catch (e) {}
+      ta.addEventListener('input', () => {
+        try {
+          if (ta.value.trim()) localStorage.setItem(noteKey(slug), ta.value);
+          else localStorage.removeItem(noteKey(slug));
+        } catch (e) {}
+      });
+      const hint = document.createElement('p');
+      hint.className = 'my-notes-hint';
+      hint.textContent = 'Wordt bewaard op dit toestel.';
+      wrap.append(h, ta, hint);
+      mainEl.appendChild(wrap);
+    }
 
     function renderIngredients(factor) {
       if (!ingList) return;
@@ -492,6 +575,37 @@
     dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
   }
 
+  const FAV_KEY = 'favorieten';
+
+  function getFavs() {
+    try { return JSON.parse(localStorage.getItem(FAV_KEY) || '[]'); } catch (e) { return []; }
+  }
+
+  function isFav(slug) { return getFavs().includes(slug); }
+
+  function setFav(slug, on) {
+    const favs = getFavs().filter(s => s !== slug);
+    if (on) favs.push(slug);
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(favs)); } catch (e) {}
+  }
+
+  function noteKey(slug) { return 'notitie-' + slug; }
+
+  function hasNote(slug) {
+    try { return !!(localStorage.getItem(noteKey(slug)) || '').trim(); } catch (e) { return false; }
+  }
+
+  // "1 uur 15 min" → 75, "1,5 uur" → 90, "30 min" → 30
+  function parseMinutes(t) {
+    if (!t) return null;
+    let total = 0, found = false;
+    const h = /(\d+(?:[.,]\d+)?)\s*uur/i.exec(t);
+    if (h) { total += parseFloat(h[1].replace(',', '.')) * 60; found = true; }
+    const m = /(\d+)\s*min/i.exec(t);
+    if (m) { total += parseInt(m[1], 10); found = true; }
+    return found ? Math.round(total) : null;
+  }
+
   function initIndex(data) {
     initVersion();
 
@@ -500,14 +614,38 @@
     grid.innerHTML = '';
     const slugs = (data.order || []).filter(s => data.recipes[s])
       .concat(Object.keys(data.recipes).filter(s => !(data.order || []).includes(s)));
+    const favs = getFavs();
 
     slugs.forEach(slug => {
       const r = data.recipes[slug];
       const card = document.createElement('div');
       card.className = 'card';
-      // Zoekveld doorzoekt ook bron en originele naam, zonder dat die op de kaart staan.
-      card.dataset.search = [r.title, r.origineleNaam, r.herkomst, r.keuken].filter(Boolean).join(' ');
+      // Zoekveld doorzoekt ook bron, originele naam, keuken en hoofdingrediënt, zonder dat die allemaal op de kaart staan.
+      card.dataset.search = [r.title, r.origineleNaam, r.herkomst, r.keuken, r.hoofdingredient].filter(Boolean).join(' ');
       card.dataset.keuken = r.keuken || '';
+      card.dataset.hoofd = r.hoofdingredient || '';
+      const minutes = parseMinutes(r.time);
+      card.dataset.minuten = minutes == null ? '' : String(minutes);
+      card.dataset.fav = favs.includes(slug) ? '1' : '';
+
+      const heart = document.createElement('button');
+      heart.type = 'button';
+      heart.className = 'fav-btn';
+      const paintHeart = () => {
+        const on = card.dataset.fav === '1';
+        heart.textContent = on ? '♥' : '♡';
+        heart.setAttribute('aria-pressed', on ? 'true' : 'false');
+        heart.setAttribute('aria-label', on ? `${r.title} verwijderen uit favorieten` : `${r.title} toevoegen aan favorieten`);
+      };
+      heart.addEventListener('click', () => {
+        const on = card.dataset.fav !== '1';
+        card.dataset.fav = on ? '1' : '';
+        setFav(slug, on);
+        paintHeart();
+        document.dispatchEvent(new Event('recepten-filter'));
+      });
+      paintHeart();
+      card.appendChild(heart);
 
       const h2 = document.createElement('h2');
       h2.textContent = r.title;
@@ -515,24 +653,16 @@
 
       const meta = document.createElement('div');
       meta.className = 'card-meta';
-      if (r.keuken) {
-        const k = document.createElement('span');
-        k.className = 'badge keuken';
-        k.textContent = r.keuken;
-        meta.appendChild(k);
-      }
-      if (r.time) {
-        const t = document.createElement('span');
-        t.className = 'badge';
-        t.textContent = `⏱ ${r.time}`;
-        meta.appendChild(t);
-      }
-      if (r.difficultyLabel) {
-        const d = document.createElement('span');
-        d.className = 'badge' + (r.difficulty ? ' ' + r.difficulty : '');
-        d.textContent = r.difficultyLabel;
-        meta.appendChild(d);
-      }
+      const addBadge = (text, cls) => {
+        const b = document.createElement('span');
+        b.className = 'badge' + (cls ? ' ' + cls : '');
+        b.textContent = text;
+        meta.appendChild(b);
+      };
+      if (r.keuken) addBadge(r.keuken, 'keuken');
+      if (r.time) addBadge(`⏱ ${r.time}`);
+      if (r.difficultyLabel) addBadge(r.difficultyLabel, r.difficulty || '');
+      if (hasNote(slug)) addBadge('📝 notitie');
       card.appendChild(meta);
 
       [['boodschappenlijst', 'Bekijk Boodschappenlijst'], ['kookinstructies', 'Bekijk Kookinstructies']].forEach(([page, label]) => {
@@ -544,31 +674,55 @@
       });
       grid.appendChild(card);
     });
-    renderKeukenFilter(slugs.map(s => data.recipes[s].keuken).filter(Boolean));
+    renderFilters(slugs.map(s => data.recipes[s]));
   }
 
-  // Filterknoppen per keuken boven de kaarten; werkt samen met het zoekveld (theme.js).
-  function renderKeukenFilter(keukens) {
-    const wrap = document.getElementById('keukenFilter');
-    if (!wrap) return;
-    const counts = {};
-    keukens.forEach(k => { counts[k] = (counts[k] || 0) + 1; });
-    const names = Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b, 'nl'));
-    if (!names.length) { wrap.hidden = true; return; }
-    wrap.innerHTML = '';
-    ['Alle'].concat(names).forEach(name => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'chip';
-      b.dataset.keuken = name === 'Alle' ? '' : name;
-      b.textContent = name === 'Alle' ? 'Alle' : `${name} (${counts[name]})`;
-      b.setAttribute('aria-pressed', name === 'Alle' ? 'true' : 'false');
-      b.addEventListener('click', () => {
-        wrap.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b ? 'true' : 'false'));
-        document.body.dataset.keuken = b.dataset.keuken;
-        document.dispatchEvent(new Event('recepten-filter'));
+  // Filterknoppen boven de kaarten (keuken, hoofdingrediënt, tijd/favorieten); werken samen met het zoekveld (theme.js).
+  function renderFilters(recipes) {
+    const box = document.getElementById('filters');
+    if (!box) return;
+    box.innerHTML = '';
+    const tally = (key) => {
+      const c = {};
+      recipes.forEach(r => { if (r[key]) c[r[key]] = (c[r[key]] || 0) + 1; });
+      return Object.keys(c).sort((a, b) => c[b] - c[a] || a.localeCompare(b, 'nl'))
+        .map(k => ({ value: k, text: `${k} (${c[k]})` }));
+    };
+    const within = (max) => recipes.filter(r => { const m = parseMinutes(r.time); return m != null && m <= max; }).length;
+    const hoofd = tally('hoofdingredient');
+    const kipCount = recipes.filter(r => r.hoofdingredient === 'Kip').length;
+    if (kipCount) hoofd.push({ value: '!Kip', text: `Zonder kip (${recipes.length - kipCount})` });
+    const rows = [
+      ['keuken', 'Filter op keuken', tally('keuken')],
+      ['hoofd', 'Filter op hoofdingrediënt', hoofd],
+      ['extra', 'Filter op tijd of favorieten', [
+        { value: 'fav', text: '★ Favorieten' },
+        { value: '30', text: `≤ 30 min (${within(30)})` },
+        { value: '60', text: `≤ 1 uur (${within(60)})` }
+      ]]
+    ];
+    rows.forEach(([id, label, items]) => {
+      if (!items.length) return;
+      const row = document.createElement('div');
+      row.className = 'chip-row';
+      row.dataset.group = id;
+      row.setAttribute('role', 'group');
+      row.setAttribute('aria-label', label);
+      [{ value: '', text: 'Alle' }].concat(items).forEach(it => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'chip';
+        b.dataset.value = it.value;
+        b.textContent = it.text;
+        b.setAttribute('aria-pressed', it.value === '' ? 'true' : 'false');
+        b.addEventListener('click', () => {
+          document.body.dataset[id] = it.value;
+          row.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b ? 'true' : 'false'));
+          document.dispatchEvent(new Event('recepten-filter'));
+        });
+        row.appendChild(b);
       });
-      wrap.appendChild(b);
+      box.appendChild(row);
     });
   }
 

@@ -29,6 +29,7 @@ Persoonlijke receptensite van Duco en Maartje: per recept een **boodschappenlijs
 "<slug>": {
   "title": "Kip Korma",
   "keuken": "Indiaas",                            // label op de kaart + filterknop op de index
+  "hoofdingredient": "Kip",                       // Kip | Rundvlees | Vegetarisch | Overig → filterknop (+ "Zonder kip")
   "herkomst": "RecipeTin Eats (Nagi Maehashi)",   // bron/kok, getoond als "Herkomst: …"
   "origineleNaam": "Chicken Korma",               // optioneel, originele titel
   "bronUrl": "https://…",                         // optioneel, link naar origineel recept
@@ -58,13 +59,19 @@ Afspraken:
 
 1. Recept toevoegen aan `recipes-data.js` (object in `recipes` + slug achteraan in `order`).
 2. `<slug>_boodschappenlijst.html` en `<slug>_kookinstructies.html` maken door een bestaand paar te kopiëren en `data-recipe`, `<title>`, `apple-mobile-web-app-title`, h1 en de onderlinge link aan te passen.
-3. De kaart op de index verschijnt vanzelf (titel, `keuken`, `time`, `difficulty`/`difficultyLabel` uit de data). Gebruik bij `keuken` bij voorkeur een bestaande waarde (Indiaas, Thais, Chinees, Indonesisch, Italiaans, Grieks, Frans, Spaans, Amerikaans, Aziatisch), zodat de filterknoppen overzichtelijk blijven.
+3. De kaart op de index verschijnt vanzelf (titel, `keuken`, `time`, `difficulty`/`difficultyLabel` uit de data). Zet ook `hoofdingredient` (bestaande waarde, zie hierboven). Gebruik bij `keuken` bij voorkeur een bestaande waarde (Indiaas, Thais, Chinees, Indonesisch, Italiaans, Grieks, Frans, Spaans, Amerikaans, Aziatisch), zodat de filterknoppen overzichtelijk blijven.
 4. In `sw.js` beide pagina's aan `ASSETS` toevoegen en `CACHE_NAME` met 1 ophogen (anders zien geïnstalleerde apps de wijziging niet).
 5. Nieuwe versie in `versie.json` (zie hieronder).
 6. Controleren in de browser: index, beide pagina's, portie-aanpasser (bv. 2 en 6 personen), staptekst schaalt correct, licht/donker.
 7. Commit + annotated tag (zie hieronder).
 
 Bij elke wijziging `CACHE_NAME` in `sw.js` ophogen, zodat oude caches worden opgeruimd.
+
+## Gegevens op het toestel (localStorage / sessionStorage)
+
+Alles is per toestel; er is geen server. Sleutels: `favorieten` (JSON-lijst met slugs), `notitie-<slug>` (eigen notitie), `porties-<slug>`, `stappen-<slug>` (afgevinkte kookstappen), `<slug>-checklist-v1` en `<slug>-checklist-v1-custom` (boodschappenlijst), `recepten-theme`. In `sessionStorage`: `recepten-index` (zoekopdracht, filters en scrollpositie van de index). Wijzig deze sleutels niet zonder reden: bestaande favorieten en notities van gebruikers verdwijnen dan.
+
+Hoeveelheden in gram/ml/kilo/liter worden bij een andere portiegrootte afgerond en omgezet (½ kilo → 500 gram, 1500 gram → 1,5 kilo) in `niceMetric()` in `recipe.js`, in zowel de ingrediëntenlijst als de stappen. Bij het oorspronkelijke aantal personen blijft de tekst ongewijzigd.
 
 ## Versienummering
 
@@ -96,4 +103,4 @@ Zelfde werkwijze als de Wijnkelder- en facturen-app. Elke commit is een eigen ve
 
 ## Bekende aandachtspunten
 
-- Geen openstaande punten.
+- Geen openstaande punten. Ideeën voor later staan in `README.md` onder "Toekomstige features".

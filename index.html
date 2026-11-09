@@ -103,6 +103,7 @@
     margin: 0;
     color: var(--ink);
     min-height: 60px;
+    padding: 0 26px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,7 +194,7 @@
     <div class="search-wrap">
       <input type="search" id="searchInput" class="search-input" placeholder="Zoek op naam, keuken of bron…" aria-label="Zoek recept">
     </div>
-    <div class="chip-row" id="keukenFilter" role="group" aria-label="Filter op keuken"></div>
+    <div class="filters" id="filters"></div>
     <section class="grid" id="recipeGrid"></section>
     <p class="search-empty" id="searchEmpty" hidden>Geen recepten gevonden.</p>
   </div>
