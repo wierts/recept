@@ -1,7 +1,20 @@
 {
-  "versie": "1.6.2",
+  "versie": "1.7.0",
   "datum": "2026-11-09",
   "geschiedenis": [
+    {
+      "versie": "1.7.0",
+      "datum": "2026-11-09",
+      "soort": "verbetering",
+      "omschrijving": "Teller voor hoe vaak je een recept maakt: tik op de kookpagina op 'Vandaag gemaakt' (met ongedaan maken). De startpagina toont het aantal per recept, het totaal, en je kunt filteren op recepten die je nog niet hebt gemaakt. De teller geldt per toestel.",
+      "commits": [
+        {
+          "hash": "",
+          "datum": "2026-11-09",
+          "titel": "v1.7.0 – Teller voor hoe vaak je een recept maakt (deze versie)"
+        }
+      ]
+    },
     {
       "versie": "1.6.2",
       "datum": "2026-11-09",
@@ -9,9 +22,9 @@
       "omschrijving": "Een nieuw recept toevoegen is eenvoudiger: de pagina's per recept worden nu door een script gemaakt, zodat alleen de receptgegevens nog met de hand worden ingevoerd. Voor jou verandert er niets.",
       "commits": [
         {
-          "hash": "",
-          "datum": "2026-11-09",
-          "titel": "v1.6.2 – Receptpagina's gegenereerd uit de data (deze versie)"
+          "hash": "a7894bb",
+          "datum": "2026-11-09 18:09",
+          "titel": "v1.6.2 – Receptpagina's gegenereerd uit de data"
         }
       ]
     },

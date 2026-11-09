@@ -23,6 +23,7 @@ export function initZoeken() {
       const okHoofd = !hoofd || (hoofd === '!Kip' ? card.dataset.hoofd !== 'Kip' : card.dataset.hoofd === hoofd);
       let okExtra = true;
       if (extra === 'fav') okExtra = card.dataset.fav === '1';
+      else if (extra === 'nooit') okExtra = card.dataset.gemaakt === '0';
       else if (extra) { const m = parseInt(card.dataset.minuten, 10); okExtra = !isNaN(m) && m <= parseInt(extra, 10); }
       const match = (!q || haystack.includes(q)) && (!keuken || card.dataset.keuken === keuken) && okHoofd && okExtra;
       card.style.display = match ? '' : 'none';

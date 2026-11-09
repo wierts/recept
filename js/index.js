@@ -1,6 +1,6 @@
 // De startpagina: bouwt de receptkaarten en filterknoppen op uit recipes-data.js
 // (volgorde volgens RECIPES.order) en start het zoekveld.
-import { getFavs, setFav, hasNote } from './opslag.js';
+import { getFavs, setFav, hasNote, getCooked } from './opslag.js';
 import { initVersion } from './versie.js';
 import { initZoeken } from './zoeken.js';
 
@@ -25,6 +25,8 @@ function buildCard(slug, r, isFavorite) {
   const minutes = parseMinutes(r.time);
   card.dataset.minuten = minutes == null ? '' : String(minutes);
   card.dataset.fav = isFavorite ? '1' : '';
+  const gemaakt = getCooked(slug).length;
+  card.dataset.gemaakt = String(gemaakt);
 
   const heart = document.createElement('button');
   heart.type = 'button';
@@ -56,10 +58,12 @@ function buildCard(slug, r, isFavorite) {
     b.className = 'badge' + (cls ? ' ' + cls : '');
     b.textContent = text;
     meta.appendChild(b);
+    return b;
   };
   if (r.keuken) addBadge(r.keuken, 'keuken');
   if (r.time) addBadge(`⏱ ${r.time}`);
   if (r.difficultyLabel) addBadge(r.difficultyLabel, r.difficulty || '');
+  if (gemaakt) addBadge(`🍳 ${gemaakt}× gemaakt`).title = 'Aantal keer gemaakt (op dit toestel)';
   if (hasNote(slug)) addBadge('📝 notitie');
   card.appendChild(meta);
 
@@ -74,7 +78,7 @@ function buildCard(slug, r, isFavorite) {
 }
 
 // Filterknoppen boven de kaarten (keuken, hoofdingrediënt, tijd/favorieten); werken samen met het zoekveld.
-function renderFilters(recipes) {
+function renderFilters(recipes, nogNietGemaakt) {
   const box = document.getElementById('filters');
   if (!box) return;
   box.innerHTML = '';
@@ -91,8 +95,9 @@ function renderFilters(recipes) {
   const rows = [
     ['keuken', 'Filter op keuken', tally('keuken')],
     ['hoofd', 'Filter op hoofdingrediënt', hoofd],
-    ['extra', 'Filter op tijd of favorieten', [
+    ['extra', 'Filter op tijd, favorieten of gemaakt', [
       { value: 'fav', text: '★ Favorieten' },
+      { value: 'nooit', text: `Nog niet gemaakt (${nogNietGemaakt})` },
       { value: '30', text: `≤ 30 min (${within(30)})` },
       { value: '60', text: `≤ 1 uur (${within(60)})` }
     ]]
@@ -132,6 +137,15 @@ export function initIndex(data) {
     .concat(Object.keys(data.recipes).filter(s => !(data.order || []).includes(s)));
   const favs = getFavs();
   slugs.forEach(slug => grid.appendChild(buildCard(slug, data.recipes[slug], favs.includes(slug))));
-  renderFilters(slugs.map(s => data.recipes[s]));
+  const aantallen = slugs.map(s => getCooked(s).length);
+  const totaal = aantallen.reduce((a, b) => a + b, 0);
+  if (totaal) {
+    const stats = document.createElement('p');
+    stats.className = 'cook-stats';
+    const soorten = aantallen.filter(n => n > 0).length;
+    stats.textContent = `🍳 ${totaal}× gekookt · ${soorten} van ${slugs.length} recepten`;
+    grid.before(stats);
+  }
+  renderFilters(slugs.map(s => data.recipes[s]), aantallen.filter(n => n === 0).length);
   initZoeken();
 }

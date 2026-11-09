@@ -1,5 +1,5 @@
 // Alles wat op het toestel wordt bewaard (localStorage): aantal personen, afgevinkte stappen,
-// boodschappenlijst, favorieten en notities. Alle toegang loopt via deze functies, zodat een
+// boodschappenlijst, favorieten, notities en hoe vaak een recept is gemaakt. Alle toegang loopt via deze functies, zodat een
 // geblokkeerde of beschadigde opslag (privémodus, kapotte JSON) de app nooit laat crashen.
 // Wijzig bestaande sleutels niet: dan verliezen gebruikers hun favorieten en notities.
 
@@ -68,4 +68,35 @@ export function hasNote(slug) { return getNote(slug).trim() !== ''; }
 export function setNote(slug, text) {
   if (text.trim()) writeText(noteKey(slug), text);
   else removeKey(noteKey(slug));
+}
+
+// Hoe vaak een recept is gemaakt: lijst met datums (jjjj-mm-dd), oudste eerst
+const cookedKey = (slug) => 'gemaakt-' + slug;
+
+export function todayISO() {
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}
+
+export function getCooked(slug) {
+  const list = readJSON(cookedKey(slug), []);
+  return Array.isArray(list) ? list.filter(x => typeof x === 'string') : [];
+}
+
+export function addCooked(slug, dateISO = todayISO()) {
+  const list = getCooked(slug);
+  list.push(dateISO);
+  list.sort();
+  writeJSON(cookedKey(slug), list);
+  return list;
+}
+
+// Haalt de laatste keer weer weg (bv. per ongeluk op de knop getikt).
+export function undoCooked(slug) {
+  const list = getCooked(slug);
+  list.pop();
+  if (list.length) writeJSON(cookedKey(slug), list);
+  else removeKey(cookedKey(slug));
+  return list;
 }

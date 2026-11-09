@@ -1,7 +1,8 @@
 // De kookpagina van een recept: titel en herkomst, video, ingrediënten en stappen (afvinkbaar),
-// favoriet-knop en eigen notities. Hoeveelheden volgen de portie-aanpasser.
+// favoriet-knop, gemaakt-teller en eigen notities. Hoeveelheden volgen de portie-aanpasser.
 import { ingredientLabel, scaleText, baseServings } from './schalen.js';
-import { readJSON, writeJSON, removeKey, isFav, setFav, getNote, setNote } from './opslag.js';
+import { readJSON, writeJSON, removeKey, isFav, setFav, getNote, setNote, getCooked, addCooked, undoCooked } from './opslag.js';
+import { formatDate } from './versie.js';
 import { renderServingsControl } from './porties.js';
 
 function renderVideoCard(recipe) {
@@ -55,6 +56,42 @@ function addFavoriteButton(slug) {
   fb.addEventListener('click', () => { setFav(slug, !isFav(slug)); paint(); });
   paint();
   actions.appendChild(fb);
+}
+
+// "Gemaakt"-teller: tik op de knop als je het recept hebt gekookt; telt per toestel.
+function addCookedCounter(slug) {
+  const mainEl = document.querySelector('main');
+  if (!mainEl) return;
+  const wrap = document.createElement('section');
+  wrap.className = 'cooked';
+  const h = document.createElement('h2');
+  h.textContent = 'Gemaakt';
+  const row = document.createElement('div');
+  row.className = 'cooked-row';
+  const add = document.createElement('button');
+  add.type = 'button';
+  add.className = 'nav-btn cooked-add';
+  add.textContent = '✓ Vandaag gemaakt';
+  const undo = document.createElement('button');
+  undo.type = 'button';
+  undo.className = 'nav-btn cooked-undo';
+  undo.textContent = '↶ Ongedaan maken';
+  const info = document.createElement('p');
+  info.className = 'cooked-info';
+  info.setAttribute('aria-live', 'polite');
+  const paint = () => {
+    const list = getCooked(slug);
+    undo.hidden = list.length === 0;
+    info.textContent = list.length
+      ? `${list.length}× gemaakt · laatst op ${formatDate(list[list.length - 1])}`
+      : 'Nog niet gemaakt. Tik op de knop zodra je het hebt gekookt.';
+  };
+  add.addEventListener('click', () => { addCooked(slug); paint(); });
+  undo.addEventListener('click', () => { undoCooked(slug); paint(); });
+  row.append(add, undo);
+  wrap.append(h, row, info);
+  paint();
+  mainEl.appendChild(wrap);
 }
 
 // Eigen notities bij het recept, bewaard op dit toestel.
@@ -130,6 +167,7 @@ export function initKookinstructies(slug, recipe) {
   renderHeader(recipe);
   renderVideoCard(recipe);
   addFavoriteButton(slug);
+  addCookedCounter(slug);
   addNotes(slug);
 
   const ingList = document.getElementById('ingredientsList');

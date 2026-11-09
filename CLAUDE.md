@@ -75,7 +75,7 @@ Bij elke wijziging `CACHE_NAME` in `sw.js` ophogen, zodat oude caches worden opg
 
 ## Gegevens op het toestel (localStorage / sessionStorage)
 
-Alles is per toestel; er is geen server. Sleutels: `favorieten` (JSON-lijst met slugs), `notitie-<slug>` (eigen notitie), `porties-<slug>`, `stappen-<slug>` (afgevinkte kookstappen), `<slug>-checklist-v1` en `<slug>-checklist-v1-custom` (boodschappenlijst), `recepten-theme`. In `sessionStorage`: `recepten-index` (zoekopdracht, filters en scrollpositie van de index). Wijzig deze sleutels niet zonder reden: bestaande favorieten en notities van gebruikers verdwijnen dan.
+Alles is per toestel; er is geen server. Sleutels: `favorieten` (JSON-lijst met slugs), `notitie-<slug>` (eigen notitie), `gemaakt-<slug>` (JSON-lijst met datums jjjj-mm-dd: hoe vaak gemaakt), `porties-<slug>`, `stappen-<slug>` (afgevinkte kookstappen), `<slug>-checklist-v1` en `<slug>-checklist-v1-custom` (boodschappenlijst), `recepten-theme`. In `sessionStorage`: `recepten-index` (zoekopdracht, filters en scrollpositie van de index). Wijzig deze sleutels niet zonder reden: bestaande favorieten, notities en gemaakt-tellers van gebruikers verdwijnen dan.
 
 Hoeveelheden in gram/ml/kilo/liter worden bij een andere portiegrootte afgerond en omgezet (½ kilo → 500 gram, 1500 gram → 1,5 kilo) in `niceMetric()` in `js/schalen.js`, in zowel de ingrediëntenlijst als de stappen. Bij het oorspronkelijke aantal personen blijft de tekst ongewijzigd.
 

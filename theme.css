@@ -135,6 +135,12 @@ ol.steps li.done::before{content:"✓"}
 .fav-btn:hover{color:var(--ink)}
 .fav-btn[aria-pressed="true"]{color:#ef4444}
 .fav-toggle[aria-pressed="true"]{border-color:#ef4444;color:#ef4444}
+.cooked{margin-top:8px}
+.cooked-row{display:flex;gap:10px;flex-wrap:wrap}
+.cooked-row [hidden]{display:none}
+.cooked-add{border-color:#22c55e;color:#22c55e}
+.cooked-info{color:var(--muted);font-size:.9rem;margin:8px 0 0}
+.cook-stats{text-align:center;color:var(--muted);font-size:.9rem;margin:0 0 14px}
 .my-notes{margin-top:8px}
 .my-notes textarea{width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--ink);font:inherit;resize:vertical}
 .my-notes textarea:focus{outline:none;border-color:var(--accent)}

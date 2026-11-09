@@ -9,6 +9,7 @@ Persoonlijke receptensite met per recept een afvinkbare **boodschappenlijst** en
 - Open de site in Safari en kies *Deel → Zet op beginscherm* om hem als app te installeren.
 - Kies een recept, stel het aantal personen in (1–12) en vink ingrediënten en stappen af. De voortgang wordt lokaal op het toestel bewaard.
 - Op de kookpagina houdt de knop 🔆 het scherm aan tijdens het koken.
+- Op de kookpagina houd je met *✓ Vandaag gemaakt* bij hoe vaak je een recept hebt gemaakt (per toestel). De startpagina toont de teller per recept en het totaal, en filtert op *Nog niet gemaakt*.
 - Op de startpagina filter je op keuken, hoofdingrediënt, bereidingstijd of favorieten (♡), en zoek je op naam, keuken of bron. Je filters en zoekopdracht blijven staan als je terugkomt uit een recept.
 - Bij elk recept kun je eigen notities bewaren (bijvoorbeeld "iets minder chili"). Favorieten en notities staan alleen op het toestel waarop je ze maakt.
 - Wijzig je het aantal personen, dan worden hoeveelheden in de lijst én in de stappen netjes omgerekend en afgerond.
